@@ -1,0 +1,59 @@
+<div class="">
+	<form class="m p p-T-xl rc-s bg-ddd t-c" onsubmit="getVQ(); return false;">
+		<label for="url" class="f-13p usr-no"> Video URL : </label>
+		<input
+			value=""
+			id="url"
+			class="p-s bdr out-no rc-s"
+			placeholder="paste ur link here ..."
+			type="search"
+			required
+		/>
+		<button class="m bg-FE0000 clr-fff fw-600" onclick="pressed(this, true)">
+			Submit
+		</button>
+	</form>
+
+	<div class="loader" style="display:none" >loader</div>
+
+	<div
+		id="ytdl_err"
+		class=" bb t-c mw-100wh w-100pg bg-812 clr-fff fw-500 p rc-s d-no"
+		onclick="this.style.display = 'none' ; "
+		style = "overflow-wrap: break-word;"
+	>
+		Error Occurred !
+	</div>
+
+	<div id="panel" class="t-c st rc-s bg-eee p m-s" style="opacity:0">
+		<div class="d-flx avtab chd(m,p,crsr-pntr,hbr(bg-ddd),rc-10px_10px_0px_0px)">
+			<div class="bdr-B-2p_000" onclick="toggle_avTab(this)"> Video </div>
+			<div onclick="toggle_avTab(this)" > Audio </div>
+		</div>
+		<img id="vt" class="rc-s mw-80pg" src="" />
+		<div class="fw-350 p" id="vn"> Video Name (2 m 34 sec) </div>
+		
+		<div class="rc-s" id="vPanel">
+			<div class="quality fsb rc-s bg-ddd m-T chd-div(m-s,p-s,fw-300)">
+				<div> 720p </div>
+				<div> 2.5 MB </div>
+				<div
+					class="w-30pg db hbr(bnw) bdr-L rc-0px_5px_5px_0px crsr-pntr"
+					onclick="pressed(this)"
+				> <a>Download </a></div>
+			</div>
+		</div>
+		
+		<div class="rc-s d-no" id="aPanel">
+			<div class="quality fsb rc-s bg-ddd m-T chd-div(m-s,p-s,fw-300)">
+				<div> 64 kbps </div>
+				<div> 2.5 MB </div>
+				<div
+					class="w-30pg db hbr(bnw) bdr-L rc-0px_5px_5px_0px crsr-pntr"
+					onclick="pressed(this)"
+				> <a>Download </a></div>
+			</div>
+		</div>
+	</div>
+	
+</div>

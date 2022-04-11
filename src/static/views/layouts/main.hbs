@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<title>{{{title}}}</title>
+<meta name="viewport" content="width=device-width" />
+<head>
+{{#if (isDev)}}
+<script src="/js/eruda.min.js" onload="eruda.init()"></script>
+{{/if}}
+<script>{{{loadFiles}}}</script>
+<link rel="icon" href="/favicon.png">
+<link rel="apple-touch-icon" href="/favicon.png">
+<style>body{opacity:0;}</style>
+</head>
+<body class="m-n opct-1">
+	
+<nav class="d-b bb pos-rel bg-eee p-s d-grd gtc-50px_auto">
+	<div id="hmbgr" onclick="thmbgr(tsp)"> <hr /><hr /><hr /> </div>
+	<div class="t-c f-xl fw-600 p" id="mainH">
+		{{{mainHeading}}}
+	</div>
+</nav>
+
+<div id="sidePanel" class="top-53p left-0p zi-999999 chd(crsr-pntr)">
+	<a href="{{hn}}"  class="item" onclick="setView('index'); return false;"> HOME </a>
+	<div class="item"> Contact me </div>
+	<div class="item"> About me </div>
+</div>
+
+	<div class="viewport pc(pos-rel,w-500p,left-50pg,m-L-_250p)">
+	{{{body}}}
+	</div>
+</body>
+
+<script>
+let loadF = cacheF;
+loadF.files = [
+	"css/ui.css",
+	"js/imgC.js",
+	"js/acss.min.js",
+	"js/main.js",
+	"js/hlpr.js",
+	"js/fm.js",
+	"js/ytdl.js",
+	"js/pb.js",
+	"js/imgD.js",
+];
+let vs = {{{versions}}};
+let views = {{{views}}};
+let pwd = "{{{pwd}}}"
+loadF.init(vs, 1)
+</script>
+<script>{{{getViews}}}</script>
+</html>

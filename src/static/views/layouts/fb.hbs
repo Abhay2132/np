@@ -1,0 +1,33 @@
+<html>
+	<meta name="viewport" content="width=device-width, scale=1" />
+
+	<head>
+		
+<link rel="icon" href="/favicon.png">
+<link rel="apple-touch-icon" href="/favicon.png">
+		{{#unless title}}
+			<title> FakeBook </title>
+		{{/unless}}
+		{{#if title}}
+			<title> {{title}} </title>
+		{{/if}}
+		{{#if (isDev)}}
+			<script src="/js/eruda.min.js" onload="eruda.init();"></script>
+		{{/if}}
+			<script>{{{loadFiles}}}</script>
+			<link rel="icon" type="image/x-icon" href="/favicon.ico">
+	</head>
+	<style>
+		body { opacity:0; font-family : calibri, sans-serif ; }
+	</style>
+	
+{{{body}}}
+
+<script>
+let loadF= new _loadFiles();
+loadF.files = [
+"https://cdn2132.herokuapp.com/acss.min.js"
+]
+loadF.init()
+</script>
+</html>
