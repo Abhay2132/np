@@ -21,18 +21,19 @@ let getCV = () => new Promise( res => {
 module.exports = async () => {
 	let loadFiles = await getLF(),
 		getViews = await getCV()
+	let sdp = j("src","static") // static dir path ( rel. path ) 
 	let svs = new VS({ // static version system
 		dirs :{
-			"css" : j(sdir, "public", "css"),
-			"js" : j(sdir, "public", "js")
+			"css" : j(sdp, "public", "css"),
+			"js" : j(sdp, "public", "js")
 		},
 		ignores : ["eruda.min.js", "loadFiles.js"],
-		vdir : j(sdir, "public")
+		vdir : j(sdp, "public")
 	}),
 	vvs = new VS({ // view version system
-		dirs : {"view" : j(sdir, "views")},
+		dirs : {"view" : j(sdp, "views")},
 		ignores : ["versions.json"],
-		vdir : j(sdir, "views")
+		vdir : j(sdp, "views")
 	}),
 	{newVs : vs, updated} = await svs.c4u(),
 	{newVs : views, updated : upViews } = await vvs.c4u()

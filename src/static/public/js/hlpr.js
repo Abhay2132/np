@@ -65,3 +65,4 @@ window.onLoad = async (func ) => {
 	while (! (["complete","interactive"].includes(document.readyState))) await (new Promise (res => setTimeout( res , 100)))
 	return typeof func === "function" ? func() : func;
 }
+

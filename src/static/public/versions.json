@@ -1,62 +1,62 @@
 {
   "css/ui.css": {
     "version": 1,
-    "mTime": 1648529658122.6401,
+    "mTime": 1649668132060.7712,
     "length": 2242,
-    "path": "/storage/emulated/0/np/src/static/public/css/ui.css"
+    "path": "src/static/public/css/ui.css"
   },
   "js/acss.min.js": {
     "version": 1,
-    "mTime": 1648529658122.6401,
+    "mTime": 1649668132040.7712,
     "length": 12561,
-    "path": "/storage/emulated/0/np/src/static/public/js/acss.min.js"
+    "path": "src/static/public/js/acss.min.js"
   },
   "js/fm.js": {
     "version": 1,
-    "mTime": 1648529658122.6401,
+    "mTime": 1649668132040.7712,
     "length": 3199,
-    "path": "/storage/emulated/0/np/src/static/public/js/fm.js"
+    "path": "src/static/public/js/fm.js"
   },
   "js/getViews.js": {
     "version": 1,
-    "mTime": 1648529658122.6401,
+    "mTime": 1649668132040.7712,
     "length": 1942,
-    "path": "/storage/emulated/0/np/src/static/public/js/getViews.js"
+    "path": "src/static/public/js/getViews.js"
   },
   "js/hlpr.js": {
-    "version": 1,
-    "mTime": 1648104633708.333,
+    "version": 2,
+    "mTime": 1649771915526.437,
     "length": 1983,
-    "path": "/storage/emulated/0/np/src/static/public/js/hlpr.js"
+    "path": "src/static/public/js/hlpr.js"
   },
   "js/imgC.js": {
     "version": 1,
-    "mTime": 1648104633708.333,
+    "mTime": 1649668132048.7712,
     "length": 898,
-    "path": "/storage/emulated/0/np/src/static/public/js/imgC.js"
+    "path": "src/static/public/js/imgC.js"
   },
   "js/imgD.js": {
     "version": 1,
-    "mTime": 1648104633708.333,
+    "mTime": 1649668132040.7712,
     "length": 1615,
-    "path": "/storage/emulated/0/np/src/static/public/js/imgD.js"
+    "path": "src/static/public/js/imgD.js"
   },
   "js/main.js": {
     "version": 1,
-    "mTime": 1648104633704.333,
+    "mTime": 1649668132044.7712,
     "length": 1634,
-    "path": "/storage/emulated/0/np/src/static/public/js/main.js"
+    "path": "src/static/public/js/main.js"
   },
   "js/pb.js": {
     "version": 1,
-    "mTime": 1648104633704.333,
+    "mTime": 1649668132044.7712,
     "length": 1892,
-    "path": "/storage/emulated/0/np/src/static/public/js/pb.js"
+    "path": "src/static/public/js/pb.js"
   },
   "js/ytdl.js": {
     "version": 1,
-    "mTime": 1648276620285.6072,
+    "mTime": 1649668132044.7712,
     "length": 2617,
-    "path": "/storage/emulated/0/np/src/static/public/js/ytdl.js"
+    "path": "src/static/public/js/ytdl.js"
   }
 }
