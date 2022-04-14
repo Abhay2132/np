@@ -45,5 +45,5 @@ module.exports = async () => {
 	app.use(cors());
 	
 	app.use(router)
-	app.listen(_port, async () => log(`Server started at localhost:${_port} in ${isPro ? "pro" : "dev"} mode`))
+	app.listen(_port, async () => log(`Server started at localhost:${_port} in ${isPro ? "pro" : "dev"} mode \n( version : ${__appV} )`))
 }
