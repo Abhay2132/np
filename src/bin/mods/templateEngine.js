@@ -28,12 +28,14 @@ module.exports = async () => {
 			"js" : j(sdp, "public", "js")
 		},
 		ignores : ["eruda.min.js", "loadFiles.js"],
-		vdir : j(sdp, "public")
+		vdir : j(sdp, "public"),
+		useS : true
 	}),
 	vvs = new VS({ // view version system
 		dirs : {"view" : j(sdp, "views")},
 		ignores : ["versions.json"],
-		vdir : j(sdp, "views")
+		vdir : j(sdp, "views"),
+		useS : true
 	}),
 	{newVs : vs, updated} = await svs.c4u(),
 	{newVs : views, updated : upViews } = await vvs.c4u()
