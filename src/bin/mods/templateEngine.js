@@ -86,6 +86,9 @@ module.exports = async () => {
 			},
 			getViews() {
 				return getViews
+			},
+			appV () {
+				return __appV;
 			}
 		},
 		extname: ".hbs",
