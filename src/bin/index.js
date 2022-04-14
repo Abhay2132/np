@@ -44,7 +44,7 @@ module.exports = async () => {
 	app.use(compression());
 	app.use(cors());
 	app.use(__c4u); // exit the process on new push on repo
-	
+	 
 	app.use(router)
 	app.listen(_port, async () => log(`Server started at localhost:${_port} in ${isPro ? "pro" : "dev"} mode \n( version : ${__appV} )`))
 }
