@@ -1,3 +1,5 @@
+(function () {
+	
 const cluster = require("cluster");
 const app = require("./bin/index");
 
@@ -14,3 +16,5 @@ if (cluster.isMaster) {
 	app();
 	console.log(`Worker ${process.pid} started`);
 }
+
+})()
