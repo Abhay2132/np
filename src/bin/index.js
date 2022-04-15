@@ -16,7 +16,7 @@ module.exports = async () => {
 	global.pdir = j(sdir, "public");
 	global._port = process.env.PORT || 3000;
 	global.isPro = process.env.NODE_ENV === "production";
-	if( typeof appV == "undefined" ) global.__appV = 0 
+	if( typeof global.appV == "undefined" ) global.__appV = 0 
 
 	console.clear();
 	isPro || console.log(require("colors").green("Starting Server !"))
@@ -46,7 +46,7 @@ module.exports = async () => {
 	app.use(exp.json());
 	app.use(compression());
 	app.use(cors());
-	if ( typeof __c4u !== "undefined" ) app.use(__c4u); 
+	if ( typeof global.__c4u !== "undefined" ) app.use(__c4u); 
 	
 	app.use(router)
 	app.listen(_port, async () => log(`Server started at localhost:${_port} in ${isPro ? "pro" : "dev"} mode \n( version : ${__appV} )`))
