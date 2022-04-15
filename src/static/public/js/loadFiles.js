@@ -9,7 +9,7 @@ const cacheF = {
 	}),
 	logs : [],
 	init : async (logging = false, appV = 0) => {
-		let f = !appV || cacheF.av !== appV
+		let f = !appV || cacheF.av != appV
 		for( let file of cacheF.files ) {
 			let data = await cacheF.getF( file , f)
 			if ( file.endsWith(".js")) eval(data);
