@@ -8,7 +8,7 @@ const cacheF = {
 		else res(( localStorage.getItem(url) || "" ), cacheF.logs.push("C " + url.split("/").at(-1)))
 	}),
 	logs : [],
-	init : async (v, logging = false) => {
+	init : async (v = {}, logging = false, appV = 0) => {
 		let newVs = {}
 		for( let file of cacheF.files ) {
 			let data = await cacheF.getF( file , cacheF.vs[file] !== v[file])

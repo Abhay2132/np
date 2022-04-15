@@ -17,6 +17,7 @@ module.exports = async () => {
 	global.pdir = j(sdir, "public");
 	global._port = process.env.PORT || 3000;
 	global.isPro = process.env.NODE_ENV === "production";
+	global.__appV = __appV || 0;
 
 	if (fs.existsSync(j(sdir, "files"))) fs.rm(j(sdir, "files"), {recursive : true}, () =>{})
 
