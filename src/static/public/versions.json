@@ -18,15 +18,15 @@
     "path": "src/static/public/js/fm.js"
   },
   "js/getViews.js": {
-    "version": 1,
+    "version": 5,
     "mTime": 1649668132040.7712,
-    "length": 1942,
+    "length": 2122,
     "path": "src/static/public/js/getViews.js"
   },
   "js/hlpr.js": {
-    "version": 2,
+    "version": 3,
     "mTime": 1649771915526.437,
-    "length": 1983,
+    "length": 1985,
     "path": "src/static/public/js/hlpr.js"
   },
   "js/imgC.js": {

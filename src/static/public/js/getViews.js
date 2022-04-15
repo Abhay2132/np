@@ -1,8 +1,9 @@
 
 let isUpdated = (v) => {
+	//console.log({__appV, ls : parseInt(localStorage.getItem("appV")), f: __appV == parseInt(localStorage.getItem("appV")) })
+	return __appV == parseInt(localStorage.getItem("appV"))
 	let lsvv = JSON.parse(localStorage.getItem("viewVersions") || "{}")
 	if ( ! Object.keys(lsvv).includes("view/"+v+".hbs")) return false;
-	
 	return lsvv["view/"+v+".hbs"] == views["view/"+v+".hbs"]
 }
 

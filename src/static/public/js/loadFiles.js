@@ -1,6 +1,6 @@
 const cacheF = {
 	files : [],
-	vs : JSON.parse(localStorage.getItem("versions") || "{}"),
+	av : localStorage.getItem("appV") || 0,
 	getF : (url, f ) => new Promise( res => {
 		if ( f ) fetch(url)
 					.then(d => d.text())
@@ -8,15 +8,14 @@ const cacheF = {
 		else res(( localStorage.getItem(url) || "" ), cacheF.logs.push("C " + url.split("/").at(-1)))
 	}),
 	logs : [],
-	init : async (v = {}, logging = false, appV = 0) => {
-		let newVs = {}
+	init : async (logging = false, appV = 0) => {
+		let f = !appV || cacheF.av !== appV
 		for( let file of cacheF.files ) {
-			let data = await cacheF.getF( file , cacheF.vs[file] !== v[file])
+			let data = await cacheF.getF( file , f)
 			if ( file.endsWith(".js")) eval(data);
 			else if ( file.endsWith(".css")) document.body.innerHTML += `<style>${data}</style>`;
-			newVs[file] = v[file];
 		}
 		if (logging ) console.log(cacheF.logs)
-		localStorage.setItem("versions", JSON.stringify(newVs))
+		localStorage.setItem("appV", appV)
 	}
 }

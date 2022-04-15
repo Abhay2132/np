@@ -47,7 +47,8 @@ loadF.files = [
 let vs = {{{versions}}};
 let views = {{{views}}};
 let pwd = "{{{pwd}}}"
-loadF.init(vs , 1, {{{appV}}})
+window.__appV = {{{appV}}};
+loadF.init(1, __appV)
 
 </script>
 <script>{{{getViews}}}</script>
