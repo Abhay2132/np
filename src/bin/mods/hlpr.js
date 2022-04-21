@@ -18,7 +18,8 @@ const logger = (req, res, next) => {
 			PUT: "blue",
 			DELETE: "red",
 		};
-		log(colors[mc[req.method]](req.method), req.url);
+		let clr = mc[req.method] || "grey";
+		log(colors[clr](req.method), req.url);
 		next();
 	}
 	

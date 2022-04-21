@@ -12,15 +12,15 @@
     "path": "src/static/views/imgD.hbs"
   },
   "view/index.hbs": {
-    "version": 1,
+    "version": 2,
     "mTime": 1649780088602.5571,
-    "length": 593,
+    "length": 436,
     "path": "src/static/views/index.hbs"
   },
   "view/nb.hbs": {
-    "version": 1,
-    "mTime": 1649817776860.9797,
-    "length": 41,
+    "version": 10,
+    "mTime": 1650432135823.0051,
+    "length": 581,
     "path": "src/static/views/nb.hbs"
   },
   "view/ytdl.hbs": {

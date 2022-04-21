@@ -1,3 +1,81 @@
-<div class="bb p-s m-n h-30p">
-	
+<div class="bdr-B bb d-grd gtc-auto_70px p-s " id = "nbNav">
+	<div id="nbPath" class="usr-no ws-nw ovrflw-scrl p-T-s" >
+		Home <b> > </b> 
+	</div>
+	<div id="viewType" class="f-r-c bdr-L chd(h-20p,w-20p)" >
+		<div icon="list" class="  p-s rc-s pos-rel" onclick="setView('list')" ></div>
+		<div icon="grid" class="bg-bbb midl p-s rc-s pos-rel" onclick='setView("grid")'></div>
+	</div>
 </div>
+
+<div class="bookshelf p-s t-left bb usr-no ">
+	<div class="grid book ovrflw-hdn bg-02C100">
+		<div class="h-50p p-B m bdr-B midl pos-rel bookIcon hbr(chd-section(top-_10p)) ">
+			<div icon="mail" class="h-40p w-40p" ></div>
+			<section class="f-c-c bookMenu chd(m-0px_5px,bb,hbr(lthm,rc-s),p-s,t-c) pos-abs top-_159p st h-120p dnw w-100 rc-0px_0px_3px_3px f-15p">
+				<div>Open</div>
+				<div>Settings</div>
+			</section>
+		</div>
+		<div class="bookName t-c m-xs bb wwrp-brkw h-50p ovrflw-scrl" >
+			logs
+		</div>
+	</div>
+	
+	<div class="grid book ovrflw-hdn bg-FFB024">
+		<div class="h-50p p-B m bdr-B midl pos-rel bookIcon hbr(chd-section(top-_10p)) ">
+			<div icon="cart" class="h-40p w-40p" ></div>
+			<section class="f-c-c bookMenu chd(usr-no,m-0px_5px,bb,hbr(lthm,rc-s),p-s,t-c) pos-abs top-_159p st h-120p dnw w-100 rc-0px_0px_3px_3px f-15p">
+				<div>Open</div>
+				<div>Settings</div>
+			</section>
+		</div>
+		<div class="bookName t-c m-xs bb wwrp-brkw h-50p ovrflw-scrl" >
+			Shopping List
+		</div>
+	</div>
+
+</div>
+	
+	<div id="addNew" class="button pos-fxd btm-10p right-10p f-40p t-c midl bb h-50p w-50p dnw rc-l">
+		<div class="pos-rel top-_3p">+</div>
+	</div>
+	
+	<section id="cnb" class="d-no h-100vh w-100 pos-fxd top-n left-n midl DBC" >
+		<div class="zi-0 st dbbg blrbg h-100vh w-100 pos-fxd left-n top-n"></div>
+		<div id ="bkfrm" class="DB pos-rel top-100p opct-0 st zi-2 w-80pg  dnw rc-s p f-c-c pc(pos-rel,w-500p,left-50pg,m-L-_250p) ">
+			<div class= "t-c p bdr-B ">
+				Create New Book
+			</div>
+			<div class="m bookForm chd-input(p-s,bdr,rc-s) t-c d-grd gtc-100px_auto gg">
+				<label > Name : </label> <input id="bn">
+				<label > Background :  </label> <input id="bbg" value="#35c">
+				<label > Color :  </label> <input id="bc" value="#fff">
+				<label class="midl"> Icon : </label>
+				<div class="ovrflw-scrl iconList t-c chd(rc-s,d-ib,h-20p,w-20p,p-s)">
+					<div icon="list" ></div>
+					<div icon="cart"></div>
+					<div icon="grid"></div>
+					<div icon="mail"></div>
+					<div icon="cart"></div>
+					<div icon="grid"></div>
+					<div icon="mail"></div>
+					<div icon="cart"></div>
+					<div icon="grid"></div>
+					<div icon="mail"></div>
+					<div icon="cart"></div>
+					<div icon="grid"></div>
+					<div icon="mail"></div>
+					<div icon="cart"></div>
+					<div icon="grid"></div>
+					<div icon="mail"></div>
+				</div>
+			</div>
+			<div class="andbBtns chd(clr-fff) t-c bdr-T-1p_fff m p ">
+				<button class="bg-922" onclick="pressed (this, 1, hideDB(200) )">Cancel</button>
+				<button class="bg-293" onclick="pressed (this, 1, createNB())">Create</button>
+			</div>
+		</div>
+	</section>
+	
+	

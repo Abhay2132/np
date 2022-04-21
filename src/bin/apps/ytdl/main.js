@@ -56,7 +56,7 @@ async function dl(req, res) {
 
 	if (err) return res.end(err.message);
 
-	let audio = ytdl(url, { filter: "audioonly" });
+	let audio = ytdl(url);
 	let video = ytdl(url, { quality: videoF.itag });
 
 	let ff = spawn(

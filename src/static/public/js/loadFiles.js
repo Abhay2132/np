@@ -8,11 +8,16 @@ const cacheF = {
 		else res(( localStorage.getItem(url) || "" ), cacheF.logs.push("C " + url.split("/").at(-1)))
 	}),
 	logs : [],
+	run : (txt) => {
+		let script = document.createElement("script")
+		script.innerHTML = txt
+		document.body.appendChild(script);
+	},
 	init : async (logging = false, appV = 0) => {
 		let f = !appV || cacheF.av != appV
 		for( let file of cacheF.files ) {
 			let data = await cacheF.getF( file , f)
-			if ( file.endsWith(".js")) eval(data);
+			if ( file.endsWith(".js")) cacheF.run(data);
 			else if ( file.endsWith(".css")) document.body.innerHTML += `<style>${data}</style>`;
 		}
 		if (logging ) console.log(cacheF.logs)
