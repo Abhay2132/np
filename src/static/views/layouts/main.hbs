@@ -21,18 +21,18 @@
 </nav>
 
 <div id="sidePanel" class="top-53p left-0p zi-999999 chd(crsr-pntr)">
-	<a href="{{hn}}"  class="item"> HOME </a>
+	<a href="{{hn}}"  class="item" view="index" > HOME </a>
 	<div class="item"> Contact me </div>
 	<div class="item"> About me </div>
 </div>
 
-	<div class="viewport pc(pos-rel,w-500p,left-50pg,m-L-_250p)">
+	<div id="body" class="st viewport pc(pos-rel,w-500p,left-50pg,m-L-_250p)">
 	{{{body}}}
 	</div>
 </body>
 
 <script>
-let loadF = cacheF;
+window.loadF = Object.create(cacheF);
 loadF.files = [
 	"css/ui.css",
 	"js/imgC.js",
@@ -45,11 +45,12 @@ loadF.files = [
 	"js/imgD.js",
 	"js/icons.js",
 	"js/nb.js",
+	"js/cacheV.js"
 ];
 
 let pwd = "{{{pwd}}}"
 window.__appV = {{{appV}}};
-loadF.init(1, __appV)
-
+loadF.init({logging: 1,appV :  __appV})
+window.isDev = location.href.startsWith("http://localhost");
 </script>
 </html>

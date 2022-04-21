@@ -5,6 +5,7 @@ const hbs = require("express-handlebars"),
 let getLF = () => new Promise( res => {
 	fs.readFile(j(sdir, "public", "js", "loadFiles.js"), (err, txt) => {
 		if ( err) return res(err)
+		if ( ! isPro ) return res(txt.toString());
 		res(minify(txt.toString()).code || "")
 	})
 })
@@ -30,9 +31,6 @@ module.exports = async () => {
 			},
 			pwd () {
 				return __dirname
-			},
-			mainHeading () {
-				return "NODE EXPRESS Pratice"
 			},
 			pwd () {
 				return __dirname.split("/").slice(0, -3).join("/")
