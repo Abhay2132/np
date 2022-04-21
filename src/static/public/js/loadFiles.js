@@ -4,8 +4,8 @@ const cacheF = {
 	getF : function (url, f ) { return new Promise( res => {
 		if ( f ) fetch(url)
 					.then(d => d.text())
-					.then(t => localStorage.setItem(url, t, res(t),this.logs.push("L " + url.split("/").at(-1))))
-		else res(( localStorage.getItem(url) || "" ), this.logs.push("C " + url.split("/").at(-1)))
+					.then(t => localStorage.setItem(url, t, res(t)))
+		else res(localStorage.getItem(url) || "" )
 	})},
 	logs : [],
 	init : async function ({logging = false, appV = 0, ignore = [], cb = () =>{}, uc = false}) { // use cache
@@ -14,9 +14,11 @@ const cacheF = {
 		if ( uc ) f = !1;
 		for( let file of this.files ) {
 			if ( ignore.includes(file)) continue;
-			let data = await this.getF( file , f)
+			let st = Date.now()
+			let data = await this.getF( file , f);
 			if ( file.endsWith(".js")) eval(data);
 			else if ( file.endsWith(".css")) document.body.innerHTML += `<style>${data}</style>`;
+			this.logs.push(file.split("/").at(-1) + " "+(Date.now() - st) +"ms")
 		}
 		if (logging ) console.log(this.logs)
 		localStorage.setItem("fileV", appV)

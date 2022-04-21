@@ -32,6 +32,8 @@
 </body>
 
 <script>
+window.__appV = {{{appV}}};
+if ( __appV == 0 || parseInt(localStorage.getItem("fileV") || "0") != __appV) localStorage.clear(console.log("ls cleared !"))
 window.loadF = Object.create(cacheF);
 loadF.files = [
 	"css/ui.css",
@@ -49,7 +51,6 @@ loadF.files = [
 ];
 
 let pwd = "{{{pwd}}}"
-window.__appV = {{{appV}}};
 loadF.init({logging: 1,appV :  __appV})
 window.isDev = location.href.startsWith("http://localhost");
 </script>
