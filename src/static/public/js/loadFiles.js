@@ -19,9 +19,9 @@ const cacheF = {
 			let data = await this.getF( file , f);
 			if ( file.endsWith(".js")) eval(data);
 			else if ( file.endsWith(".css")) document.body.innerHTML += `<style>${data}</style>`;
-			this.logs.file.push(this.getM + " : " + file.split("/").at(-1) + " "+(Date.now() - st) +"ms")
+			this.logs.files.push(this.getM + " : " + file.split("/").at(-1) + " "+(Date.now() - st) +"ms")
 		}
-		if (logging ) (this.logs.timeE = (Date.now() - sT) +"ms"), console.log(this.logs))
+		if (logging ) (this.logs.timeE = (Date.now() - sT) +"ms", console.log(this.logs))
 
 		localStorage.setItem("fileV", appV)
 		if (typeof cb == "function") return cb()
