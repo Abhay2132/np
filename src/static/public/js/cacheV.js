@@ -26,7 +26,7 @@ async function setView ( view , ps = 1) {
 	document.title = title;
 	qs("#mainH").textContent = mainHeading;
 	if ( isDev ) log("running js")
-	await loadF.init({logging : isDev, appV : __appV, ignore : ["js/cacheV.js"], uc : 1})
+	await loadF.init({logging : 1, appV : __appV, ignore : ["js/cacheV.js"], uc : 1})
 	ca()
 	if (ps) history.pushState({view}, "", view)
 }
