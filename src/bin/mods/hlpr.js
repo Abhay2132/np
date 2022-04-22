@@ -12,6 +12,8 @@ const fs = require("fs"),
 	templates = require("./routes/templates")
 	
 const logger = (req, res, next) => {
+		let st = Date.now();
+		res.on("finish", () => {
 		let mc = {
 			GET: "green",
 			POST: "yellow",
@@ -19,7 +21,8 @@ const logger = (req, res, next) => {
 			DELETE: "red",
 		};
 		let clr = mc[req.method] || "grey";
-		log(colors[clr](req.method), req.url);
+		log(colors[clr](req.method), req.url, colors.yellow(Date.now() - st + "ms"))
+		})
 		next();
 	}
 	

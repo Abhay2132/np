@@ -16,6 +16,7 @@ module.exports = async () => {
 	global.pdir = j(sdir, "public");
 	global._port = process.env.PORT || 3000;
 	global.isPro = process.env.NODE_ENV === "production";
+	global.stdout = (...a) => process.stdout.write(a.join(" "));
 	if( typeof global.__appV == "undefined" ) global.__appV = 0 
 
 	console.clear();
