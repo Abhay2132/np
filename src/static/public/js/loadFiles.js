@@ -10,6 +10,7 @@ const cacheF = {
 	logs : [],
 	init : async function ({logging = false, appV = 0, ignore = [], cb = () =>{}, uc = false}) { // use cache
 		this.logs = [];
+		let sT = Date.now();
 		let f = !appV || this.av != appV
 		if ( uc ) f = !1;
 		for( let file of this.files ) {
@@ -20,7 +21,7 @@ const cacheF = {
 			else if ( file.endsWith(".css")) document.body.innerHTML += `<style>${data}</style>`;
 			this.logs.push(file.split("/").at(-1) + " "+(Date.now() - st) +"ms")
 		}
-		if (logging ) console.log(this.logs)
+		if (logging ) (this.logs.push("Total Time : "+ (Date.now() - sT) +"ms"), console.log(this.logs))
 		localStorage.setItem("fileV", appV)
 		if (typeof cb == "function") return cb()
 		return;
