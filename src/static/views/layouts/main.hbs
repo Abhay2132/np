@@ -11,16 +11,16 @@
 <link rel="apple-touch-icon" href="/favicon.png">
 <style>body{opacity:0;}</style>
 </head>
-<body class="m-n opct-1">
+<body class="m-n opct-1 grey-white h-100vh">
 	
-<nav class="d-b bb pos-rel bg-eee p-s d-grd gtc-50px_auto">
+<nav id="mainNav" class="d-b bb pos-rel dnl-bg p-s d-grd gtc-50px_auto">
 	<div id="hmbgr" onclick="thmbgr(tsp)"> <hr /><hr /><hr /> </div>
 	<div class="t-c f-xl fw-600 p" id="mainH">
 		{{{mainHeading}}}
 	</div>
 </nav>
 
-<div id="sidePanel" class="top-53p left-0p zi-999999 chd(crsr-pntr)">
+<div id="sidePanel" class="dnl-bg dnl-ch top-53p left-0p zi-999999 chd(crsr-pntr)">
 	<a href="{{hn}}"  class="item" view="index" > HOME </a>
 	<div class="item"> Contact me </div>
 	<div class="item"> About me </div>
@@ -33,7 +33,11 @@
 
 <script>
 window.__appV = {{{appV}}};
-if ( __appV == 0 || parseInt(localStorage.getItem("fileV") || "0") != __appV) localStorage.clear(console.log("ls cleared !"))
+if ( __appV == 0 || parseInt(localStorage.getItem("fileV") || "0") != __appV){
+	let books = localStorage.getItem("books")
+	localStorage.clear(console.log("ls cleared !"))
+	if ( books ) localStorage.setItem("books", books)
+}
 window.loadF = Object.create(cacheF);
 loadF.files = [
 	"css/ui.css",

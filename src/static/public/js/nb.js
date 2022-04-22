@@ -3,14 +3,17 @@ if ( document.title != "NoteBook" ) return;
 	
 window.setView = function ( viewType ) {
 	let viewT = qs("#viewType");
+	let clr = window.matchMedia("(prefers-color-scheme: dark)").matches ? "#fff" : "#bbb";
 	if ( viewType == "list" ) {
-		viewT.children[0].style.background = "#bbb"
-		viewT.children[1].style.background = "#fff"
+		viewT.children[0].style.background = clr
+		viewT.children[1].style.background = "transparent"
 	} else if ( viewType == "grid" ) {
-		viewT.children[0].style.background = "#fff"
-		viewT.children[1].style.background = "#bbb"
+		viewT.children[0].style.background = "transparent"
+		viewT.children[1].style.background = clr
 	}
 }
+
+setView("grid")
 
 var $$ = q => qsa(q),
 	$ = q => qs(q)
