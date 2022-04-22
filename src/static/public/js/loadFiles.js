@@ -9,7 +9,7 @@ const cacheF = {
 	})},
 	logs : [],
 	init : async function ({logging = false, appV = 0, ignore = [], cb = () =>{}, uc = false}) { // use cache
-		this.logs = ["appV : "+appV ];
+		this.logs = {appV, files : []}
 		let sT = Date.now();
 		let f = !appV || this.av != appV
 		if ( uc ) f = !1;
@@ -19,9 +19,9 @@ const cacheF = {
 			let data = await this.getF( file , f);
 			if ( file.endsWith(".js")) eval(data);
 			else if ( file.endsWith(".css")) document.body.innerHTML += `<style>${data}</style>`;
-			this.logs.push(this.getM + " : " + file.split("/").at(-1) + " "+(Date.now() - st) +"ms")
+			this.logs.file.push(this.getM + " : " + file.split("/").at(-1) + " "+(Date.now() - st) +"ms")
 		}
-		if (logging ) (this.logs.push("Total Time : "+ (Date.now() - sT) +"ms"), console.log(this.logs))
+		if (logging ) (this.logs.timeE = (Date.now() - sT) +"ms"), console.log(this.logs))
 
 		localStorage.setItem("fileV", appV)
 		if (typeof cb == "function") return cb()
