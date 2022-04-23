@@ -702,8 +702,6 @@ function ca () {
 	}
 }
 
-history.pushState({ view : location.href.split("/").at(-1).split("?")[0].split(".")[0] } , "", "")
-
 window.onpopstate = async function (e) {
 	await setView(e.state.view, 0)
 }

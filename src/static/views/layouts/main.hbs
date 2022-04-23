@@ -61,6 +61,7 @@ loadF.files = [
 let pwd = "{{{pwd}}}";
 loadF.init({logging: 1,appV :  __appV});
 
+history.pushState({ view : location.href.split("/").at(-1).split("?")[0].split(".")[0] } , "", "")
 </script>
 
 </html>
