@@ -52,13 +52,15 @@ let jsFiles = isDev ? [
 	"js/icons.js",
 	"js/nb.js",
 	"js/cacheV.js"
-] : ["js/aio.min.js"]; // all in one . minify . js
+] : ["js/aio.js"]; // all in one . minify . js
 loadF.files = [
 	"css/ui.css",
 	...jsFiles
 ];
 
-let pwd = "{{{pwd}}}"
-loadF.init({logging: 1,appV :  __appV})
+let pwd = "{{{pwd}}}";
+loadF.init({logging: 1,appV :  __appV});
+
 </script>
+
 </html>

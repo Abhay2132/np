@@ -11,7 +11,7 @@ let getLF = () => new Promise( res => {
 })
 
 module.exports = async () => {
-	let loadFiles = await getLF()
+	let loadFiles = await getLF();
 	
 	let engine = hbs.create({
 		defaultLayout: "main",

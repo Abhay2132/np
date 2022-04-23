@@ -63,7 +63,7 @@ module.exports = async () => {
 			"icons.js",
 			"nb.js",
 			"cacheV.js"
-		], out : "aio.min.js", compress : true})
+		], out : "aio.js", compress : false})
 		log(`Server started at localhost:${_port} in ${isPro ? "pro" : "dev"} mode \n( version : ${__appV} )`)
 	})
 }

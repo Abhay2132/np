@@ -52,7 +52,4 @@ window.onpopstate = async function (e) {
 
 ca();
 
-
-
-
-})()
+})();

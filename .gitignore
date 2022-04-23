@@ -3,3 +3,4 @@ node_modules
 src/bin/apps/ytdl/*.json
 src/static/public/versions.json
 src/static/views/versions.json
+.vscode
