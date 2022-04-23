@@ -1,10 +1,11 @@
 const cacheF = {
 	files : [],
 	av : parseInt(localStorage.getItem("fileV") || "0"),
+	lsS : () => {let s = 1; try { localStorage.getItem(""); } catch(e) { s = !1; } return s;},
 	getF : function (url, f ) { return new Promise( res => {
 		if ( f ) fetch(url)
 					.then(d => d.text())
-					.then(t => localStorage.setItem(url, t, res(t), this.getM = "L"))
+					.then(t => this.lsS() ? localStorage.setItem(url, t, res(t), this.getM = "L") : (res(t), this.getM = "L"))
 		else {res(localStorage.getItem(url) || "" ); this.getM = "C";}
 	})},
 	logs : [],

@@ -3,9 +3,7 @@
 
 	window.setView = function (viewType) {
 		let viewT = qs("#viewType");
-		let clr = window.matchMedia("(prefers-color-scheme: dark)").matches
-			? "#fff"
-			: "#bbb";
+		let clr = "#bbb";
 		if (viewType == "list") {
 			viewT.children[0].style.background = clr;
 			viewT.children[1].style.background = "transparent";
