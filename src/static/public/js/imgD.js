@@ -1,5 +1,5 @@
 (async function () {
-	if (document.title != "Image Downloader") return console.log("not imgD");
+	if (document.title != "Image Downloader") return 
 	const pb = new progressBar();
 	const dblk = (...tags) =>
 		tags.forEach((tag) => (tag.style.display = "block"));

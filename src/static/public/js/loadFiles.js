@@ -9,8 +9,8 @@ const cacheF = {
 		else {res(localStorage.getItem(url) || "" ); this.getM = "C";}
 	})},
 	logs : [],
-	init : async function ({logging = false, appV = 0, ignore = [], cb = () =>{}, uc = false}) { // use cache
-		this.logs = {appV, files : []}
+	init : async function ({logging = false, appV = 0, ignore = [], cb = () =>{}, uc = false, ex = "main"}) { // use cache
+		this.logs = {appV, files : [], ignore, ex}
 		let sT = Date.now();
 		let f = !appV || this.av != appV
 		if ( uc ) f = !1;

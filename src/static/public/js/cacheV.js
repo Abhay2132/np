@@ -19,26 +19,26 @@ if ( __appV == 0 || __appV != parseInt(localStorage.getItem("viewV") || "0"))
 	for(let v of views) await getV(v, 1);
 localStorage.setItem("viewV", __appV);
 
-async function setView ( view , ps = 1) {
+async function setView ( view , ps = 1, ex) {
 	let v = await getV(view);
 	let { body , title , mainHeading } = v;
 	qs("#body").innerHTML = body;
 	document.title = title;
 	qs("#mainH").textContent = mainHeading;
 	if ( isDev ) log("setting View")
-	await loadF.init({ex : "setView", logging : 1, appV : __appV, ignore : ["js/cacheV.js"], uc : 1})
-	ca()
+	await loadF.init({ex : "setView", logging : 0, appV : __appV, ignore : [], uc : 1})
+	//ca("setView")
 	if (ps) history.pushState({view}, "", view)
 }
 
-function ca () {
-	if ( isDev ) log("Configuring anchors")
+function ca (db) {
+	if ( isDev ) log("Configuring anchors from" , db)
 	for(let a of qsa("a")) {
 		let view = a.getAttribute("view") || false 
 		if ( ! view ) continue;
 		a.addEventListener("click", async function (e){
 			e.preventDefault();
-			await setView ( view );
+			await setView ( view , 1);
 			if ( view == "index") thmbgr(tsp)
 		});
 	}
@@ -48,6 +48,6 @@ window.onpopstate = async function (e) {
 	await setView(e.state.view, 0)
 }
 
-ca();
+ca("root");
 
 })();
