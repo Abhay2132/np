@@ -9,7 +9,9 @@ const fs = require("fs"),
 		return fs.createWriteStream(file)
 	},
 	hbs = require("handlebars"),
-	templates = require("./routes/templates")
+	templates = require("./routes/templates"),
+	path = require("path"),
+	{minify} = require("uglify-js");
 	
 const logger = (req, res, next) => {
 		let st = Date.now();
@@ -80,9 +82,33 @@ function download (res= false, file = false, cb = ()=>{}) {
 	})
 }
 
+function readFile (file ) {
+	return new Promise( res => {
+		if ( ! fs.existsSync(file)) return res("")
+		fs.readFile(file, (err, data ) => res(err || data.toString()))
+	})
+}
+
+async function mergeFs ({ dir = "", files = [], out =false, compress = false }) {
+	//if ( ! out ) return log("mergeFs error : Output file not defined !")
+	if ( ! fs.existsSync(dir)) return log("mergeFs error :", dir, "does not exists !");
+	if (out) out = path.isAbsolute(out) ? out : path.resolve(dir, out);
+	let mergedFile = ""
+	for(let file of files ) {
+		//log(dir, file)
+		let fp = path.resolve(dir, file);
+		let fileText = await readFile(fp);
+		mergedFile += "\n" + fileText + "\n";
+	}
+	if ( compress ) mergedFile = minify(mergedFile).code;
+	if ( out ) await new Promise( res => fs.writeFile(out, mergedFile , (err) => res(!!log(err || " Merged file Saved !"))))
+	return mergedFile;
+}
+
 module.exports = {
-	logger : logger,
-	_get : _get,
-	getView : getView,
-	download : download
+	logger,
+	_get,
+	getView,
+	download,
+	mergeFs
 };

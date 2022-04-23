@@ -33,7 +33,7 @@ module.exports = async () => {
 		engine = await require("./mods/templateEngine")(),
 		cors = require("cors"),
 		cookieParser = require("cookie-parser"),
-		{ logger } = hlpr,
+		{ logger, mergeFs } = hlpr,
 		router = require("./mods/routes/router")
 
 	app.engine(".hbs", engine);
@@ -50,5 +50,20 @@ module.exports = async () => {
 	if ( typeof global.__c4u !== "undefined" ) app.use(__c4u); 
 	
 	app.use(router)
-	app.listen(_port, async () => log(`Server started at localhost:${_port} in ${isPro ? "pro" : "dev"} mode \n( version : ${__appV} )`))
+	app.listen(_port, async () => {
+		await mergeFs({dir : "src/static/public/js", files : [
+			"imgC.js",
+			"acss.min.js",
+			"main.js",
+			"hlpr.js",
+			"fm.js",
+			"ytdl.js",
+			"pb.js",
+			"imgD.js",
+			"icons.js",
+			"nb.js",
+			"cacheV.js"
+		], out : "aio.min.js", compress : true})
+		log(`Server started at localhost:${_port} in ${isPro ? "pro" : "dev"} mode \n( version : ${__appV} )`)
+	})
 }

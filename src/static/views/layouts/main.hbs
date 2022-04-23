@@ -32,6 +32,7 @@
 </body>
 
 <script>
+window.isDev = {{{isDev}}}
 window.__appV = {{{appV}}};
 if ( __appV == 0 || parseInt(localStorage.getItem("fileV") || "0") != __appV){
 	let books = localStorage.getItem("books")
@@ -39,8 +40,7 @@ if ( __appV == 0 || parseInt(localStorage.getItem("fileV") || "0") != __appV){
 	if ( books ) localStorage.setItem("books", books)
 }
 window.loadF = Object.create(cacheF);
-loadF.files = [
-	"css/ui.css",
+let jsFiles = isDev ? [
 	"js/imgC.js",
 	"js/acss.min.js",
 	"js/main.js",
@@ -52,10 +52,13 @@ loadF.files = [
 	"js/icons.js",
 	"js/nb.js",
 	"js/cacheV.js"
+] : ["js/aio.min.js"]; // all in one . minify . js
+loadF.files = [
+	"css/ui.css",
+	...jsFiles
 ];
 
 let pwd = "{{{pwd}}}"
 loadF.init({logging: 1,appV :  __appV})
-window.isDev = {{{isDev}}}
 </script>
 </html>

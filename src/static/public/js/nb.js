@@ -99,4 +99,4 @@ function createBook ( {name, color, icon, bg } ) {
 }
 
 
-})()
+})();
