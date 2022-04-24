@@ -1,0 +1,17 @@
+#sidePanel {
+	width: 0px;
+	border-right: 0px solid;
+	position: fixed;
+	height: 100vh;
+	transition: 0.5s;
+	overflow: hidden;
+}
+
+
+#sidePanel > .item {
+	display: block;
+	padding: 10px 20px;
+	border-left: 3px solid cornFlowerBlue;
+	margin-top: 3px;
+	min-width: 119px;
+}

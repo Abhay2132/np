@@ -1,0 +1,52 @@
+@media (prefers-color-scheme: dark) {
+	#mainNav {
+  		background-color : #333;
+  		color : #fff;
+ 	}
+ 
+ #hmbgr {
+ 	background : #555;
+	}
+	
+	.dnl-bg {
+  		background-color : #333;
+  		color : #fff;
+	}
+	
+	.dnl-c > * {
+		background: #333;
+		color: #fff;
+	}
+	
+	.dnl-ch > *:hover {
+		background: #fff;
+		color: #333;
+	}
+	
+	.grey-white {
+		background : #eee;
+	}
+}
+
+@media (prefers-color-scheme: light) {
+	
+	.dnl-bg {
+  		background-color : #eee;
+  		color : #333;
+	}
+	
+	.dnl-c > * {
+		background: #eee;
+		color: #333;
+	}
+	
+	.dnl-ch > *:hover {
+		background: #333;
+		color: #fff;
+	}
+	
+	.grey-white {
+		background : #fff;
+	}
+
+}

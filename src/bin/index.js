@@ -34,7 +34,8 @@ module.exports = async () => {
 		cors = require("cors"),
 		cookieParser = require("cookie-parser"),
 		{ logger, mergeFs } = hlpr,
-		router = require("./mods/routes/router")
+		router = require("./mods/routes/router"),
+		{ css, js } = require("./files2Merge")
 
 	app.engine(".hbs", engine);
 	app.set("view engine", ".hbs");
@@ -51,19 +52,8 @@ module.exports = async () => {
 	
 	app.use(router)
 	app.listen(_port, async () => {
-		await mergeFs({dir : "src/static/public/js", files : [
-			"imgC.js",
-			"acss.min.js",
-			"main.js",
-			"hlpr.js",
-			"fm.js",
-			"ytdl.js",
-			"pb.js",
-			"imgD.js",
-			"icons.js",
-			"nb.js",
-			"cacheV.js"
-		], out : "aio.js", compress : isPro})
+		await mergeFs({dir : "src/static/public/css", files : css, out : "styles.css", compress : isPro})
+		await mergeFs({dir : "src/static/public/js", files : js, out : "aio.js", compress : isPro})
 		log(`Server started at localhost:${_port} in ${isPro ? "pro" : "dev"} mode \n( version : ${__appV} )`)
 	})
 }

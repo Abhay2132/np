@@ -11,7 +11,8 @@ const fs = require("fs"),
 	hbs = require("handlebars"),
 	templates = require("./routes/templates"),
 	path = require("path"),
-	{minify} = require("uglify-js");
+	{minify} = require("uglify-js"),
+	cc = require("clean-css");
 	
 const logger = (req, res, next) => {
 		let st = Date.now();
@@ -100,9 +101,17 @@ async function mergeFs ({ dir = "", files = [], out =false, compress = false }) 
 		let fileText = await readFile(fp);
 		mergedFile += "\n" + fileText + "\n";
 	}
-	if ( compress ) mergedFile = minify(mergedFile).code;
+	if ( compress ) { 
+		if ( ext(out) == "js" ) mergedFile = minify(mergedFile).code; 
+		if ( ext(out) == "css") mergedFile = new cc().minify(mergedFile);
+	}
+	
 	if ( out ) await new Promise( res => fs.writeFile(out, mergedFile , (err) => res(!!log(err || " Merged file Saved !"))))
 	return mergedFile;
+}
+
+function ext ( a, s = "/" ) {
+	return a.split(s).at(-1).split("?")[0].split(".").at(-1)
 }
 
 module.exports = {
@@ -110,5 +119,6 @@ module.exports = {
 	_get,
 	getView,
 	download,
-	mergeFs
+	mergeFs,
+	ext
 };

@@ -1,0 +1,27 @@
+{
+	"js" : [
+			"imgC.js",
+			"acss.min.js",
+			"main.js",
+			"hlpr.js",
+			"fm.js",
+			"ytdl.js",
+			"pb.js",
+			"imgD.js",
+			"icons.js",
+			"nb.js",
+			"cacheV.js"
+		],
+	"css" : [
+			"main.css",
+			"hmbgr.css",
+			"sidePanel.css",
+			"button.css",
+			"fm.css",
+			"svg.css",
+			"nb.css",
+			"ps.css",
+			"keyframes.css",
+			"media.css"
+		]
+}

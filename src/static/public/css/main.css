@@ -1,0 +1,14 @@
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+* {
+	outline: none;
+	-webkit-tap-highlight-color: transparent;
+}

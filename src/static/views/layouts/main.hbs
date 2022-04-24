@@ -9,7 +9,13 @@
 <script>{{{loadFiles}}}</script>
 <link rel="icon" href="/favicon.png">
 <link rel="apple-touch-icon" href="/favicon.png">
-<style>body{opacity:0;}</style>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300&display=swap');
+* {
+	font-family: Fredoka;
+}
+body{opacity:0;}
+</style>
 </head>
 <body class="m-n opct-1 grey-white h-100vh">
 	
@@ -53,8 +59,20 @@ let jsFiles = isDev ? [
 	"js/nb.js",
 	"js/cacheV.js"
 ] : ["js/aio.js"]; // all in one . minify . js
+let cssFiles = isDev ? [
+	"css/main.css",
+	"css/hmbgr.css",
+	"css/sidePanel.css",
+	"css/button.css",
+	"css/fm.css",
+	"css/svg.css",
+	"css/nb.css",
+	"css/ps.css",
+	"css/keyframes.css",
+	"css/media.css"
+] : ["css/styles.css"]
 loadF.files = [
-	"css/ui.css",
+	...cssFiles,
 	...jsFiles
 ];
 

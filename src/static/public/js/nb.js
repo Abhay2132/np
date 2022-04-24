@@ -1,6 +1,7 @@
 (async function () {
 	if (document.title != "NoteBook") return;
-
+	
+	let book = qs(".book").cloneNode(true)
 	window.setView = function (viewType) {
 		let viewT = qs("#viewType");
 		let clr = "#bbb";
@@ -24,13 +25,13 @@
 			return qs(".DBC");
 		},
 	});
-	let bookWidth = screen.width * 0.32 - 15;
-	document.body.innerHTML += `<STYLE>.book { width : ${bookWidth}px; }</STYLE>`;
+	//let bookWidth = screen.width * 0.32 - 15;
+	//qs("#nb-book-style") || (document.body.innerHTML += `<STYLE id ="nb-book-style">.book { width : ${bookWidth}px; }</STYLE>`);
 	window.refreshBookshelf = async function () {
 		let books = JSON.parse(localStorage.getItem("books") || "[]");
 		let bs = qs(".bookshelf");
 		bs.innerHTML = "";
-		books.forEach((book) => (bs.innerHTML += createBook(book)));
+		books.forEach((book) => (bs.appendChild(createBook(book))))//.innerHTML += createBook(book)));
 		setIcons();
 		for (let b of bs.children) {
 			await new Promise((res) => setTimeout(res, 100));
@@ -88,7 +89,18 @@
 		refreshBookshelf();
 	};
 
-	function createBook({ name, color, icon, bg }) {
+	function createBook ({ name, color, icon, bg }) {
+		let b = book.cloneNode(true);
+		b.style.background = bg;
+		b.style.color = color;
+		let ic = b.children[0].children[0]
+		ic.setAttribute("icon", icon)
+		ic.setAttribute("icon-sc", color);
+		b.children[1].textContent = name;
+		return b;
+	}
+
+	function createBook0({ name, color, icon, bg }) {
 		return `
 <div class="grid book ovrflw-hdn st" style="background: ${bg}; color : ${color};">
 	<div class="h-50p p-B m bdr-B midl pos-rel bookIcon hbr(chd-section(top-_10p)) ">
