@@ -103,7 +103,7 @@ async function mergeFs ({ dir = "", files = [], out =false, compress = false }) 
 	}
 	if ( compress ) { 
 		if ( ext(out) == "js" ) mergedFile = minify(mergedFile).code; 
-		if ( ext(out) == "css") mergedFile = new cc().minify(mergedFile);
+		if ( ext(out) == "css") mergedFile = new cc().minify(mergedFile).styles;
 	}
 	
 	if ( out ) await new Promise( res => fs.writeFile(out, mergedFile , (err) => res(!!log(err || " Merged file Saved !"))))
