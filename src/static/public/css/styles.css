@@ -1,12 +1,7 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300&display=swap');
 
 ::-webkit-scrollbar {
     display: none;
-}
- 
-* {
-	font-family: Fredoka;
 }
 
 a {
@@ -126,9 +121,55 @@ button:active {
 
 .book {
 	position: relative;
-	opacity: 1;
+	opacity: 0;
 	transition: 0.3s;
-	top: 50px;
+	top: 100px;
+	width: calc(32% - 15px);
+	overflow: hidden;
+	background: #ccc;
+}
+
+.book > .bookIcon {
+	height : 50px;
+	padding-bottom: 10px;
+	margin: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	border-bottom: 1px solid;
+}
+
+.book > .bookIcon > section.bookMenu {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	position: absolute;
+	top: -160px;
+	transition: 0.2s;
+	height: 120px;
+	font-size: 15px;
+	width: 100%;
+	background: #333;
+	color: #fff;
+	border-radius: 0px 0px 5px 5px;
+}
+
+.book > .bookIcon:hover > section.bookMenu {
+	top: -10px;
+}
+
+.book > .bookIcon > section.bookMenu > * {
+	margin : 0px 5px;
+	box-sizing : border-box;
+	padding: 5px;
+	text-align: center;
+	border-radius: 5px;
+}
+
+.book > .bookIcon > section.bookMenu > *:hover {
+	background: #fff;
+	color: #333;
 }
 
 #addNew {
@@ -141,6 +182,11 @@ button:active {
 	width: 50px;
 	font-size : 40px;
 	text-align: center;
+}
+
+@keyframes slide-up {
+	from { top: 100px; }
+	to { top : 0px;}
 }
 
 .ps_spinner {

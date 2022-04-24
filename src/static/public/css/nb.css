@@ -23,12 +23,10 @@
 
 .book {
 	position: relative;
-	opacity: 1;
+	opacity: 0;
 	transition: 0.3s;
 	top: 100px;
-	width: calc(32% - 15px);
-	animation : slide-up 0.2s linear 0s;
-	animation-fill-mode: forwards;
+	width: calc(33% - 12px);
 	overflow: hidden;
 	background: #ccc;
 }
@@ -50,7 +48,7 @@
 	justify-content: center;
 	position: absolute;
 	top: -160px;
-	transition: 0.2s;
+	transition: 0.4s ;
 	height: 120px;
 	font-size: 15px;
 	width: 100%;

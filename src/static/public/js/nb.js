@@ -29,7 +29,7 @@
 	//qs("#nb-book-style") || (document.body.innerHTML += `<STYLE id ="nb-book-style">.book { width : ${bookWidth}px; }</STYLE>`);
 	window.refreshBookshelf = async function () {
 		let books = JSON.parse(localStorage.getItem("books") || "[]");
-		let bs = qs(".bookshelf");
+		let bs = $(".bookshelf");
 		bs.innerHTML = "";
 		books.forEach((book) => (bs.appendChild(createBook(book))))//.innerHTML += createBook(book)));
 		setIcons();
@@ -41,6 +41,16 @@
 	};
 
 	refreshBookshelf();
+	
+	window.appendBook = async function ( book = false ) {
+		if ( ! book ) return;
+		let b = createBook ( book );
+		$(".bookshelf").appendChild(b)
+		setIcons();
+		await new Promise((res) => setTimeout(res, 100));
+		b.style.opacity = "1";
+		b.style.top = "0";
+	}
 
 	window.hideAllDB = async (wait4 = 0) => {
 		await new Promise((res) => setTimeout(res, wait4));
@@ -74,19 +84,22 @@
 
 	window.createNB = function () {
 		let books = JSON.parse(localStorage.getItem("books") || "[]");
-		let name = $("#bn").value,
-			bg = qs("#bbg").value,
-			color = qs("#bc").value,
+		let name =  $("#bn").value,
+			bg = $("#bbg").value,
+			color = $("#bc").value,
 			icon = "";
 		$$(".iconList > div").forEach((i) => {
 			if (i.style.background == "rgb(119, 119, 119)")
 				icon = i.getAttribute("icon");
 		});
+		name = isValidName(name) ? name : !1;
+		
 		if (!(name && color && icon && bg)) return log({ name, color, icon, bg });
 		books.push({ name, color, icon, bg });
 		localStorage.setItem("books", JSON.stringify(books));
 		hideAllDB();
-		refreshBookshelf();
+		appendBook({ name, color, icon, bg });
+		$("#bn").value = ""
 	};
 
 	function createBook ({ name, color, icon, bg }) {
@@ -100,20 +113,25 @@
 		return b;
 	}
 
-	function createBook0({ name, color, icon, bg }) {
-		return `
-<div class="grid book ovrflw-hdn st" style="background: ${bg}; color : ${color};">
-	<div class="h-50p p-B m bdr-B midl pos-rel bookIcon hbr(chd-section(top-_10p)) ">
-		<div icon="${icon}" icon-sc="${color}" class="h-40p w-40p" ></div>
-		<section class="f-c-c bookMenu chd(m-0px_5px,bb,hbr(lthm,rc-s),p-s,t-c) pos-abs top-_159p st h-120p dnw w-100 rc-0px_0px_3px_3px f-15p">
-			<div>Open</div>
-			<div>Settings</div>
-		</section>
-	</div>
-	<div class="bookName t-c m-xs bb wwrp-brkw h-50p ovrflw-scrl" >
-		${name}
-	</div>
-</div>
-`;
+	function isValidName ( name ) {
+		let books = JSON.parse(localStorage.getItem("books") || "[]");
+		for(let book of books ) {
+			if ( book.name == name ) return false;
+		}
+		return true;
 	}
+	
+		$("#bn").addEventListener("keyup", function () {
+			let isValid = isValidName(this.value) 
+			this.style.background = isValid? "#fff" : "#C50E00";
+			this.style.color = !isValid ? "#fff" : "#333";
+			if ( isValid ) {
+				$(".bnErrPre").style.display = "none";
+				$("#bnErr").style.display = "none";
+			} else {
+				$(".bnErrPre").style.display = "block";
+				$("#bnErr").style.display = "block";
+			}
+			
+		})
 })();
