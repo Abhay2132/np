@@ -6,15 +6,18 @@
 		let viewT = qs("#viewType");
 		let clr = "#bbb";
 		if (viewType == "list") {
+			qs("#bookshelf").className = "list"
 			viewT.children[0].style.background = clr;
 			viewT.children[1].style.background = "transparent";
 		} else if (viewType == "grid") {
+			qs("#bookshelf").className = "grid"
 			viewT.children[0].style.background = "transparent";
 			viewT.children[1].style.background = clr;
 		}
+		localStorage.setItem("bookViewType", viewType)
 	};
 
-	setView("grid");
+	setView(localStorage.getItem("bookViewType") || "grid");
 
 	var $$ = (q) => qsa(q),
 		$ = (q) => qs(q);
@@ -25,11 +28,17 @@
 			return qs(".DBC");
 		},
 	});
-	//let bookWidth = screen.width * 0.32 - 15;
-	//qs("#nb-book-style") || (document.body.innerHTML += `<STYLE id ="nb-book-style">.book { width : ${bookWidth}px; }</STYLE>`);
+	
+	window.manageNbf = function () {
+		if ( qs("#bookshelf").children.length == 0) 
+			qs(".nbf").style.display = "block";
+		else 
+			qs(".nbf").style.display = "none";
+	}
+	
 	window.refreshBookshelf = async function () {
 		let books = JSON.parse(localStorage.getItem("books") || "[]");
-		let bs = $(".bookshelf");
+		let bs = $("#bookshelf");
 		bs.innerHTML = "";
 		books.forEach((book) => (bs.appendChild(createBook(book))))//.innerHTML += createBook(book)));
 		setIcons();
@@ -38,6 +47,7 @@
 			b.style.opacity = "1";
 			b.style.top = "0";
 		}
+		manageNbf();
 	};
 
 	refreshBookshelf();
@@ -45,11 +55,12 @@
 	window.appendBook = async function ( book = false ) {
 		if ( ! book ) return;
 		let b = createBook ( book );
-		$(".bookshelf").appendChild(b)
-		setIcons();
+		$("#bookshelf").appendChild(b)
 		await new Promise((res) => setTimeout(res, 100));
+		setIcons();
 		b.style.opacity = "1";
 		b.style.top = "0";
+		manageNbf();
 	}
 
 	window.hideAllDB = async (wait4 = 0) => {
@@ -70,7 +81,7 @@
 	$("#addNew").addEventListener("click", () => {
 		let db = $("#bkfrm");
 		$("#cnb").style.display = "flex";
-		setTimeout(() => ((db.style.opacity = "1"), (db.style.top = "-50px")), 50);
+		setTimeout(() => ((db.style.opacity = "1"), (db.style.position="relative", db.style.top = "0px")), 50);
 	});
 
 	$$(".iconList > div").forEach((i) =>
@@ -109,7 +120,7 @@
 		let ic = b.children[0].children[0]
 		ic.setAttribute("icon", icon)
 		ic.setAttribute("icon-sc", color);
-		b.children[1].textContent = name;
+		b.children[1].children[0].textContent = name;
 		return b;
 	}
 

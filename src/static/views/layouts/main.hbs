@@ -41,36 +41,15 @@ body{opacity:0;}
 window.isDev = {{{isDev}}}
 window.__appV = {{{appV}}};
 if ( __appV == 0 || parseInt(localStorage.getItem("fileV") || "0") != __appV){
-	let books = localStorage.getItem("books")
-	localStorage.clear(console.log("ls cleared !"))
-	if ( books ) localStorage.setItem("books", books)
-}
+	for(let item of Object.keys(localStorage)) {
+		if (!item.startsWith("book")) localStorage.removeItem(item)
+	}
+};
 window.loadF = Object.create(cacheF);
-let jsFiles = isDev ? [
-	"js/imgC.js",
-	"js/acss.min.js",
-	"js/main.js",
-	"js/hlpr.js",
-	"js/fm.js",
-	"js/ytdl.js",
-	"js/pb.js",
-	"js/imgD.js",
-	"js/icons.js",
-	"js/nb.js",
-	"js/cacheV.js"
-] : ["js/aio.js"]; // all in one . minify . js
-let cssFiles = isDev ? [
-	"css/main.css",
-	"css/hmbgr.css",
-	"css/sidePanel.css",
-	"css/button.css",
-	"css/fm.css",
-	"css/svg.css",
-	"css/nb.css",
-	"css/ps.css",
-	"css/keyframes.css",
-	"css/media.css"
-] : ["css/styles.css"]
+let js = ("{{{jsFiles}}}").split(",").map( j => "/js/"+j);
+let jsFiles = isDev ? js  : ["js/aio.js"];
+let cssf = ("{{{cssFiles}}}").split(",").map( c => "/css/"+c);
+let cssFiles = isDev ? cssf : ["css/styles.css"]
 loadF.files = [
 	...cssFiles,
 	...jsFiles

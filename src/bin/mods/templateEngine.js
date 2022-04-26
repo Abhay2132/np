@@ -1,6 +1,7 @@
 const hbs = require("express-handlebars"),
 	fs = require("fs"),
-	{minify} = require("uglify-js");
+	{minify} = require("uglify-js"),
+	{js, css} = require("../files2Merge");
 	
 let getLF = () => new Promise( res => {
 	fs.readFile(j(sdir, "public", "js", "loadFiles.js"), (err, txt) => {
@@ -11,7 +12,7 @@ let getLF = () => new Promise( res => {
 })
 
 module.exports = async () => {
-	let loadFiles = await getLF();
+	let loadFiles = await getLF()
 	
 	let engine = hbs.create({
 		defaultLayout: "main",
@@ -29,14 +30,20 @@ module.exports = async () => {
 			loadFiles() {
 				return loadFiles;
 			},
-			pwd () {
+			/*pwd () {
 				return __dirname
-			},
+			},*/
 			pwd () {
 				return __dirname.split("/").slice(0, -3).join("/")
 			},
 			appV () {
 				return __appV;
+			},
+			jsFiles() {
+				return js;
+			},
+			cssFiles () {
+				return css;
 			}
 		},
 		extname: ".hbs",
