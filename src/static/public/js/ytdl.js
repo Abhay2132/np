@@ -22,6 +22,7 @@
 		if (data.error) return ytdl_error(data.error);
 		document.querySelector("#vif").src = data.iframeUrl;
 		document.querySelector("#vif").style.background =  "url(\"" + data.thumbnail + "\")";
+		qs("#vif").style.backgroundSize = "contain";
 		document.querySelector("#vn").innerHTML = `${
 			data.title
 		} <div class="t-c fw-600"> ( ${getTime(data.dur)} ) </div>`;
