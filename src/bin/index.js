@@ -19,7 +19,7 @@ module.exports = async () => {
 	global.stdout = (...a) => process.stdout.write(a.join(" "));
 	if( typeof global.__appV == "undefined" ) global.__appV = 0 
 
-	console.clear();
+	//console.clear();
 	isPro || console.log(require("colors").green("Starting Server !"))
 	
 	if (fs.existsSync(j(sdir, "files"))) fs.rm(j(sdir, "files"), {recursive : true}, () =>{})
