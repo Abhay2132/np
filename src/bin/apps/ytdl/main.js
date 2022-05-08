@@ -1,7 +1,12 @@
 const ytdl = require("ytdl-core"),
 	{ spawn } = require("child_process"),
 	ffmpeg = isPro ? "/app/vendor/ffmpeg/ffmpeg" : require("os").platform() == 'android' ? "/data/data/com.termux/files/usr/bin/ffmpeg" : "/usr/bin/ffmpeg",
-	{ bs } = require("./hlpr");
+	{ bs } = require("./hlpr"),
+	beautify = (str) =>
+		require("prettier").format(
+			typeof str == "object" ? JSON.stringify(str) : str,
+			{ useTabs: true, parser: "json" }
+		);
 
 async function getD(req, res) {
 	let {url = false} = req.body || {};
@@ -18,11 +23,12 @@ async function getD(req, res) {
 	
 	data.title = info.videoDetails.title;
 	data.dur = info.videoDetails.lengthSeconds;
-	data.thumbnail = info.videoDetails.thumbnail.thumbnails.at(-1).url;
+	data.iframeUrl = info.videoDetails.embed.iframeUrl;
+	data.thumbnail = info.videoDetails.thumbnails.at(-1).url;
 	info.formats.forEach((f) => {
 		let ql = f.qualityLabel;
-		if (!!f.height && !!ql.endsWith("p") && !!f.contentLength && !!f.hasVideo)
-			vqs[ql] = f.contentLength;
+		if (!!f.height && !!f.contentLength && !!f.hasVideo)
+			vqs[ql] = {size : f.contentLength, height : f.height }
 		if (!!f.hasAudio && f.contentLength )
 			aqs[f.audioBitrate + " kbps"] = f.contentLength
 	});
@@ -38,13 +44,15 @@ async function dl(req, res) {
 	let { url = false, q = false , a = false, v = false} = req.query || {};
 	if (!(url && q)) return res.status(401).end("url / quality missing in query");
 	q = parseInt(q);
-	
+	//log("dl");
 	if ( a ) return dlAudio(url, q, res);
 	let err;
+	//log("getting info !")
 	let info = await ytdl.getInfo(url);
 	let name = info.videoDetails.title.replace(/[^a-zA-Z_0-9]/g ,"_")
 	while(name.includes("__")) name = name.replace("__", "_")
 	let videoF;
+	//log({name})
 	try {
 		videoF = await ytdl.chooseFormat(info.formats, {
 			filter: (f) => f.height == q && !!f.contentLength && !!f.hasVideo,
@@ -54,7 +62,7 @@ async function dl(req, res) {
 		console.log(e);
 	}
 
-	if (err) return res.end(err.message);
+	if (err) return res.end(beautify({url, q, error : err.message, fs : info.formats.map(f => ({height : f.height}))  }));
 
 	let audio = ytdl(url);
 	let video = ytdl(url, { quality: videoF.itag });
@@ -82,12 +90,15 @@ async function dl(req, res) {
 		"Content-Disposition",
 		`attachment; filename=${name}_${q}.mkv`
 	);
-
-	ff.on("close", () => res.end());
+	
+	let dps = 0; // deadPipes
+	ff.on("close", () => dps =! 3 ? ++dps : res.end());
+	audio.on("close", () => dps =! 3  ? ++dps : res.end());
+	video.on("close", () => dps =! 3  ? ++dps : res.end());
 
 	audio.pipe(ff.stdio[3]);
 	video.pipe(ff.stdio[4]);
-
+	//log("piping")
 	ff.stdio[5].pipe(res);
 }
 

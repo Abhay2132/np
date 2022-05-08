@@ -2,7 +2,7 @@
 	<form class="m p p-T-xl rc-s bg-ddd t-c" onsubmit="getVQ(); return false;">
 		<label for="url" class="f-13p usr-no"> Video URL : </label>
 		<input
-			value=""
+			value="https://youtu.be/ume21S9Jchw"
 			id="url"
 			class="p-s bdr out-no rc-s"
 			placeholder="paste ur link here ..."
@@ -14,7 +14,7 @@
 		</button>
 	</form>
 
-	<div class="loader" style="display:none" >loader</div>
+	<div class="loader" style="display:none; font-size: 0px;" >loader</div>
 
 	<div
 		id="ytdl_err"
@@ -30,7 +30,7 @@
 			<div class="bdr-B-2p_000" onclick="toggle_avTab(this)"> Video </div>
 			<div onclick="toggle_avTab(this)" > Audio </div>
 		</div>
-		<img id="vt" class="rc-s mw-80pg" src="" />
+		<iframe id="vif" class="rc-s mw-80pg" src=""></iframe>
 		<div class="fw-350 p" id="vn"> Video Name (2 m 34 sec) </div>
 		
 		<div class="rc-s" id="vPanel">

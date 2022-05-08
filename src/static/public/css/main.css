@@ -12,3 +12,15 @@ a {
 	outline: none;
 	-webkit-tap-highlight-color: transparent;
 }
+
+.loader {
+	--size : 50px;
+	height : var(--size);
+	width: var(--size);
+	border: 5px solid rgba(225,225,225, 0.5);
+	border-top-color: #0096FF;
+	border-radius: 50%;
+	position: relative;
+	left: calc(50% - 25px);
+	animation : rot 2s linear 0s infinite normal;
+}

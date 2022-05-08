@@ -43,7 +43,8 @@ window.isDev = {{{isDev}}}
 window.__appV = {{{appV}}};
 if ( __appV == 0 || parseInt(localStorage.getItem("fileV") || "0") != __appV){
 	for(let item of Object.keys(localStorage)) {
-		if (!item.startsWith("book")) localStorage.removeItem(item)
+		if ( item.startsWith("book") || item == "lastYtdlVideo")  continue;
+		localStorage.removeItem(item)
 	}
 };
 window.loadF = Object.create(cacheF);

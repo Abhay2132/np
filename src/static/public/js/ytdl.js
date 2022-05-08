@@ -1,11 +1,13 @@
 (async function () {
+	if ( document.title != "YouTube Video Downloader") return;
+	qs("input#url").value = localStorage.getItem("lastYtdlVideo") || ""
 	window.getVQ = () => {
 		ytdl_error();
 		document.querySelector("#panel").style.opacity = "0";
 		qs(".loader").style.display = "block";
 		let url = document.querySelector("#url").value.trim() || "";
 		if (url.length < 1) return;
-		console.log("Fetching /ytdl/getd with %s", url);
+		localStorage.setItem("lastYtdlVideo", url)
 		fetch("/ytdl/getd", {
 			method: "POST",
 			body: JSON.stringify({ url: url }),
@@ -18,7 +20,8 @@
 	function renderD(data) {
 		qs(".loader").style.display = "none";
 		if (data.error) return ytdl_error(data.error);
-		document.querySelector("#vt").src = data.thumbnail;
+		document.querySelector("#vif").src = data.iframeUrl;
+		document.querySelector("#vif").style.background =  "url(\"" + data.thumbnail + "\")";
 		document.querySelector("#vn").innerHTML = `${
 			data.title
 		} <div class="t-c fw-600"> ( ${getTime(data.dur)} ) </div>`;
@@ -29,10 +32,11 @@
 		for (let q in data.vqs) {
 			let qBar = qNode.cloneNode(true);
 			qBar.children[0].textContent = q;
-			qBar.children[1].textContent = calcSize(data.vqs[q]);
+			qBar.children[1].textContent = calcSize(data.vqs[q].size);
+			let {height} = data.vqs[q]
 			qBar.children[2].children[0].href = `/ytdl/download?url=${document
 				.querySelector("#url")
-				.value.trim()}&q=${q}&v=1`;
+				.value.trim()}&q=${height}&v=1`;
 			vqp.appendChild(qBar);
 		}
 		for (let q in data.aqs) {
