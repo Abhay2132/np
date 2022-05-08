@@ -27,7 +27,7 @@ async function getD(req, res) {
 	data.thumbnail = info.videoDetails.thumbnails.at(-1).url;
 	info.formats.forEach((f) => {
 		let ql = f.qualityLabel;
-		if (!!f.height && !!f.contentLength && !!f.hasVideo)
+		if (!!f.height && ql.at(-1) == "p" && !!f.contentLength && !!f.hasVideo)
 			vqs[ql] = {size : f.contentLength, height : f.height }
 		if (!!f.hasAudio && f.contentLength )
 			aqs[f.audioBitrate + " kbps"] = f.contentLength
