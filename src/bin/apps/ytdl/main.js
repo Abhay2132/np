@@ -1,6 +1,6 @@
 const ytdl = require("ytdl-core"),
 	{ spawn } = require("child_process"),
-	ffmpeg = isPro ? "/app/vendor/ffmpeg/ffmpeg" : require("os").platform() == 'android' ? "/data/data/com.termux/files/usr/bin/ffmpeg" : "/usr/bin/ffmpeg",
+	ffmpeg = ! isA ? ( isPro ? "/app/vendor/ffmpeg/ffmpeg" : "/usr/bin/ffmpeg" ) : "/data/data/com.termux/files/usr/bin/ffmpeg",
 	{ bs } = require("./hlpr"),
 	beautify = (str) =>
 		require("prettier").format(
