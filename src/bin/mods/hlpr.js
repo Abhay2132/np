@@ -12,7 +12,8 @@ const fs = require("fs"),
 	templates = require("./routes/templates"),
 	path = require("path"),
 	{minify} = require("uglify-js"),
-	cc = require("clean-css");
+	cc = require("clean-css"),
+	chokidar = require("chokidar")
 	
 const logger = (req, res, next) => {
 		let st = Date.now();
@@ -115,11 +116,24 @@ function ext ( a, s = "/" ) {
 	return a.split(s).at(-1).split("?")[0].split(".").at(-1)
 }
 
+function liveReload (server) {
+	const { Server } = require("socket.io");
+	const io = new Server(server)
+	const c = chokidar.watch([pdir, j(sdir, "views")]);
+	io.on('connection', (socket) => {
+		c.on('all', (event, path) => {
+			log("refresh event emitted for live Reload !")
+			socket.broadcast.emit('refresh');
+		});
+	});
+}
+
 module.exports = {
 	logger,
 	_get,
 	getView,
 	download,
 	mergeFs,
-	ext
+	ext,
+	liveReload
 };

@@ -27,23 +27,24 @@
 	No Book Found !
 </div>
 	
-	<div id="addNew" class="dnw">
-		<div class="pos-rel top-_3p">+</div>
+	<div id="addNew">
+		<div>+</div>
+		<span>Add New </span>
 	</div>
 	
-	<section id="cnb" class="midl d-no h-100vh w-100 pos-fxd top-n left-n midl DBC" >
-		<div class="zi-0 st dbbg blrbg h-100vh w-100 pos-fxd left-n top-n"></div>
-		<div id ="bkfrm" class="DB opct-0 top-100p st zi-2 w-80pg  dnw rc-s p f-c-c pc(pos-rel,w-500p,left-50pg,m-L-_250p) ">
-			<div class= "t-c p bdr-B ">
+	<section id="cnb" class="DBC" style="display:none;">
+		<div class="dbbg"></div>
+		<div id ="bkfrm" class="DB">
+			<div class= "h1">
 				Create New Book
 			</div>
-			<div class="m bookForm chd-input(p-s,bdr,rc-s) t-c d-grd gtc-100px_auto gg">
+			<div class="bookForm">
 				<label > Name : </label> <input id="bn">
-				<span class="bnErrPre d-no"></span><div id="bnErr" class="t-c  f p-s rc-s err d-no"> book name already exists ! </div>
+				<span class="bnErrPre" style="display:none;"></span><div id="bnErr" class="t-c  f p-s rc-s err d-no"> book name already exists ! </div>
 				<label > Background :  </label> <input id="bbg" value="#35c">
 				<label > Color :  </label> <input id="bc" value="#fff">
 				<label class="midl"> Icon : </label>
-				<div class="ovrflw-scrl iconList t-c chd(rc-s,d-ib,h-20p,w-20p,p-s)">
+				<div class="iconList">
 					<div icon="list" style="background : rgb(119, 119, 119);"></div>
 					<div icon="cart"></div>
 					<div icon="grid"></div>

@@ -49,7 +49,6 @@
 		}
 		manageNbf();
 	};
-
 	refreshBookshelf();
 	
 	window.appendBook = async function ( book = false ) {
@@ -75,13 +74,14 @@
 			(ic) => (ic.style.background = "transparent")
 		);
 	};
-
+	
+	//window.hideAllDB();
 	for (let c of $$(".DBC")) c.children[0].addEventListener("click", hideAllDB);
 
 	$("#addNew").addEventListener("click", () => {
 		let db = $("#bkfrm");
 		$("#cnb").style.display = "flex";
-		setTimeout(() => ((db.style.opacity = "1"), (db.style.position="relative", db.style.top = "0px")), 50);
+		setTimeout(() => ((db.style.opacity = "1"), (db.style.top = "-100px")), 50);
 	});
 
 	$$(".iconList > div").forEach((i) =>
@@ -92,7 +92,7 @@
 			i.style.background = "#777";
 		})
 	);
-
+ 
 	window.createNB = function () {
 		let books = JSON.parse(localStorage.getItem("books") || "[]");
 		let name =  $("#bn").value,
@@ -143,6 +143,5 @@
 				$(".bnErrPre").style.display = "block";
 				$("#bnErr").style.display = "block";
 			}
-			
 		})
 })();

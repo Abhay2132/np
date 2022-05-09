@@ -34,9 +34,10 @@ module.exports = async () => {
 		engine = await require("./mods/templateEngine")(),
 		cors = require("cors"),
 		cookieParser = require("cookie-parser"),
-		{ logger, mergeFs } = hlpr,
+		{ logger, mergeFs, liveReload } = hlpr,
 		router = require("./mods/routes/router"),
-		{ css, js } = require("./files2Merge")
+		{ css, js } = require("./files2Merge"),
+		server = require("http").createServer(app)
 
 	app.engine(".hbs", engine);
 	app.set("view engine", ".hbs");
@@ -52,7 +53,8 @@ module.exports = async () => {
 	if ( typeof global.__c4u !== "undefined" ) app.use(__c4u); 
 	
 	app.use(router)
-	app.listen(_port, async () => {
+	if ( ! isPro ) liveReload(server)
+	server.listen(_port, async () => {
 		await mergeFs({dir : "src/static/public/css", files : css, out : "styles.css", compress : isPro})
 		await mergeFs({dir : "src/static/public/js", files : js, out : "aio.js", compress : isPro})
 		log(`Server started at localhost:${_port} in ${isPro ? "pro" : "dev"} mode \n( version : ${__appV} )`)
