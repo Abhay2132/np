@@ -16,7 +16,6 @@ const fs = require("fs"),
 	
 const logger = (req, res, next) => {
 		let st = Date.now();
-		res.on("finish", () => {
 		let mc = {
 			GET: "green",
 			POST: "yellow",
@@ -24,7 +23,9 @@ const logger = (req, res, next) => {
 			DELETE: "red",
 		};
 		let clr = mc[req.method] || "grey";
-		log(colors[clr](req.method), req.url, colors.yellow(Date.now() - st + "ms"))
+		process.stdout.write([colors[clr](req.method), req.url].join(" "))
+		res.on("finish", () => {
+		process.stdout.write(" "+colors.yellow(Date.now() - st + "ms")+"\n")
 		})
 		next();
 	}
