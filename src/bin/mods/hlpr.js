@@ -12,8 +12,7 @@ const fs = require("fs"),
 	templates = require("./routes/templates"),
 	path = require("path"),
 	{minify} = require("uglify-js"),
-	cc = require("clean-css"),
-	chokidar = require("chokidar")
+	cc = require("clean-css")
 	
 const logger = (req, res, next) => {
 		let st = Date.now();
@@ -119,7 +118,7 @@ function ext ( a, s = "/" ) {
 function liveReload (server) {
 	const { Server } = require("socket.io");
 	const io = new Server(server)
-	const c = chokidar.watch([pdir, j(sdir, "views")]);
+	const c = require("chokidar").watch([pdir, j(sdir, "views")]);
 	io.on('connection', (socket) => {
 		c.on('all', (event, path) => {
 			log("refresh event emitted for live Reload !")
