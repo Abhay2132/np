@@ -20,12 +20,13 @@ const logger = (req, res, next) => {
 			GET: "green",
 			POST: "yellow",
 			PUT: "blue",
-			DELETE: "red",
+			DELETE: "magenta",
 		};
 		let clr = mc[req.method] || "grey";
-		process.stdout.write([colors[clr](req.method), req.url].join(" "))
+		clr = colors[clr](req.method)
 		res.on("finish", () => {
-		process.stdout.write(" "+colors.yellow(Date.now() - st + "ms")+"\n")
+		let method = res.notFound ? colors.bgRed(clr)  : clr
+		log(method, req.url, colors.yellow(Date.now() - st + "ms"))
 		})
 		next();
 	}
