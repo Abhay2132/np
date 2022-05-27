@@ -27,6 +27,7 @@ const logger = (req, res, next) => {
 		clr = colors[clr](req.method)
 		res.on("finish", () => {
 		let method = res.statusCode >= 400 ? colors.bgRed(clr)  : clr
+		if ( req.url == "/reload") return //log({reload})
 		log(method, req.url, colors.yellow(Date.now() - st + "ms"))
 		})
 		next();
@@ -117,36 +118,22 @@ function ext ( a, s = "/" ) {
 	return a.split(s).at(-1).split("?")[0].split(".").at(-1)
 }
 
-
-const watcher = {
-	watch : function (dirs) {
-		for(let dir of dirs ) {
-			fs.watch(dir, (...a) => watcher.cb(...a));
-			let files = fs.readdirSync(dir);
-			for(let file of files ) {
-				file = j(dir,file);
-				let stat = fs.statSync(file);
-				if (stat.isDirectory()) this.watch([file]);
-			}
+function watcher (dirs, cb) {
+	for(let dir of dirs ) {
+		fs.watch(dir, cb);
+		let files = fs.readdirSync(dir);
+		for(let file of files ) {
+			file = j(dir,file);
+			let stat = fs.statSync(file);
+			if (stat.isDirectory()) watcher([file], cb);
 		}
-	},
-	cb : (...a)=> console.log(...a)
+	}
 }
 
 function liveReload (server) {
-	const { Server } = require("socket.io");
-	const io = new Server(server)
 	let dir2W = [j(sdir, "views"), pdir]
-	watcher.watch(dir2W);
-	
-	io.on('connection', (socket) => {
-		/*c.on('all', (event, path) => {
-			socket.broadcast.emit('refresh');
-		});*/
-		watcher.cb = (e,p) => {
-			socket.broadcast.emit('refresh');
-		}
-	});
+	global.reload = false;
+	watcher(dir2W, () => {global.reload = true;});
 }
 
 module.exports = {

@@ -45,4 +45,9 @@ const colors = require("colors"),
 	
 	router.post ("/getView", require("../hlpr").getView)
 	
+	if ( ! isPro ) router.get("/reload", (req, res) => {
+		res.end(JSON.stringify({reload : global.reload}));
+		global.reload = false;
+	})
+	
 module.exports = router

@@ -1,20 +1,23 @@
+:root {
+	--chat-height: 40px;
+}
+
 .chat {
-	hieght: 30px;
+	hieght: var(--chat-height);
 	width: 100vw;
 	padding: 5px;
 	display: grid;
 	grid-template-columns: 40px auto;
-	background: #777;
-	color: #fff;
+	background: #eef;
 	box-sizing: border-box;
 	position: relative;
 }
 
 .chat-logo {
 	position: relative;
-	height: 30px;
-	width: 30px;
-	top: calc(50% - 15px);
+	height: var(--chat-height);
+	width: var(--chat-height);
+	top: calc(50% - var(--chat-height) / 2);
 	background: #fff;
 	border-radius: 50%;
 }
@@ -26,8 +29,8 @@
 }
 
 .chat-info {
-	background: #26a;
-	padding: 5px 0 0 10px;
+	padding: 8px 0 0 10px;
+	font-size: 18px;
 }
 
 
