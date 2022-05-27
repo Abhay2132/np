@@ -1,0 +1,34 @@
+.chat {
+	hieght: 30px;
+	width: 100vw;
+	padding: 5px;
+	display: grid;
+	grid-template-columns: 40px auto;
+	background: #777;
+	color: #fff;
+	box-sizing: border-box;
+	position: relative;
+}
+
+.chat-logo {
+	position: relative;
+	height: 30px;
+	width: 30px;
+	top: calc(50% - 15px);
+	background: #fff;
+	border-radius: 50%;
+}
+
+.user-logo {
+	position: relative;
+	height: 100%;
+	width: 100%;
+}
+
+.chat-info {
+	background: #26a;
+	padding: 5px 0 0 10px;
+}
+
+
+

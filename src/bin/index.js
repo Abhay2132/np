@@ -8,11 +8,12 @@ module.exports = async () => {
 			return a < 0 ? this[this.length + n] : this[n];
 		};
 	const fs = require("fs");
+	const path = require("path");
 	global.log = (...args) => console.log(...args);
 	global.elog = (...args) => console.error(...args);
 	global.j = require("path").join;
 	global.basename = require("path").basename;
-	global.sdir = j(__dirname, "..", "static");
+	global.sdir = path.resolve("src", "static");
 	global.pdir = j(sdir, "public");
 	global._port = process.env.PORT || 3000;
 	global.isPro = process.env.NODE_ENV === "production";
@@ -53,10 +54,11 @@ module.exports = async () => {
 	if ( typeof global.__c4u !== "undefined" ) app.use(__c4u); 
 	
 	app.use(router)
-	if ( ! isPro ) liveReload(server)
 	server.listen(_port, async () => {
 		await mergeFs({dir : "src/static/public/css", files : css, out : "styles.css", compress : isPro})
 		await mergeFs({dir : "src/static/public/js", files : js, out : "aio.js", compress : isPro})
 		log(`Server started at localhost:${_port} in ${isPro ? "pro" : "dev"} mode \n( version : ${__appV} )`)
+		
+		if ( ! isPro && process.env.dir2W ) liveReload(server)
 	})
 }

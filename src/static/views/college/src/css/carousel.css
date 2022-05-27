@@ -33,7 +33,7 @@
 	top: -125px;
 }
 
-.slides_nav > a {
+.slides_nav > div {
 	display : block;
 	height : 40px; width : 40px;
 	border-radius: 50%; background: #ddd;
@@ -44,7 +44,7 @@
 	align-items : center;
 }
 
-.slides_nav > a > div {
+.slides_nav > div > div {
 	height : 10px; width : 10px;
 	border-top: 2px solid; 
 	border-right : 2px solid;
@@ -53,7 +53,7 @@
 	transform : translateX(-3px) rotate(45deg);
 }
 
-.slides_nav > a:first-child > div {
+.slides_nav > div:first-child > div {
 	transform : translateX(3px) rotate(-135deg);
 }
 

@@ -44,5 +44,5 @@ const colors = require("colors"),
 	router.post("/ytdl/getd", require("../../apps/ytdl/main.js").getD);
 	
 	router.post ("/getView", require("../hlpr").getView)
-	router.use((a,b,c) => {b.notFound = 1; c()});
+	
 module.exports = router

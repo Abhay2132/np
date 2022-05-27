@@ -27,7 +27,7 @@ body{opacity:0;}
 	</div>
 </nav>
 
-<div id="sidePanel" class="dnl-bg dnl-ch top-53p left-0p zi-999999 chd(crsr-pntr)">
+<div id="sidePanel" class="">
 	<a href="/"  class="item" view="index" > HOME </a>
 	<div class="item"> Contact me </div>
 	<div class="item"> About me </div>
@@ -58,17 +58,16 @@ loadF.files = [
 ];
 
 let pwd = "{{{pwd}}}";
-loadF.init({logging: 1,appV :  __appV});
-
+loadF.init({logging: 1, appV :  __appV});
 history.pushState({ view : location.href.split("/").at(-1).split("?")[0].split(".")[0] } , "", "")
-</script>
-
 
 {{#if (isDev)}}
-<script src="/socket.io/socket.io.js"></script>
-<script>
-const socket = io();
-socket.on("refresh", () => location.href = location.href);
-</script>
+	let worker = new Worker("js/liveReload.js");
+	worker.onmessage = function (e) {
+		location.href = location.href;
+	}
 {{/if}}
+
+</script>
+
 </html>

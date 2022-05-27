@@ -5,7 +5,17 @@
 	height: 100vh;
 	transition: 0.5s;
 	overflow: hidden;
+	top: 53px;
+	left: 0;
+	z-index: 9999;
+	background: #333;
+	color: #fff;
 }
+
+
+/*
+	dnl-bg dnl-ch top-53p left-0p zi-999999 chd(crsr-pntr)
+*/
 
 
 #sidePanel > .item {
@@ -14,4 +24,5 @@
 	border-left: 3px solid cornFlowerBlue;
 	margin-top: 3px;
 	min-width: 119px;
+	cursor: pointer;
 }

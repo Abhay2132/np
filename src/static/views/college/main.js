@@ -55,13 +55,14 @@ window._tmenu = new _toggleHeight("#links", null, matchMedia("(max-width: 768px)
 	while ( ! (document.readyState == "interactive" || document.readyState == "complete" ) ) await (new Promise(res => setTimeout(res, 200)))
 	let [ left, right ] = document.querySelector(".slides_nav").children;
 	
-	function cycle ( n , min , max ) {
+	function cycle ( n , min = 0, max =4) {
 		if ( n < min ) return max;
 		if ( n > max ) return min;
 		return n
 	}
 	
 	window._qs = q => document.querySelector(q)
+	/*
 	left.addEventListener("click" , function (){
 		_slidesPos = cycle(_slidesPos-1 , 1, _qs(".slides").children.length, true)
 		this.href = "#slide"+_slidesPos}, _qs(".slides").children.length)
@@ -69,6 +70,18 @@ window._tmenu = new _toggleHeight("#links", null, matchMedia("(max-width: 768px)
 		_slidesPos = cycle(_slidesPos+1, 1, 5)
 		this.href = "#slide"+_slidesPos})
 	//right.click()
+	*/
+	function slideTo (a) {
+		console.log({a})
+		n = cycle(a);
+		x = screen.width * n;
+		console.log(n,x)
+		_qs(".slides").scrollTo(x, 0);
+	}
+	var n = 0;
+	left.addEventListener("click", () => slideTo(--n));
+	
+	right.addEventListener("click", () => slideTo(cycle(++n)))
 })()
 
 

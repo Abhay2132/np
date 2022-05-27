@@ -26,6 +26,7 @@ a {
 	animation : rot 2s linear 0s infinite normal;
 }
 
+
 #hmbgr {
 	height: 40px;
 	width: 40px;
@@ -55,7 +56,17 @@ a {
 	height: 100vh;
 	transition: 0.5s;
 	overflow: hidden;
+	top: 53px;
+	left: 0;
+	z-index: 9999;
+	background: #333;
+	color: #fff;
 }
+
+
+/*
+	dnl-bg dnl-ch top-53p left-0p zi-999999 chd(crsr-pntr)
+*/
 
 
 #sidePanel > .item {
@@ -64,6 +75,7 @@ a {
 	border-left: 3px solid cornFlowerBlue;
 	margin-top: 3px;
 	min-width: 119px;
+	cursor: pointer;
 }
 
 
@@ -245,6 +257,7 @@ button:active {
 	text-align: center;
 	margin: 2px;
 	height: 50px;
+	box-sizing : border-box;
 }
 
 .bookName {
@@ -252,7 +265,6 @@ button:active {
 	word-wrap: break-word;
 	overflow: scroll;
 }
-
 
 .list {
 	display : flex;
@@ -266,6 +278,7 @@ button:active {
 	border-radius: 5px;
 	position: relative;
 	margin: 5px 5px 0px 5px;
+	box-shadow: 0px 3px 0px #555;
 }
 
 .list .bookMenu  {
@@ -284,14 +297,15 @@ button:active {
 	flex-direction: column;
 	justify-content: center;
 	padding: 0px 10px;
+	transition: 0.2s;
 }
 
 .list .bookMenu > *:nth-child(2) {
-	border-left: 1px solid;
+	border-left: 1px solid #ddd;
 }
 
 .list .bookMenu > *:hover {
-	background: #fff;
+	background: #ddd;
 	color: #333;
 }
 
@@ -492,3 +506,41 @@ div#cnb {
 	}
 
 }
+
+.chat {
+	hieght: 30px;
+	width: 100vw;
+	padding: 5px;
+	display: grid;
+	grid-template-columns: 40px auto;
+	background: #777;
+	color: #fff;
+	box-sizing: border-box;
+	position: relative;
+}
+
+.chat-logo {
+	position: relative;
+	height: 30px;
+	width: 30px;
+	top: calc(50% - 15px);
+	background: #fff;
+	border-radius: 50%;
+}
+
+.user-logo {
+	position: relative;
+	height: 100%;
+	width: 100%;
+}
+
+.chat-info {
+	background: #26a;
+	padding: 5px 0 0 10px;
+}
+
+
+
+
+
+

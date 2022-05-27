@@ -135,6 +135,7 @@
 	text-align: center;
 	margin: 2px;
 	height: 50px;
+	box-sizing : border-box;
 }
 
 .bookName {
@@ -142,7 +143,6 @@
 	word-wrap: break-word;
 	overflow: scroll;
 }
-
 
 .list {
 	display : flex;
@@ -156,6 +156,7 @@
 	border-radius: 5px;
 	position: relative;
 	margin: 5px 5px 0px 5px;
+	box-shadow: 0px 3px 0px #555;
 }
 
 .list .bookMenu  {
@@ -174,14 +175,15 @@
 	flex-direction: column;
 	justify-content: center;
 	padding: 0px 10px;
+	transition: 0.2s;
 }
 
 .list .bookMenu > *:nth-child(2) {
-	border-left: 1px solid;
+	border-left: 1px solid #ddd;
 }
 
 .list .bookMenu > *:hover {
-	background: #fff;
+	background: #ddd;
 	color: #333;
 }
 

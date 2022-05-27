@@ -12,7 +12,8 @@ const fs = require("fs"),
 	templates = require("./routes/templates"),
 	path = require("path"),
 	{minify} = require("uglify-js"),
-	cc = require("clean-css")
+	cc = require("clean-css"),
+	em = require("events")
 	
 const logger = (req, res, next) => {
 		let st = Date.now();
@@ -25,7 +26,7 @@ const logger = (req, res, next) => {
 		let clr = mc[req.method] || "grey";
 		clr = colors[clr](req.method)
 		res.on("finish", () => {
-		let method = res.notFound ? colors.bgRed(clr)  : clr
+		let method = res.statusCode >= 400 ? colors.bgRed(clr)  : clr
 		log(method, req.url, colors.yellow(Date.now() - st + "ms"))
 		})
 		next();
@@ -116,15 +117,35 @@ function ext ( a, s = "/" ) {
 	return a.split(s).at(-1).split("?")[0].split(".").at(-1)
 }
 
+
+const watcher = {
+	watch : function (dirs) {
+		for(let dir of dirs ) {
+			fs.watch(dir, (...a) => watcher.cb(...a));
+			let files = fs.readdirSync(dir);
+			for(let file of files ) {
+				file = j(dir,file);
+				let stat = fs.statSync(file);
+				if (stat.isDirectory()) this.watch([file]);
+			}
+		}
+	},
+	cb : (...a)=> console.log(...a)
+}
+
 function liveReload (server) {
 	const { Server } = require("socket.io");
 	const io = new Server(server)
-	const c = require("chokidar").watch([pdir, j(sdir, "views")]);
+	let dir2W = [j(sdir, "views"), pdir]
+	watcher.watch(dir2W);
+	
 	io.on('connection', (socket) => {
-		c.on('all', (event, path) => {
-			log("refresh event emitted for live Reload !")
+		/*c.on('all', (event, path) => {
 			socket.broadcast.emit('refresh');
-		});
+		});*/
+		watcher.cb = (e,p) => {
+			socket.broadcast.emit('refresh');
+		}
 	});
 }
 
