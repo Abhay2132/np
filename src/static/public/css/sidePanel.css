@@ -12,12 +12,6 @@
 	color: #fff;
 }
 
-
-/*
-	dnl-bg dnl-ch top-53p left-0p zi-999999 chd(crsr-pntr)
-*/
-
-
 #sidePanel > .item {
 	display: block;
 	padding: 10px 20px;
@@ -25,4 +19,9 @@
 	margin-top: 3px;
 	min-width: 119px;
 	cursor: pointer;
+}
+
+#sidePanel > .item:hover {
+	background: #eee;
+	color: #333;
 }

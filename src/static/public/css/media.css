@@ -1,12 +1,4 @@
 @media (prefers-color-scheme: dark) {
-	#mainNav {
-  		background-color : #333;
-  		color : #fff;
- 	}
- 
- #hmbgr {
- 	background : #555;
-	}
 	
 	.dnl-bg {
   		background-color : #333;
