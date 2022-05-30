@@ -71,4 +71,7 @@
 			await new Promise((res) => setTimeout(res, 100));
 		return typeof func === "function" ? func() : func;
 	};
+	
+	qs("#mainNav").style.background = "#eee"
+	qs("#mainNav").style.color = "#333"
 })();

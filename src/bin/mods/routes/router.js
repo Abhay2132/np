@@ -44,10 +44,19 @@ const colors = require("colors"),
 	router.post("/ytdl/getd", require("../../apps/ytdl/main.js").getD);
 	
 	router.post ("/getView", require("../hlpr").getView)
-	
+	var i = 1;
 	if ( ! isPro ) router.get("/reload", (req, res) => {
-		res.end(JSON.stringify({reload : global.reload}));
-		global.reload = false;
+		let reloadReq;
+		if ( ! global.reloadClients ) global.reloadClients = {};
+		let clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress || null;
+	try {
+		if ( ! Object.keys(global.reloadClients).includes(clientIp))
+			global.reloadClients[clientIp] = true;
+		reloadReq = global.reloadClients[clientIp]
+		//process.stdout.write(" " + ++i);
+		res.end(JSON.stringify({reloadReq}));
+		global.reloadClients[clientIp] = false;
+	} catch (e) {log({e, reloadReq}); }
 	})
 	
 module.exports = router

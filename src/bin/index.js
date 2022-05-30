@@ -1,6 +1,7 @@
 module.exports = async () => {
 	// const heapdump = require("heapdump");
 	// heapdump.writeSnapshot();
+	let __sat = global.__sat || Date.now();
 	if (!Array.prototype.at)
 		Array.prototype.at = function (n) {
 			if (typeof n !== "number") return;
@@ -55,10 +56,9 @@ module.exports = async () => {
 	
 	app.use(router)
 	server.listen(_port, async () => {
+		log(`Server started at localhost:${_port} in ${isPro ? "pro" : "dev"} mode \n( version : ${__appV} ) in ${require("colors").yellow(Date.now() - __sat+"ms")}`)
+		if ( ! isPro ) { liveReload(server); return; }
 		await mergeFs({dir : "src/static/public/css", files : css, out : "styles.css", compress : isPro})
 		await mergeFs({dir : "src/static/public/js", files : js, out : "aio.js", compress : isPro})
-		log(`Server started at localhost:${_port} in ${isPro ? "pro" : "dev"} mode \n( version : ${__appV} )`)
-		
-		if ( ! isPro && process.env.dir2W ) liveReload(server)
 	})
 }

@@ -10,7 +10,8 @@
 			"imgD.js",
 			"icons.js",
 			"nb.js",
-			"cacheV.js"
+			"cacheV.js",
+			"wu.js"
 		],
 	"css" : [
 			"main.css",
@@ -23,6 +24,7 @@
 			"ps.css",
 			"keyframes.css",
 			"media.css",
-			"wu.css"
+			"wu.css",
+			"last.css"
 		]
 }

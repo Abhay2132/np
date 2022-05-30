@@ -1,37 +1,132 @@
+#wa-app {
+	margin-top: 10px;
+	/*background: #eef; */
+}
+
 :root {
-	--chat-height: 40px;
+	--nms : 22px;
+}
+
+#chat-list {
+	/*display: none;*/
+	transition: 0.5s;
+}
+
+.new-mess {
+	background: #008069;
+	color: #fff;
+	border-radius: 50%;
+	height: var(--nms);
+	position: relative;
+	top: calc(50% - var(--nms) / 2);
+	text-align: center;
+	font-weight: 400;
+	display: flex;
+	font-size: 12px;
+	flex-direction: column;
+	justify-content: center;
 }
 
 .chat {
-	hieght: var(--chat-height);
-	width: 100vw;
-	padding: 5px;
 	display: grid;
-	grid-template-columns: 40px auto;
-	background: #eef;
-	box-sizing: border-box;
 	position: relative;
+	grid-template-columns: 50px auto var(--nms);
+	height: 50px;
+	padding: 10px 10px;
+	tarnsition: 0.3s;
+	border-radius: 5px;
+	margin: 0 10px;
+}
+
+.chat:hover {
+	background: #eee;
 }
 
 .chat-logo {
-	position: relative;
-	height: var(--chat-height);
-	width: var(--chat-height);
-	top: calc(50% - var(--chat-height) / 2);
-	background: #fff;
+	background: url("https://i.ibb.co/3ryXbF6/user.png");
+	background-size: 50px 50px;
 	border-radius: 50%;
-}
-
-.user-logo {
-	position: relative;
-	height: 100%;
-	width: 100%;
+	font-size: 0;
 }
 
 .chat-info {
-	padding: 8px 0 0 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 0 20px;
+}
+
+.chat-name {
+	font-weight: 500;
 	font-size: 18px;
 }
 
+.last-mess {
+	color: #777;
+}
 
+#new-chat {
+	position: fixed;
+	right: 10px;
+	bottom: 20px;
+	--s : 50px;
+	height: var(--s);
+	width: var(--s);
+	border-radius: 50%;
+	background: #008069;
+	font-size: 44px;
+	color: #fff;
+	text-align: center;
+	transition: transform 0.1s;
+	font-weight: 200;
+}
+
+#new-chat:active {
+	transform: scale(0.8);
+}
+
+#user-list {
+	padding-top: 10px;
+	border-top: 1px solid;
+}
+
+input#s-usr {
+	display: block;
+	padding: 10px;
+	font-size: 15px;
+	border-radius: 5px;
+	border: 1px solid #aaa;
+	margin: 10px 5%;
+	width: 90%;
+	box-sizing: border-box;
+}
+
+#nco { /* New Chat Options*/
+	display: flex;
+	flex-wrap: wrap;
+	padding: 0 10px 10px 10px;
+}
+
+#nco > div { 
+	text-align: center;
+	border: 1px solid #bbb;
+	box-shadow: 0px 4px 1px #555;
+	border-radius: 5px;
+	transition: 0.1s;
+	padding: 8px 10px;
+	margin: 5px 5px;
+}
+/*
+#nco > div:hover {
+	background: #81C960;
+	color: #fff;
+	transform: translateY(3px);
+	box-shadow: 0px 1px 1px #555;
+}
+*/
+#new-chat-dialog {
+	display: none;
+	transition: 0.5s;
+	transform: scale(0.5);
+}
 

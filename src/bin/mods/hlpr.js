@@ -132,8 +132,11 @@ function watcher (dirs, cb) {
 
 function liveReload (server) {
 	let dir2W = [j(sdir, "views"), pdir]
-	global.reload = false;
-	watcher(dir2W, () => {global.reload = true;});
+	global.reloadClients = {}
+	watcher(dir2W, (e,f) => {
+		log(e,f);
+		for(let client in global.reloadClients) global.reloadClients[client] = true;
+	});
 }
 
 module.exports = {

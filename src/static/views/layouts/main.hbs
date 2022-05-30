@@ -10,19 +10,24 @@
 <script>{{{loadFiles}}}</script>
 <link rel="icon" href="/favicon.png">
 <link rel="apple-touch-icon" href="/favicon.png">
+<style></style>
+
+<script>
+</script>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300&display=swap');
+/*@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300&display=swap');*/
 * {
-	font-family: Fredoka;
+	font-family: Fredoka, sans-serif, cambria,calibri;
+	font-weight: 300;
 }
 body{opacity:0;}
 </style>
 </head>
-<body class="m-n opct-1 grey-white h-100vh">
+<body>
 	
 <nav id="mainNav" class="dnl-bg">
 	<div id="hmbgr" onclick="thmbgr(tsp)"> <hr /><hr /><hr /> </div>
-	<div class="t-c f-xl fw-600 p" id="mainH">
+	<div id="mainH">
 		{{{mainHeading}}}
 	</div>
 </nav>
@@ -33,7 +38,7 @@ body{opacity:0;}
 	<div class="item"> About me </div>
 </div>
 
-	<div id="body" class="st viewport pc(pos-rel,w-500p,left-50pg,m-L-_250p)">
+	<div id="body" class="viewport">
 	{{{body}}}
 	</div>
 </body>
@@ -43,7 +48,7 @@ window.isDev = {{{isDev}}}
 window.__appV = {{{appV}}};
 if ( __appV == 0 || parseInt(localStorage.getItem("fileV") || "0") != __appV){
 	for(let item of Object.keys(localStorage)) {
-		if ( item.startsWith("book") || item == "lastYtdlVideo")  continue;
+		if ( item.startsWith("book") || item.startsWith("eruda")  || item == "lastYtdlVideo")  continue;
 		localStorage.removeItem(item)
 	}
 };
@@ -59,9 +64,10 @@ loadF.files = [
 
 let pwd = "{{{pwd}}}";
 loadF.init({logging: 1, appV :  __appV});
-history.pushState({ view : location.href.split("/").at(-1).split("?")[0].split(".")[0] } , "", "")
+history.pushState({ view : location.href.split("/").at(-1).split("?")[0].split(".")[0] } , "", "");
 
 {{#if (isDev)}}
+
 	let worker = new Worker("js/liveReload.js");
 	worker.onmessage = function (e) {
 		location.href = location.href;

@@ -181,6 +181,9 @@ const prop1={p:"padding",m:"margin",rc:"border-radius",d:"display",bdr:"border",
 			await new Promise((res) => setTimeout(res, 100));
 		return typeof func === "function" ? func() : func;
 	};
+	
+	qs("#mainNav").style.background = "#eee"
+	qs("#mainNav").style.color = "#333"
 })();
 
 
@@ -753,4 +756,52 @@ window.onpopstate = async function (e) {
 
 ca("root");
 
+})();
+
+(async function () {
+	if ( document.title != "WhatsUp") return;
+	qs("#mainNav").style.background = "#008069"
+	qs("#mainNav").style.color = "#ddd"
+	
+	function hideNCPanel () { // NC -> new Chat
+		qs("#new-chat-panel").style.opacity = "0";
+		let top = "10vw";
+		qs("#new-chat-panel-body").style.top = parseInt(top) + 100 + "px"
+		setTimeout(() => {
+			qs("#new-chat-panel").style.display = "none";
+		}, 300);
+	}
+	function showNCPanel () {
+		qs("#new-chat-panel").style.display = "block";
+		qs("#new-chat-panel").style.opacity = "0";
+		let top = "10vw";
+		qs("#new-chat-panel-body").style.transition = "0s";
+		qs("#new-chat-panel-body").style.top = parseInt(top) + 100 + "px"
+		qs("#new-chat-panel-body").style.transition = "0.3s";
+		setTimeout(() => {
+			qs("#new-chat-panel").style.opacity = "1";
+			qs("#new-chat-panel-body").style.top = top;
+		}, 300);
+	}
+	qs("#n-c-p-bg").addEventListener("click", hideNCPanel);
+	qs("#new-chat").addEventListener("click", showNCPanel);
+	
+	function toggleUF () { // toggle userFilter
+		let state = this.getAttribute("state") || "off"
+		log(state);
+		if ( state == "off") {
+			this.style.boxShadow = "0px 1px 0px #aaa";
+			this.style.transform = "translateY(3px)";
+			this.children[0].style.background = "#3a6";
+			this.setAttribute("state", "on");
+		}
+		if ( state == "on") {
+			this.style.boxShadow = "0px 4px 0px #aaa";
+			this.style.transform = "translateY(0px)";
+			this.children[0].style.background = "#aaa";
+			this.setAttribute("state", "off");
+		}
+	}
+	
+	qsa("#user-filters > div").forEach ( d => d.addEventListener("click", toggleUF));
 })();
