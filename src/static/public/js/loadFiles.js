@@ -1,3 +1,7 @@
+if (!Array.prototype.at) Array.prototype.at = function (n) {
+	return this[n < 0 ? this.length + n : n ] || null;
+}
+
 const cacheF = {
 	files : [],
 	av : parseInt(localStorage.getItem("fileV") || "0"),
