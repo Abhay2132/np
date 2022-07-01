@@ -157,7 +157,7 @@ function parseURL(url) {
 
 const imgN = (img, i) => {
 	let exts = ["jpg", "gif", "png"];
-	let alt = (img.getAttribute("alt") || "").replace(/[\/\s]/g, "_").slice(0, 10),
+	let alt = (img.getAttribute("alt") || "").replace(/[\/\s]/g, "_").slice(0, 40),
 		src = (img.getAttribute("src") || "").replace(/\//g, "_"),
 		name = bn(pn(src)),
 		extnsn = exts.includes(ext(name)) ? ext(name) : "gif";
