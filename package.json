@@ -41,7 +41,6 @@
 		"prettier": "^2.5.1",
 		"socket.io": "^4.5.0",
 		"terser": "^5.10.0",
-		"typeorm": "^0.2.45",
 		"ytdl-core": "^4.11.0"
 	},
 	"devDependencies": {
