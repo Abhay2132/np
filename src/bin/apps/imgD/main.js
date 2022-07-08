@@ -1,4 +1,4 @@
-const {init, pu, isDead, isD} = require("./imgD"),
+const {ImgD, pu, isDead, isD} = require("./imgD"),
 	ddir = j(sdir, "files", "imgD"),
 	fs = require("fs")
 
@@ -8,7 +8,8 @@ module.exports = async (req, res) => {
 	let {dir} = pu(url)
 	if ( ! fs.existsSync(j(ddir, dir, "stats.json")) || !! isDead(url) || isD(url) ){
 		//log("Starting Download !",  ! fs.existsSync(j(ddir, dir, "stats.json")) , !! isDead(url, true) , isD(url) )
-		let {status, done, dlnk = "", imgs = 0, downloaded = 0} = await init(url, true);
+		let imgD = new ImgD();
+		let {status, done, dlnk = "", imgs = 0, downloaded = 0} = await imgD.init(url, true);
 		return res.json({status : status , done : done, dlnk : dlnk, downloading : downloaded+"/"+ imgs})
 	}
 	let {status, done, dlnk = "", imgs = 0, downloaded = 0} = JSON.parse(fs.readFileSync(j(ddir, dir, "stats.json")))

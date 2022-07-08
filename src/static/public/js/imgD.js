@@ -42,9 +42,9 @@
 	}
 
 	function dbtn(url) {
-		let dbtnc = qs("#dbtnc");
-		url ? dblk(dbtnc) : hide(dbtnc);
-		qs("#dbtn").href = url;
+		let dbtn = qs("#dbtn");
+		url ? (dblk(dbtn), dbtn.addEventListener("click", () => setTimeout(() => {location.href = url}, 700))) : hide(dbtn);
+		//qs("#dbtn").href = url;
 	}
 
 	async function onload(cb, ...args) {

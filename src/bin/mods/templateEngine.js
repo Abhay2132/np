@@ -12,27 +12,17 @@ let getLF = () => new Promise( res => {
 })
 
 module.exports = async () => {
-	let loadFiles = await getLF()
-	
+	let loadFiles = await getLF();
+	let galleryImgs = isPro ? false : fs.readdirSync(j(pdir, "gallery"));
 	let engine = hbs.create({
 		defaultLayout: "main",
 		helpers: {
-			hn() {
-				let host =
-					process.env.NODE_ENV === "production"
-						? "https://nexpp.herokuapp.com/"
-						: "http://localhost:" + _port;
-				return host;
-			},
 			isDev() {
 				return !(process.env.NODE_ENV === "production");
 			},
 			loadFiles() {
 				return loadFiles;
 			},
-			/*pwd () {
-				return __dirname
-			},*/
 			pwd () {
 				return __dirname.split("/").slice(0, -3).join("/")
 			},
@@ -44,6 +34,9 @@ module.exports = async () => {
 			},
 			cssFiles () {
 				return css;
+			},
+			galleryImgs () {
+				return galleryImgs;
 			}
 		},
 		extname: ".hbs",

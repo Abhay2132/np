@@ -1,0 +1,11 @@
+#gallery {
+	position: relative;
+	text-align: center;
+}
+
+.gallery-item {
+	max-width: 90%;
+	border: 2px solid #333;
+	border-radius: 10px;
+	margin: 5px;
+}

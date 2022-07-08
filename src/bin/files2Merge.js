@@ -1,4 +1,4 @@
-{
+let files = {
 	"js" : [
 			"imgC.js",
 			"acss.min.js",
@@ -25,6 +25,11 @@
 			"keyframes.css",
 			"media.css",
 			"wu.css",
-			"last.css"
+			"last.css",
+			"imgD.css"
 		]
-}
+};
+
+( ! isPro ) && files.css.push("gallery.css");
+
+module.exports = files;

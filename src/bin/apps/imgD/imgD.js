@@ -25,8 +25,6 @@ const fs = require("fs"),
 	rl = require("readline"),
 	slogoff = false;
 
-var stats;
-
 const fetch = (url) =>
 	new Promise(async (res) => {
 		/*
@@ -45,7 +43,7 @@ const fetch = (url) =>
 
 const init = (url, flag, usePupp) =>
 	new Promise(async (res) => {
-		stats = {
+		var stats = {
 			status: 1,
 			url: url,
 			done: false,
@@ -116,7 +114,7 @@ const init = (url, flag, usePupp) =>
 		stats.status = 4;
 		let zipPath = j(ddir, dir, dir + ".zip")
 		zip.writeZip(zipPath);
-		// files.forEach((file) => fs.rmSync(j(ddir, dir, file)));
+		isPro && files.forEach((file) => fs.rmSync(j(ddir, dir, file)));
 
 		stats.tick = Date.now();
 		stats.done = true;
@@ -152,7 +150,7 @@ function parseURL(url) {
 		dir = j(u.hostname, u.pathname).replace(/[\/]/g, "_").replace(/[+]/g, "-");
 
 	if (dir.endsWith("_")) dir = dir.slice(0, -1);
-	return { dir: dir, hostN: u.hostname, p: u.protocol };
+	return { dir: dir, hostN: u.host, p: u.protocol };
 }
 
 const imgN = (img, i) => {
@@ -184,11 +182,16 @@ function isD(url) {
 	return !fs.existsSync(j(ddir, dir, dir + ".zip")) && done;
 }
 
+function ImgD () {
+	this.init = init;
+}
+
 module.exports = {
-	init: init,
+	//init: init,
 	isDead: isDead,
 	pu: parseURL,
 	isD: isD,
+	ImgD,
 };
 
 /*
