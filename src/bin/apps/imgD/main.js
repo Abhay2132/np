@@ -1,4 +1,4 @@
-const {ImgD, pu, isDead, isD} = require("./imgD"),
+const {ImgD, parseURL : pu, isDead, isD} = require("./imgD"),
 	ddir = j(sdir, "files", "imgD"),
 	fs = require("fs")
 

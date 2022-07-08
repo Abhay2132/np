@@ -175,7 +175,7 @@ const slog = (stats) =>
 	});
 
 const jsonFile = (fp) => JSON.parse(fs.readFileSync(fp));
-function isD(url) {
+function isD(url) { // is Done
 	let { dir } = parseURL(url);
 	if (!fs.existsSync(j(ddir, dir, "stats.json"))) return false;
 	let { done } = jsonFile(j(ddir, dir, "stats.json"));
@@ -187,10 +187,9 @@ function ImgD () {
 }
 
 module.exports = {
-	//init: init,
-	isDead: isDead,
-	pu: parseURL,
-	isD: isD,
+	isDead,
+	parseURL,
+	isD, // is Done
 	ImgD,
 };
 

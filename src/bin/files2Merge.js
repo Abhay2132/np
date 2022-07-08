@@ -18,6 +18,7 @@ let files = {
 			"hmbgr.css",
 			"sidePanel.css",
 			"button.css",
+			"index.css",
 			"fm.css",
 			"svg.css",
 			"nb.css",

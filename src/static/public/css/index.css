@@ -1,0 +1,53 @@
+/*
+index
+p-T-s
+
+chd-div(blrbg
+bdr
+d-grd
+gtc-auto_80px
+m
+links
+
+chd-a(bdr-L
+p-10px_20px
+m-n
+hbr(dnw
+rc-0px_5px_5px_0px))
+rc-s
+chd-div(vc
+p-L))
+*/
+
+#index {
+	padding-top: 5px;
+}
+
+#index > div {
+	display: grid;
+	grid-template-columns: auto 80px;
+	margin: 10px;
+	border : 1px solid;
+	border-radius: 5px;
+	height: 40px;
+}
+
+#index > div > * {
+	display: flex;
+	align-items : center;
+	text-indent: 20px;
+}
+
+#index > div > a { 
+	border-left : 1px solid;
+	margin: 0;
+	border-radius: 0;
+}
+
+#index > div > a:hover {
+	background: #333;
+	color: #eee;
+}
+
+
+
