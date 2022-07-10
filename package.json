@@ -5,7 +5,7 @@
 	"main": "src/app.js",
 	"scripts": {
 		"test": "clear ; echo 'Killing node ps !'; pkill -e node; nodemon --quiet test/test",
-		"start": "node .",
+		"start": "node test/test",
 		"pt": "export NODE_ENV=production; npm run test;"
 	},
 	"repository": {
