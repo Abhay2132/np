@@ -6,7 +6,7 @@
 	"scripts": {
 		"test": "clear ; echo 'Killing node ps !'; pkill -e node; nodemon --quiet test/test",
 		"start": "node test/test",
-		"pt": "export NODE_ENV=production; npm run test;"
+		"pt": "export NODE_ENV=PRODUCTION; npm run test;"
 	},
 	"repository": {
 		"type": "git",

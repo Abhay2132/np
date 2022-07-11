@@ -17,7 +17,7 @@ module.exports = async () => {
 	global.sdir = path.resolve("src", "static");
 	global.pdir = j(sdir, "public");
 	global._port = process.env.PORT || 3000;
-	global.isPro = process.env.NODE_ENV === "production";
+	global.isPro = (process.env.NODE_ENV || "").toLowerCase() === "production";
 	global.isA = require("os").platform() == "android";
 	global.stdout = (...a) => process.stdout.write(a.join(" "));
 	if( typeof global.__appV == "undefined" ) global.__appV = 0 
