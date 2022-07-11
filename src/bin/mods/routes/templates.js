@@ -11,7 +11,7 @@ let routes = {
 	};
 
 if ( ! isPro ) {
-	routes["/gallery"]= { "view": "gallery", "title": "Gallery" , "mainHeading": "Photo Gallery"};
+	
 }
 
 module.exports = routes;

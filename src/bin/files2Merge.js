@@ -31,6 +31,5 @@ let files = {
 		]
 };
 
-( ! isPro ) && files.css.push("gallery.css");
 
 module.exports = files;

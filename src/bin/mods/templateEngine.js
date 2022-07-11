@@ -13,7 +13,6 @@ let getLF = () => new Promise( res => {
 
 module.exports = async () => {
 	let loadFiles = await getLF();
-	let galleryImgs = isPro ? false : fs.readdirSync(j(pdir, "gallery"));
 	let engine = hbs.create({
 		defaultLayout: "main",
 		helpers: {
@@ -34,9 +33,6 @@ module.exports = async () => {
 			},
 			cssFiles () {
 				return css;
-			},
-			galleryImgs () {
-				return galleryImgs;
 			}
 		},
 		extname: ".hbs",
