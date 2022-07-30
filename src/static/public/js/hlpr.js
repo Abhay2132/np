@@ -72,6 +72,6 @@
 		return typeof func === "function" ? func() : func;
 	};
 	
-	qs("#mainNav").style.background = "#eee"
+	qs("#mainNav").style.background = "transparent"
 	qs("#mainNav").style.color = "#333"
 })();

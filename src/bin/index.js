@@ -41,6 +41,7 @@ module.exports = async () => {
 		{ css, js } = require("./files2Merge"),
 		server = require("http").createServer(app)
 
+	app.use(cors());
 	app.engine(".hbs", engine);
 	app.set("view engine", ".hbs");
 	app.set("views", j(__dirname, "..", "static", "views"));
@@ -51,7 +52,6 @@ module.exports = async () => {
 	app.use(exp.static(j(sdir, "public")));
 	app.use(exp.json());
 	app.use(compression());
-	app.use(cors());
 	if ( typeof global.__c4u !== "undefined" ) app.use(__c4u); 
 	
 	app.use(router)
