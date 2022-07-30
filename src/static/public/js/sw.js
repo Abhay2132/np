@@ -3,16 +3,16 @@ const RUNTIME = 'runtime';
 
 // A list of local resources we always want to be cached.
 const PRECACHE_URLS = [
-"http://np21.herokuapp.com/index",
-"http://np21.herokuapp.com/wu",
-"http://np21.herokuapp.com/nb",
-"http://np21.herokuapp.com/imgD",
-"http://np21.herokuapp.com/fm",
-"http://np21.herokuapp.com/ytdl",
-"http://np21.herokuapp.com/js/aio.js",
-"http://np21.herokuapp.com/css/styles.css",
-"http://np21.herokuapp.com/favicon.ico",
-"http://np21.herokuapp.com/favicon.png",
+"https://np21.herokuapp.com/index",
+"https://np21.herokuapp.com/wu",
+"https://np21.herokuapp.com/nb",
+"https://np21.herokuapp.com/imgD",
+"https://np21.herokuapp.com/fm",
+"https://np21.herokuapp.com/ytdl",
+"https://np21.herokuapp.com/js/aio.js",
+"https://np21.herokuapp.com/css/styles.css",
+"https://np21.herokuapp.com/favicon.ico",
+"https://np21.herokuapp.com/favicon.png",
 ];
 
 // The install handler takes care of precaching the resources we always need.
