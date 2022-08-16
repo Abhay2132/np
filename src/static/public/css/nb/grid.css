@@ -1,0 +1,84 @@
+
+.grid {
+	display : flex;
+	flex-wrap: wrap;
+	justify-content: left;
+	padding: 5px;
+}
+
+.grid > .book {
+	height : 150px;
+	border-radius: 5px;
+	margin: 5px;
+	display : block;
+	box-shadow: 1px 1px 0px #333,
+							2px 2px 0px #fff,
+							3px 3px 0px #333,
+							4px 4px 0px #fff,
+							5px 5px 0px #333;
+	border : 1px solid;
+}
+
+.grid > .book {
+	width: var(--book-w);
+}
+
+.grid > .book > .bookIcon {
+	height : 50px;
+	padding-bottom: 10px;
+	margin: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	border-bottom: 1px solid;
+}
+
+.grid > .book > .bookIcon > div {
+	height: 40px;
+	width: 40px;
+}
+
+.book > .bookName > section.bookMenu {
+	transition: 0.4s ;
+}
+
+.grid > .book > .bookName > section.bookMenu {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	position: absolute;
+	top: -160px;
+	height: 120px;
+	font-size: 15px;
+	width: 100%;
+	left: 0;
+	background: #333;
+	color: #fff;
+	border-radius: 0px 0px 5px 5px;
+}
+
+.grid > .book > .bookName:hover > section.bookMenu {
+	top: -10px;
+}
+
+.grid > .book > .bookName > section.bookMenu > * {
+	margin : 0px 5px;
+	box-sizing : border-box;
+	padding: 5px;
+	text-align: center;
+	border-radius: 5px;
+}
+
+.grid > .book > .bookName > section.bookMenu > *:hover {
+	background: #fff;
+	color: #333;
+}
+
+.grid .bookName {
+	text-align: center;
+	height: 50px;
+	box-sizing : border-box;
+	margin: 2px 10px;
+}
+

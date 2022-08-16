@@ -17,7 +17,7 @@ module.exports = async () => {
 		defaultLayout: "main",
 		helpers: {
 			isDev() {
-				return !(process.env.NODE_ENV === "production");
+				return !( (process.env.NODE_ENV || "").toLowerCase() === "production");
 			},
 			loadFiles() {
 				return loadFiles;

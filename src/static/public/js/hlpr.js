@@ -65,6 +65,7 @@
 	window.qs = (q) => document.querySelector(q);
 	window.qsa = (q) => document.querySelectorAll(q);
 	window.hide = (tag) => (tag.style.display = "none");
+	window.wait = (n = 0) => new Promise ( a => setTimeout (a, n));
 
 	window.onLoad = async (func) => {
 		while (!["complete", "interactive"].includes(document.readyState))

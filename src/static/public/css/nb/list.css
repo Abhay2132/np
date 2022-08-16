@@ -1,0 +1,79 @@
+
+
+.list {
+	display : flex;
+	flex-direction: column;
+	padding-top: 5px;
+}
+
+.list > .book {
+	display : grid;
+	grid-template-columns: 50px auto;
+	border-radius: 5px;
+	position: relative;
+	margin: 5px 5px 0px 5px;
+	box-shadow: 0px 1px 0px #333,
+							0px 2px 0px #ddd,
+							0px 3px 0px #333;
+	box-sizing: border-box;
+	padding: 5px;
+}
+
+.list .bookMenu  {
+	position: absolute;
+	right: -200px;
+	top: 0;
+	background: #333;
+	color: #fff;
+	display : flex;
+	justify-content: center;
+	height: 100%;
+}
+
+.list .bookMenu > * {
+	display : flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 0px 10px;
+	transition: 0.2s;
+}
+
+.list .bookMenu > *:nth-child(2) {
+	border-left: 1px solid #ddd;
+}
+
+.list .bookMenu > *:hover {
+	background: #ddd;
+	color: #333;
+}
+
+.list .bookIcon{
+	padding: 0px 0px;
+}
+
+.list .bookIcon > div {
+	--svg-size : 30px;
+	height : var(--svg-size);
+	width: var(--svg-size);
+	margin: 5px;
+}
+
+.list .bookName:hover > .bookMenu {
+	right: 0;
+}
+
+.list .bookName {
+	display : flex;
+	flex-direction: column;
+	justify-content: center;
+	border-left: 1px solid;
+	margin: 3px;
+	padding-left: 10px;
+}
+
+.list > .book > .bookIcon > div {
+	--icon-size : 40px
+	height: var(--icon-size);
+	width: var(--icon-size);
+}
+

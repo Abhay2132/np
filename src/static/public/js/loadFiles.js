@@ -13,7 +13,15 @@ const cacheF = {
 		else {res(localStorage.getItem(url) || "" ); this.getM = "C";}
 	})},
 	logs : [],
-	init : async function ({logging = false, appV = 0, ignore = [], cb = () =>{}, uc = false, ex = "main"}) { // use cache
+	addFile : (file = !1, data = !1, type=!1) => {
+		if ( ! file || ! data || ! type) return console.log({file, data,type});
+		let id = file.replace(/[^a-zA-Z0-9_]/g, "_");
+		let tag = document.getElementById(id) || document.createElement(type);
+		tag.setAttribute("id", id);
+		tag.innerHTML = data;
+		if ( ! tag.parentNode ) document.body.appendChild(tag); 
+	},
+	init : async function ({logging = false, appV = 0, ignore = [], cb = () =>{}, uc = false, ex = "main"}) { // uc :- use cache
 		this.logs = {appV, files : [], ignore, ex}
 		let sT = Date.now();
 		let f = !appV || this.av != appV
@@ -22,8 +30,8 @@ const cacheF = {
 			if ( ignore.includes(file)) continue;
 			let st = Date.now()
 			let data = await this.getF( file , f);
-			if ( file.endsWith(".js")) eval(data);
-			else if ( file.endsWith(".css")) document.body.innerHTML += `<style>${data}</style>`;
+			if ( file.endsWith(".js")) this.addFile(file,data, "script");
+			else if ( file.endsWith(".css")) this.addFile(file,data, "style");
 			this.logs.files.push(this.getM + " : " + file.split("/").at(-1) + " "+(Date.now() - st) +"ms")
 		}
 		if (logging ) (this.logs.timeE = (Date.now() - sT) +"ms", console.log(this.logs))

@@ -1,5 +1,10 @@
 (async function () {
 	if (document.title != "NoteBook") return;
+
+	var $$ = (q) => qsa(q),
+		$ = (q) => qs(q);
+	
+	$(".modal").style.height = window.innerHeight + "px";
 	
 	let book = qs(".book").cloneNode(true)
 	window.setView = function (viewType) {
@@ -19,13 +24,10 @@
 
 	setView(localStorage.getItem("bookViewType") || "grid");
 
-	var $$ = (q) => qsa(q),
-		$ = (q) => qs(q);
-
 	let n = {};
 	Object.defineProperty(n, "b", {
 		get: function () {
-			return qs(".DBC");
+			return qs(".modal");
 		},
 	});
 	
@@ -68,21 +70,23 @@
 			db.style.opacity = "0";
 			db.style.top = "100px";
 		}
-		for (let dbc of $$(".DBC"))
-			setTimeout(() => (dbc.style.display = "none"), 190);
+		for (let modal of $$(".modal"))
+			setTimeout(() => (modal.style.display = "none"), 190);
 		$$(".iconList > div").forEach(
 			(ic) => (ic.style.background = "transparent")
 		);
 	};
 	
 	//window.hideAllDB();
-	for (let c of $$(".DBC")) c.children[0].addEventListener("click", hideAllDB);
+	for (let c of $$(".modal")) c.children[0].addEventListener("click", hideAllDB);
 
-	$("#addNew").addEventListener("click", () => {
+	$("#addNew").addEventListener("click", (e) => {
+		pressed($("#addNew"), true);
+		//await wait(300);
 		let db = $("#bkfrm");
 		$("#cnb").style.display = "flex";
-		setTimeout(() => ((db.style.opacity = "1"), (db.style.top = "-100px")), 50);
-	});
+		setTimeout(() => ((db.style.opacity = "1"), (db.style.top = "0px")), 50);
+	}, !0);
 
 	$$(".iconList > div").forEach((i) =>
 		i.addEventListener("click", () => {

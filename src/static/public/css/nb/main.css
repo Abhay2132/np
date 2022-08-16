@@ -1,0 +1,82 @@
+:root {
+	--book-w : calc(33% - 12px);
+}
+
+@media only screen and (min-width: 600px) {
+	:root {
+		--book-w : calc(25% - 12px);
+	}
+}
+
+.iconList .svg-icon {
+	stroke: #fff;
+}
+
+#addNew {
+	position : fixed;
+	bottom : 20px;
+	right: 20px;
+	border-radius: 10px;
+	box-shadow: 0px 4px 1px #000;
+	height : 50px;
+	width: 50px;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+	background: #333;
+	color: #fff;
+}
+
+.plus-sign {
+	border-radius: 10px;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.plus-sign > hr {
+	--w : 25px;
+	border: none;
+	border-top: 2px solid;
+	width: var(--w);
+	position: absolute;
+	top: 0;
+	left: calc(50% - var(--w) / 2);
+	top: calc(50% - 9px);
+}
+
+.plus-sign > hr:first-child {
+	transform-origin: 50% 50%;
+	transform: rotate(90deg);
+}
+
+@keyframes slide-up {
+	from { top: 100px; }
+	to { top : 0px;}
+}
+
+.bookName {
+	box-sizing: border-box;
+	word-wrap: break-word;
+	overflow: scroll;
+	font-size: 14px;
+}
+
+
+.book * {
+	user-select: none;
+}
+
+.book {
+	position: relative;
+	opacity: 0;
+	transition: 0.5s;
+	top: 100px;
+	overflow: hidden;
+	background: #ccc;
+}
+
+
