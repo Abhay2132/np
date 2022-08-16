@@ -30,7 +30,7 @@ const cacheF = {
 			if ( ignore.includes(file)) continue;
 			let st = Date.now()
 			let data = await this.getF( file , f);
-			if ( file.endsWith(".js")) this.addFile(file,data, "script");
+			if ( file.endsWith(".js")) eval(data)// this.addFile(file,data, "script");
 			else if ( file.endsWith(".css")) this.addFile(file,data, "style");
 			this.logs.files.push(this.getM + " : " + file.split("/").at(-1) + " "+(Date.now() - st) +"ms")
 		}
