@@ -1,19 +1,19 @@
-<form class="m p t-c bg-afe rc" id="siteURL_form">
-	<h2 class="m-10px_20px rc p bnw"> Image Downloader</h2>
+<form class="imgD-form" id="siteURL_form">
+	<h2 class="imgD-heading"> Image Downloader</h2>
 	<input
 		type="url"
 		id="website_url"
-		class="p-s m bdr rc-s d-ib w-60pg t-c bb"
+		class="imgD-url"
 		placeholder="Website URL"
 		required
 	/>
 	<button
 		onclick="pressed(this, true)"
-		class="p-5px_20px dnw rc-s"
+		class="imgD-button"
 	> Submit </button>
 </form>
 
-<div id="pbc" class="t-c m-s p rs-s bg-eee d-no">
+<div id="pbc" class="imgD-progress-bar-container">
 </div>
 <div id="dbtn">
 <!--

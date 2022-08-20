@@ -1,5 +1,5 @@
 #sidePanel {
-	width: 0px;
+	width: 200px;
 	border-right: 0px solid;
 	position: fixed;
 	height: 100vh;
@@ -10,6 +10,7 @@
 	z-index: 9999;
 	background: #333;
 	color: #fff;
+	transform: translateX(-250px);
 }
 
 #sidePanel > .item {

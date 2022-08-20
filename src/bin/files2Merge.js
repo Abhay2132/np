@@ -1,7 +1,6 @@
 let files = {
 	"js" : [
 			"imgC.js",
-			"acss.min.js",
 			"main.js",
 			"hlpr.js",
 			"fm.js",
@@ -9,7 +8,6 @@ let files = {
 			"pb.js",
 			"imgD.js",
 			"icons.js",
-			"nb.js",
 			"cacheV.js",
 			"wu.js"
 		],
@@ -19,18 +17,29 @@ let files = {
 			"sidePanel.css",
 			"button.css",
 			"index.css",
-			"fm.css",
+			
+			'fm/main.css',
+			"fm/nav.css",
+			"fm/folder.css",
+
 			"svg.css",
-			"nb/main.css",
-			"nb/modal.css",
-			"nb/grid.css",
-			"nb/list.css",
+			
 			"ps.css",
 			"keyframes.css",
 			"media.css",
 			"wu.css",
+			
+			"imgD/main.css",
+			"imgD/pb.css",
+			"imgD/dbtn.css",
+			
+			"ytdl/error.css",
+			"ytdl/form.css",
+			"ytdl/heading.css",
+			"ytdl/panel.css",
+			"ytdl/video-panel.css",
+			
 			"last.css",
-			"imgD.css"
 		]
 };
 

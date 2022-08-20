@@ -1,0 +1,23 @@
+
+.ytdl-form {
+	margin: 10px;
+	padding: 10px;
+	border-radius: 5px;
+	background: #ddd;
+	text-align: center;
+}
+
+.ytdl-form input {
+	padding: 5px;
+	border: 1px;
+	outline: none;
+	border-left: 1px solid red;
+	border-radius: 0 10px 10px 0;
+}
+
+.ytdl-form button {
+	margin: 10px;
+	background: #FE0000;
+	color: #fff;
+	font-weight: 600;
+}

@@ -1,0 +1,14 @@
+
+.ytdl-error {
+	overflow-wrap: break-word;
+	box-sizing: border-box;
+	text-align: center;
+	width: calc(100% - 10px);
+	background: #812;
+	color: #fff;
+	font-weight: 500;
+	padding: 10px;
+	border-radius: 5px;
+	display: none;
+	margin: 5px;
+}

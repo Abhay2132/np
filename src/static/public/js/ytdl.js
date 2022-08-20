@@ -1,13 +1,17 @@
 (async function () {
-	if ( document.title != "YouTube Video Downloader") return;
-	qs("input#url").value = localStorage.getItem("lastYtdlVideo") || ""
+	if (document.title != "YouTube Video Downloader") {
+		delete window.toggle_avTab;
+		delete window.getVQ;
+		return;
+	}
+	$("input#url").value = localStorage.getItem("lastYtdlVideo") || "";
 	window.getVQ = () => {
 		ytdl_error();
 		document.querySelector("#panel").style.opacity = "0";
-		qs(".loader").style.display = "block";
+		$(".loader").style.display = "block";
 		let url = document.querySelector("#url").value.trim() || "";
 		if (url.length < 1) return;
-		localStorage.setItem("lastYtdlVideo", url)
+		localStorage.setItem("lastYtdlVideo", url);
 		fetch("/ytdl/getd", {
 			method: "POST",
 			body: JSON.stringify({ url: url }),
@@ -18,11 +22,12 @@
 	};
 
 	function renderD(data) {
-		qs(".loader").style.display = "none";
+		$(".loader").style.display = "none";
 		if (data.error) return ytdl_error(data.error);
 		document.querySelector("#vif").src = data.iframeUrl;
-		document.querySelector("#vif").style.background =  "url(\"" + data.thumbnail + "\")";
-		qs("#vif").style.backgroundSize = "contain";
+		document.querySelector("#vif").style.background =
+			'url("' + data.thumbnail + '")';
+		$("#vif").style.backgroundSize = "contain";
 		document.querySelector("#vn").innerHTML = `${
 			data.title
 		} <div class="t-c fw-600"> ( ${getTime(data.dur)} ) </div>`;
@@ -34,7 +39,7 @@
 			let qBar = qNode.cloneNode(true);
 			qBar.children[0].textContent = q;
 			qBar.children[1].textContent = calcSize(data.vqs[q].size);
-			let {height} = data.vqs[q]
+			let { height } = data.vqs[q];
 			qBar.children[2].children[0].href = `/ytdl/download?url=${document
 				.querySelector("#url")
 				.value.trim()}&q=${height}&v=1`;
@@ -71,7 +76,7 @@
 	}
 
 	function ytdl_error(msg = false) {
-		let errTag = qs("#ytdl_err");
+		let errTag = $("#ytdl_err");
 		if (!msg) return (errTag.style.display = "none");
 		errTag.textContent = msg;
 		errTag.style.display = "block";
@@ -81,12 +86,12 @@
 		for (let c of tag.parentNode.children) c.style.border = "none";
 		tag.style.borderBottom = "2px solid";
 		if (tag.textContent.trim() == "Audio") {
-			qs("#vPanel").style.display = "none";
-			qs("#aPanel").style.display = "block";
+			$("#vPanel").style.display = "none";
+			$("#aPanel").style.display = "block";
 		}
 		if (tag.textContent.trim() == "Video") {
-			qs("#aPanel").style.display = "none";
-			qs("#vPanel").style.display = "block";
+			$("#aPanel").style.display = "none";
+			$("#vPanel").style.display = "block";
 		}
 	};
 })();

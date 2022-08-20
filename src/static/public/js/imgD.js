@@ -1,5 +1,5 @@
 (async function () {
-	if (document.title != "Image Downloader") return 
+	if (document.title != "Image Downloader") return;
 	const pb = new progressBar();
 	const dblk = (...tags) =>
 		tags.forEach((tag) => (tag.style.display = "block"));
@@ -19,7 +19,7 @@
 		url = url || document.querySelector("#website_url").value;
 		if (!url) return;
 		dbtn();
-		dblk(qs("#pbc"), pb.glare);
+		dblk($("#pbc"), pb.glare);
 		fetch("/imgD", {
 			method: "POST",
 			headers: new Headers({ "Content-Type": "application/json" }),
@@ -42,9 +42,16 @@
 	}
 
 	function dbtn(url) {
-		let dbtn = qs("#dbtn");
-		url ? (dblk(dbtn), dbtn.addEventListener("click", () => setTimeout(() => {location.href = url}, 700))) : hide(dbtn);
-		//qs("#dbtn").href = url;
+		let dbtn = $("#dbtn");
+		url
+			? (dblk(dbtn),
+			  dbtn.addEventListener("click", () =>
+					setTimeout(() => {
+						location.href = url;
+					}, 700)
+			  ))
+			: hide(dbtn);
+		//$("#dbtn").href = url;
 	}
 
 	async function onload(cb, ...args) {

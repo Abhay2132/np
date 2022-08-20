@@ -1,7 +1,7 @@
 const ytdl = require("ytdl-core"),
 	{ spawn } = require("child_process"),
 	ffmpeg = ! isA ? ( isPro ? "/app/vendor/ffmpeg/ffmpeg" : "/usr/bin/ffmpeg" ) : "/data/data/com.termux/files/usr/bin/ffmpeg",
-	{ bs } = require("./hlpr"),
+	{ bs, getInfo } = require("./hlpr"),
 	beautify = (str) =>
 		require("prettier").format(
 			typeof str == "object" ? JSON.stringify(str) : str,
@@ -17,20 +17,24 @@ async function getD(req, res) {
 	let data = { vqs: {}, aqs : {} },
 		info
 	try {
-	info = await ytdl.getInfo(url);
+	info = await getInfo(url);
 	} catch (e) { err = e ; log(e) }
 	if (err) return res.json({error : err.message})
 	
-	data.title = info.videoDetails.title;
-	data.dur = info.videoDetails.lengthSeconds;
-	data.iframeUrl = info.videoDetails.embed.iframeUrl;
-	data.thumbnail = info.videoDetails.thumbnails.at(-1).url;
-	info.formats.forEach((f) => {
+	let { title, dur, iframeUrl, thumbnail, formats } = info;
+	data.title = title;
+	data.dur = dur;
+	data.iframeUrl = iframeUrl;
+	data.thumbnail = thumbnail;
+	
+	formats.forEach((f) => {
 		let ql = f.qualityLabel;
-		if (!!f.height && ql.at(-1) == "p" && !!f.contentLength && !!f.hasVideo)
+		if (!!f.height && ql.at(-1) == "p" && !!f.contentLength && !! f.mimeType.startsWith("video"))
 			vqs[ql] = {size : f.contentLength, height : f.height }
-		if (!!f.hasAudio && f.contentLength )
-			aqs[f.audioBitrate + " kbps"] = f.contentLength
+		if (!! f.mimeType.startsWith("audio") && f.contentLength )
+			aqs[f.bitrate + " kbps"] = f.contentLength
+		
+		//log(f.height, ql.at(-1),f.contentLength,f.hasVideo,f.qualityLabel,vqs, aqs);
 	});
 	let svks = bs(Object.keys(vqs)),
 		saks = bs(Object.keys(aqs))
@@ -48,13 +52,13 @@ async function dl(req, res) {
 	if ( a ) return dlAudio(url, q, res);
 	let err;
 	//log("getting info !")
-	let info = await ytdl.getInfo(url);
-	let name = info.videoDetails.title.replace(/[^a-zA-Z_0-9]/g ,"_")
+	let {title, formats} = await getInfo(url);
+	let name = title.replace(/[^a-zA-Z_0-9]/g ,"_")
 	while(name.includes("__")) name = name.replace("__", "_")
 	let videoF;
 	//log({name})
 	try {
-		videoF = await ytdl.chooseFormat(info.formats, {
+		videoF = await ytdl.chooseFormat(formats, {
 			filter: (f) => f.height == q && !!f.contentLength && !!f.hasVideo,
 		});
 	} catch (e) {
@@ -62,7 +66,7 @@ async function dl(req, res) {
 		console.log(e);
 	}
 
-	if (err) return res.end(beautify({url, q, error : err.message, fs : info.formats.map(f => ({height : f.height}))  }));
+	if (err) return res.end(beautify({url, q, error : err.message, fs : formats.map(f => ({height : f.height}))  }));
 
 	let audio = ytdl(url);
 	let video = ytdl(url, { quality: videoF.itag });
@@ -106,12 +110,12 @@ async function dlAudio ( url, q, res) {
 	if ( !url || !q ) return res.json({error : "url / q is missing !", url : url, q :q })
 	
 	let err;
-	let info = await ytdl.getInfo(url);
-	let name = info.videoDetails.title.replace(/[^a-zA-Z_0-9]/g ,"_")
+	let {title, formats} = await getInfo(url);
+	let name = title.replace(/[^a-zA-Z_0-9]/g ,"_")
 	while(name.includes("__")) name = name.replace("__", "_")
 	let audioF;
 	try {
-		audioF = await ytdl.chooseFormat(info.formats, {
+		audioF = await ytdl.chooseFormat(formats, {
 			filter: (f) => f.audioBitrate == parseInt(q) && !!f.contentLength && !!f.hasAudio,
 		});
 	} catch (e) {

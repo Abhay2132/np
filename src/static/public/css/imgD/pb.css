@@ -1,0 +1,10 @@
+/*t-c m-s p rs-s bg-eee d-no*/
+
+.imgD-progress-bar-container {
+	text-align: center;
+	margin: 5px;
+	padding: 10px;
+	border-radius: 5px;
+	background: #eee;
+	display: none;
+}

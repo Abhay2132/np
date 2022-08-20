@@ -1,17 +1,17 @@
-<nav id="pwd" class="rc-s chd(d-ib) ws-nw chd-span(p-1px_5px) p-xs bg-ddd ovrflw-scrl">
+<nav id="pwd" class="fm-nav-bar">
 	<span> ROOT </span>
 	<div class="rightArrow"></div>
 	<span> app </span>
 </nav>
 <div
-	class="fad chd-section(bg-eee) chd(bg-ECD840,bdr,m-s,rc-s,p-s,d-flx,chd-span(bdr-L,d-b,pos-rel,top-n,p-L,m-L-s,ovrflw-scrl,ws-nw),chd-img(h-20p,w-20p),chd-div(pos-abs,d-ib,st,right-_80p,top-n,h-30p,crsr-pntr,dnw,bb,p-5px_20px,hbr(bnw)))"
+	class="files-container"
 >
-	<div class="gb ovrflw-hdn crsr-pntr pos-rel hbr(chd-div(right-0p)) d-flx"> <img data-src="/icons/back.png" /> <span class="upDir"> root </span> <div class="bb" style="user-select:none"> Back </div> </div>
+	<div class="gb"> <img data-src="/icons/back.png" /> <span class="upDir"> root </span> <div class="bb"> Back </div> </div>
 	{{#each ls.dirs}}
-		<div class="dir ovrflw-hdn pos-rel hbr(chd-div(right-0p))  "> <img data-src="/icons/folder.png" /> <span> {{this}} </span> <div style="user-select:none"> Open </div> </div>
+		<div class="dir"> <img data-src="/icons/folder.png" /> <span> {{this}} </span> <div  class="open-btn"> Open </div> </div>
 	{{/each}}
 	{{#each ls.files}}
-		<section> <img data-src="/icons/file.png" /> <span> {{this}} </span></section>
+		<div class="file"> <img data-src="/icons/file.png" /> <span> {{this}} </span></file>
 	{{/each}}
 </div>
 <style>

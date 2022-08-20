@@ -1,0 +1,23 @@
+/* ovrflw-hdn pos-rel hbr(chd-div(right-0p))*/
+/*dir ovrflw-hdn pos-rel hbr(chd-div(right-0p))*/
+.folder {
+	overflow:hidden;
+	position: relative;
+}
+
+.folder:hover > div{
+	right: 0;
+}
+
+/*ovrflw-hdn crsr-pntr pos-rel hbr(chd-div(right-0p)) d-flx*/
+.gb {
+	overflow: hidden;
+	cursor: pointer;
+	position: relative;
+	position: relative;
+	display: flex;
+}
+
+.gb:hover > div {
+	right: 0;
+}
