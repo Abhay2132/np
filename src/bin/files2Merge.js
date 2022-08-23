@@ -12,21 +12,20 @@ let files = {
 			"wu.js"
 		],
 	"css" : [
-			"main.css",
-			"hmbgr.css",
-			"sidePanel.css",
-			"button.css",
+			"ui/layout.css",
+			
+			"ui/hmbgr.css",
+			"ui/sidePanel.css",
+			"ui/button.css",
+			"ui/spinner.css",
+			"ui/svg.css",
+			"ui/ps.css",
+			
 			"index.css",
 			
 			'fm/main.css',
 			"fm/nav.css",
 			"fm/folder.css",
-
-			"svg.css",
-			
-			"ps.css",
-			"keyframes.css",
-			"night-mode.css",
 			
 			"wu/main.css",
 			
@@ -40,6 +39,9 @@ let files = {
 			"ytdl/panel.css",
 			"ytdl/video-panel.css",
 			
+			
+			"keyframes.css",
+			"night-mode.css",
 			"last.css",
 		]
 };

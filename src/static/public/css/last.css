@@ -1,3 +1,7 @@
-body {
+#body, nav, #sidePanel {
 	opacity: 1;
+}
+
+.spinner {
+	opacity: 0;
 }
