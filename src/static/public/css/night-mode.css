@@ -6,7 +6,8 @@
 	body {
 		color: #ccc;
 		--hover-clr : #222;
-		--bg-clr : #333;
+		--bg-clr : #111;
+		--svg-fill-clr:  #eee;
 	}
 }
 
@@ -14,5 +15,7 @@
 	body {
 		color: #333;
 		--hover-clr : #eee;
+		--bg-clr: #eee;
+		--svg-fill-clr:  #111;
 	}
 }

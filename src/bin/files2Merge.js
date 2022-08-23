@@ -13,7 +13,7 @@ let files = {
 		],
 	"css" : [
 			"ui/layout.css",
-			
+			"ui/nav.css",
 			"ui/hmbgr.css",
 			"ui/sidePanel.css",
 			"ui/button.css",
