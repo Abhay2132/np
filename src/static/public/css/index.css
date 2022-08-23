@@ -6,21 +6,21 @@
 	display: grid;
 	grid-template-columns: auto 80px;
 	margin: 10px;
-	border : 1px solid;
+	border: 1px solid;
 	border-radius: 5px;
 	height: 40px;
 }
 
 #index > div > * {
 	display: flex;
-	align-items : center;
+	align-items: center;
 	text-indent: 20px;
 	overflow: scroll;
 	white-space: nowrap;
 }
 
-#index > div > a { 
-	border-left : 1px solid;
+#index > div > a {
+	border-left: 1px solid;
 	margin: 0;
 	border-radius: 0;
 }
@@ -29,6 +29,3 @@
 	background: #333;
 	color: #eee;
 }
-
-
-

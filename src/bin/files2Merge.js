@@ -26,7 +26,7 @@ let files = {
 			
 			"ps.css",
 			"keyframes.css",
-			"media.css",
+			"night-mode.css",
 			
 			"wu/main.css",
 			

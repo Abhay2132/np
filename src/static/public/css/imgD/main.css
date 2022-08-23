@@ -11,15 +11,15 @@
 /*m-10px_20px rc p bnw*/
 .imgD-heading {
 	margin: 10px 20px;
-	border-radius: 5px ;
+	border-radius: 5px;
 	padding: 10px;
-	background: #00498A;
+	background: #00498a;
 	color: #eee;
 }
 
 /*p-s m bdr rc-s d-ib w-60pg t-c bb*/
 .imgD-url {
-	padding : 5px;
+	padding: 5px;
 	margin: 10px;
 	border: 1px solid;
 	display: inline-block;

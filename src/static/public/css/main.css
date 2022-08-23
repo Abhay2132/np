@@ -7,7 +7,7 @@ body {
 	overflow: scroll;
 }
 ::-webkit-scrollbar {
-    display: none;
+	display: none;
 }
 
 a {
@@ -23,15 +23,15 @@ a {
 }
 
 .loader {
-	--size : 50px;
-	height : var(--size);
+	--size: 50px;
+	height: var(--size);
 	width: var(--size);
-	border: 5px solid rgba(225,225,225, 0.5);
-	border-top-color: #0096FF;
+	border: 5px solid rgba(225, 225, 225, 0.5);
+	border-top-color: #0096ff;
 	border-radius: 50%;
 	position: relative;
 	left: calc(50% - 25px);
-	animation : rot 2s linear 0s infinite normal;
+	animation: rot 2s linear 0s infinite normal;
 }
 
 #mainNav {
@@ -65,14 +65,14 @@ a {
 	transform-origin: 50% 0%;
 }
 
-@media only screen and ( min-width: 600px) {
+@media only screen and (min-width: 600px) {
 	#body {
 		positon: relative;
-		--w : 40%;
+		--w: 40%;
 		width: var(--w);
 		left: calc(50% - var(--w) / 2);
 	}
-	
+
 	#mainH {
 		font-size: 24px;
 	}

@@ -1,11 +1,11 @@
 /* ovrflw-hdn pos-rel hbr(chd-div(right-0p))*/
 /*dir ovrflw-hdn pos-rel hbr(chd-div(right-0p))*/
 .folder {
-	overflow:hidden;
+	overflow: hidden;
 	position: relative;
 }
 
-.folder:hover > div{
+.folder:hover > div {
 	right: 0;
 }
 

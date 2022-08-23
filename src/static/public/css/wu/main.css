@@ -4,7 +4,7 @@
 }
 
 :root {
-	--nms : 22px;
+	--nms: 22px;
 }
 
 #chat-list {
@@ -13,7 +13,7 @@
 }
 
 .new-mess {
-	background: #008069;
+	background: var(--bg-clr);
 	color: #fff;
 	border-radius: 50%;
 	height: var(--nms);
@@ -39,7 +39,7 @@
 }
 
 .chat:hover {
-	background: #eee;
+	background: var(--hover-clr);
 }
 
 .chat-logo {
@@ -69,7 +69,7 @@
 	position: fixed;
 	right: 10px;
 	bottom: 20px;
-	--s : 50px;
+	--s: 50px;
 	height: var(--s);
 	width: var(--s);
 	border-radius: 50%;
@@ -101,13 +101,14 @@ input#s-usr {
 	box-sizing: border-box;
 }
 
-#nco { /* New Chat Options*/
+#nco {
+	/* New Chat Options*/
 	display: flex;
 	flex-wrap: wrap;
 	padding: 0 10px 10px 10px;
 }
 
-#nco > div { 
+#nco > div {
 	text-align: center;
 	border: 1px solid #bbb;
 	box-shadow: 0px 4px 1px #555;
@@ -116,17 +117,9 @@ input#s-usr {
 	padding: 8px 10px;
 	margin: 5px 5px;
 }
-/*
-#nco > div:hover {
-	background: #81C960;
-	color: #fff;
-	transform: translateY(3px);
-	box-shadow: 0px 1px 1px #555;
-}
-*/
+
 #new-chat-dialog {
 	display: none;
 	transition: 0.5s;
 	transform: scale(0.5);
 }
-

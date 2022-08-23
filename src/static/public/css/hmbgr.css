@@ -1,5 +1,5 @@
 #hmbgr {
-	--size : 35px;
+	--size: 35px;
 	height: var(--size);
 	width: var(--size);
 	background: none;
@@ -11,7 +11,7 @@
 }
 
 #hmbgr > hr {
-	--hr-H : 2px;
+	--hr-H: 2px;
 	--hr-W: 25px;
 	border: none;
 	height: var(--hr-H);
@@ -27,16 +27,16 @@
 
 #hmbgr > hr:nth-child(1) {
 	--pos: 10px;
-	top: calc( var(--pos) - var(--hr-H) / 2);
+	top: calc(var(--pos) - var(--hr-H) / 2);
 	width: 18px;
 }
 
 #hmbgr > hr:nth-child(2) {
 	--pos: 17.5px;
-	top: calc( var(--pos) - var(--hr-H) / 2);
+	top: calc(var(--pos) - var(--hr-H) / 2);
 }
 
 #hmbgr > hr:nth-child(3) {
 	--pos: 25px;
-	top: calc( var(--pos) - var(--hr-H) / 2);
+	top: calc(var(--pos) - var(--hr-H) / 2);
 }
