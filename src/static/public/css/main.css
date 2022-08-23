@@ -35,30 +35,17 @@ a {
 }
 
 #mainNav {
-	/*display: grid;*/
+	--nav-size: 50px;
 	box-sizing: border-box;
 	position: relative;
-	height: 50px;
-	/*grid-template-columns: 50px auto;*/
-	padding: 5px;
 	z-index: 5;
 	box-shadow: 0px 3px 5px #ccc;
 	text-align: center;
 	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	z-index: 9999;
+	flex-wrap: nowrap;
+	height: var(--nav-size);
 }
 
-/* st pc(pos-rel,w-500p,left-50pg,m-L-_250p) */
-#body {
-	transition: 0.3s;
-	position: relative;
-	z-index: 8;
-	transform-origin: 50% 0%;
-}
-
-/*t-c f-xl fw-600 p*/
 #mainH {
 	text-align: center;
 	font-size: 20px;
@@ -67,6 +54,15 @@ a {
 	font-family: sans-serif;
 	display: inline-block;
 	position: relative;
+	width: 100%;
+	line-height: var(--nav-size);
+}
+
+#body {
+	transition: 0.3s;
+	position: relative;
+	z-index: 8;
+	transform-origin: 50% 0%;
 }
 
 @media only screen and ( min-width: 600px) {
@@ -79,6 +75,5 @@ a {
 	
 	#mainH {
 		font-size: 24px;
-		/*top: 8px;*/
 	}
 }

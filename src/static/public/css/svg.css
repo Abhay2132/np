@@ -14,3 +14,20 @@
   stroke: #4691f6;
   stroke-width: 1;
 }
+
+
+div[icon=user] > svg{
+	--stroke-size : 3;
+	--size: 100%;
+	height: var(--size);
+	width: var(--size);
+	border-radius: 5px;
+	background: none;
+}
+
+div[icon=user]  > svg * {
+	stroke-width: var(--stroke-size);
+	 stroke: #000;
+	fill: none;
+	stroke-linecap: round;
+}

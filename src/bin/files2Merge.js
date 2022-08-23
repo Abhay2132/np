@@ -27,7 +27,8 @@ let files = {
 			"ps.css",
 			"keyframes.css",
 			"media.css",
-			"wu.css",
+			
+			"wu/main.css",
 			
 			"imgD/main.css",
 			"imgD/pb.css",

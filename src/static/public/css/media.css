@@ -18,6 +18,10 @@
 	.grey-white {
 		background : #eee;
 	}
+	
+#hmbgr > hr {
+	background: #fff;
+}
 }
 
 @media (prefers-color-scheme: light) {

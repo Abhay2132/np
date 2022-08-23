@@ -50,13 +50,15 @@
 	window.hmbgr = {
 		on: function () {
 			let [hr1, hr2, hr3] = $("#hmbgr").children;
-			hr1.style.transform = "translateY(10.5px) rotate(-45deg)";
+			hr1.style.width = "25px";
+			hr1.style.transform = "translateY(7.5px) rotate(-45deg)";
 			hr2.style.transform = "rotate(45deg)";
-			hr3.style.transform = "translateY(-10.5px) rotate(-45deg)";
+			hr3.style.transform = "translateY(-7.5px) rotate(-45deg)";
 			return window.hmbgr;
 		},
 		off: function () {
 			let [hr1, hr2, hr3] = $("#hmbgr").children;
+			hr1.style.width = "18px";
 			hr1.style.transform = "translateY(0px) rotate(0deg)";
 			hr2.style.transform = "rotate(0deg)";
 			hr3.style.transform = "translateY(0px) rotate(0deg)";
@@ -64,8 +66,8 @@
 		},
 		t: function (cb = false) {
 			const isOn =
-				$("#hmbgr").children[0].style.transform ==
-				"translateY(10.5px) rotate(-45deg)";
+				$("#hmbgr").children[1].style.transform ==
+				"rotate(45deg)";
 			if (!isOn) {
 				window.hmbgr.on();
 			} else {
@@ -99,7 +101,4 @@
 		return typeof func === "function" ? func() : func;
 	};
 
-	$("#mainNav").style.background = "transparent";
-	$("#mainNav").style.color = "#333";
-	
 })();

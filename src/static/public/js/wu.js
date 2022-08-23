@@ -1,7 +1,5 @@
 (async function () {
 	if (document.title != "WhatsUp") return;
-	$("#mainNav").style.background = "#008069";
-	$("#mainNav").style.color = "#fff";
 
 	let ncb = $("#new-chat");
 	function tncd() {
