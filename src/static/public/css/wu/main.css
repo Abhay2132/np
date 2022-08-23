@@ -13,8 +13,8 @@
 }
 
 .new-mess {
-	background: var(--bg-clr);
-	color: #fff;
+	background: var(--lid-bg);
+	color: var(--lid-clr);
 	border-radius: 50%;
 	height: var(--nms);
 	position: relative;

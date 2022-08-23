@@ -8,14 +8,20 @@
 		--hover-clr : #222;
 		--bg-clr : #111;
 		--svg-fill-clr:  #eee;
+		
+		--lid-bg: #555;
+		--lid-clr : #ccc;
 	}
 }
 
 @media (prefers-color-scheme: light) {
 	body {
 		color: #333;
-		--hover-clr : #eee;
+		--hover-clr : #ddd;
 		--bg-clr: #eee;
 		--svg-fill-clr:  #111;
+		
+		--lid-bg: #333;
+		--lid-clr : #ccc;
 	}
 }
