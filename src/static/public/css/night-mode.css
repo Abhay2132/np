@@ -21,7 +21,8 @@
 		--bg-clr: #eee;
 		--svg-fill-clr:  #111;
 		
-		--lid-bg: #333;
-		--lid-clr : #ccc;
+		--lid-bg: green; 
+		--lid-clr : #eee;
+		--lid-fw: 600;
 	}
 }
