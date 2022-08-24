@@ -3,6 +3,18 @@
 	window.$$ = (q) => document.querySelectorAll(q);
 	window.hide = (tag) => (tag.style.display = "none");
 	window.wait = (n = 0) => new Promise((a) => setTimeout(a, n));
+	window.log = (...a) => console.log(...a);
+	window.elog = (...a) => console.error(...a);
+	
+	window.pressed = function (tag, bs = false) {
+		tag.style.transition = "0.2s";
+		tag.style.transform = "translateY(3px)";
+		if (bs) tag.style.boxShadow = "0px 1px 1px #666";
+		setTimeout(() => {
+			tag.style.transform = "translateY(0px)";
+			if (bs) tag.style.boxShadow = "0px 4px 1px #666";
+		}, 300);
+	};
 
 	window.downloadFile = function (file) {
 		return new Promise((res) => {
@@ -100,5 +112,12 @@
 			await new Promise((res) => setTimeout(res, 100));
 		return typeof func === "function" ? func() : func;
 	};
+	
+	window.viewportTicker = window.requestAnimationFrame(setViewport)
+	function setViewport () {
+	$("#sidePanel").style.height = window.innerHeight -50 + "px";
+	$("body").style.height = window.innerHeight + "px";
+	window.requestAnimationFrame(setViewport)
+	}
 
 })();

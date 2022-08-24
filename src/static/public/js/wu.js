@@ -55,6 +55,4 @@
 		}
 	}
 
-	ncb.addEventListener("click", tncd);
-	$$("#nco > div").forEach((d) => d.addEventListener("click", tbtn));
 })();

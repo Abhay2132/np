@@ -68,7 +68,6 @@
 				await setView(view, 1);
 					window.hmbgr.off();
 					window.sp.off();
-				
 			});
 		}
 	}

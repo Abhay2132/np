@@ -1,0 +1,86 @@
+.fab {
+	--fab-size : 55px;
+	--svg-size : 40%;
+	
+	height: var(--fab-size);
+	width: var(--fab-size);
+	position: fixed;
+	bottom: 20px;
+	right: 10px;
+	border-radius: 50%;
+	transition: 0.5s;
+}
+
+.fab [icon=plus] {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items : center;
+	position: absolute;
+	top: 0;
+	left: 0;
+	border-radius: 50%;
+	transition: 0.5s;
+	background: #1B8800;
+}
+
+.fab [icon=plus] svg {
+	height: var(--svg-size);
+	width: var(--svg-size);
+}
+
+.fab [icon=plus] svg path {
+	stroke: var(--lid-clr);
+	stroke-width: 8px;
+	stroke-linecap: round;
+}
+
+.fab:hover [icon=plus] {
+	transform: rotate(225deg);
+}
+
+.fab-opts {
+	width: var(--fab-size);
+	border-radius: 40px;
+	display: flex;
+	flex-direction: column;
+	
+	position: fixed;
+	bottom: 20px;
+	right: 10px;
+	
+	opacity: 0;
+	
+	overflow: hidden;
+	height: 0;
+	transition: 0.5s;
+	
+	background: #91C85A;
+}
+
+.fab:hover .fab-opts {
+	height: calc(3 * var(--fab-size));
+	opacity: 1;
+}
+
+.fab-opts > div {
+	height: var(--fab-size);
+	width: var(--fab-size);
+	display: flex;
+	justify-content: center;
+	align-items : center;
+}
+
+.fab-opts > div:hover {
+	background: #678D00;
+}
+
+.fab-opts > div > svg {
+	--svg-size : 75%;
+	height: var(--svg-size);
+	width: var(--svg-size);
+}
+
+
+

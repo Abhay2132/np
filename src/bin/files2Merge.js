@@ -1,8 +1,7 @@
 let files = {
 	"js" : [
-			"imgC.js",
-			"main.js",
 			"hlpr.js",
+			"imgC.js",
 			"fm.js",
 			"ytdl.js",
 			"pb.js",
@@ -20,6 +19,7 @@ let files = {
 			"ui/spinner.css",
 			"ui/svg.css",
 			"ui/ps.css",
+			"ui/center.css",
 			
 			"index.css",
 			
@@ -28,10 +28,13 @@ let files = {
 			"fm/folder.css",
 			
 			"wu/main.css",
+			"wu/search-chat.css",
+			"wu/fab.css",
 			
 			"imgD/main.css",
 			"imgD/pb.css",
 			"imgD/dbtn.css",
+			"imgD/input.css",
 			
 			"ytdl/error.css",
 			"ytdl/form.css",

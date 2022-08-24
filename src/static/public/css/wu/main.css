@@ -1,15 +1,10 @@
 #wa-app {
 	margin-top: 10px;
-	/*background: #eef; */
+	position: relative;
 }
 
 :root {
-	--nms: 22px;
-}
-
-#chat-list {
-	/*display: none;*/
-	transition: 0.5s;
+	--nms: 22px; 
 }
 
 .new-mess {

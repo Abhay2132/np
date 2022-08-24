@@ -1,0 +1,10 @@
+
+.imgD-form ,
+.imgD-input-container,
+.imgD-input-container div,
+.imgD-input-container section 
+{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

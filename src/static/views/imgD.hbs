@@ -1,5 +1,9 @@
+
+<div class="imgD-container">
+<h2 class="imgD-heading"> Image Downloader</h2>
 <form class="imgD-form" id="siteURL_form">
-	<h2 class="imgD-heading"> Image Downloader</h2>
+	<div class="imgD-input-container">
+	<div icon="search"></div>
 	<input
 		type="url"
 		id="website_url"
@@ -7,17 +11,16 @@
 		placeholder="Website URL"
 		required
 	/>
-	<button
-		onclick="pressed(this, true)"
-		class="imgD-button"
-	> Submit </button>
+	<input type="submit"
+		onclick="pressed(this)"
+		class="imgD-button" value="Submit" />
+	</div>
 </form>
 
 <div id="pbc" class="imgD-progress-bar-container">
 </div>
 <div id="dbtn">
-<!--
-<a id="dbtn" class="button bg-57FF49 fw-300" onclick="pressed(this, true);">Download Now</a>
--->
 	Download Now !
+</div>
+
 </div>

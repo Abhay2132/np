@@ -2,14 +2,13 @@
 	width: 200px;
 	border-right: 0px solid;
 	position: fixed;
-	height: 100vh;
 	transition: 0.5s;
 	overflow: hidden;
 	top: 50px;
 	left: 0;
 	z-index: 9999;
-	background: #333;
-	color: #fff;
+	background: var(--sp-bg);
+	color: var(--sp-clr);
 	transform: translateX(-250px);
 }
 
@@ -23,6 +22,6 @@
 }
 
 #sidePanel > .item:hover {
-	background: #eee;
-	color: #333;
+	background: var(--sp-hbr-bg);
+	color: var(--sp-hbr-clr);
 }
