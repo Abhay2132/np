@@ -3,7 +3,6 @@
 
 	async function getV(view, f = false) {
 		let vd = localStorage.getItem(view + ".hbs");
-		log(!f , vd, view);
 		if (!f && vd) return JSON.parse(vd);
 		let req = await fetch("/getView", {
 				method: "POST",
@@ -46,13 +45,7 @@
 	tag.style.transform = "";
 	
 		//if ( isDev ) log("setting View", {view})
-		await loadF.init({
-			ex: "setView",
-			logging: 0,
-			appV: __appV,
-			ignore: [],
-			uc: 1,
-		});
+		_getCJ.init()
 		//ca("setView")
 		if (ps) history.pushState({ view }, "", view);
 	}

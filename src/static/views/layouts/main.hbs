@@ -7,18 +7,17 @@
 {{#if (isPro)}}
 	<script> if ( location.href.startsWith("http") && ! location.href.includes("localhost") ) location.href = "https" + location.href.slice(4); </script >
 {{/if}}
-<script>{{{loadFiles}}}</script>
 <link rel="icon" href="/favicon.png">
 <link rel="apple-touch-icon" href="/favicon.png">
 <style>
-/*@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300&display=swap');*/
+
 * {
 	font-family: Fredoka, sans-serif, cambria,calibri;
 	font-weight: 300;
 }
 
 {{#if (isPro)}}
-#body, nav, #sidePanel {
+body {
 	opacity: 0;
 }
 {{/if}}
@@ -46,34 +45,29 @@
 </body>
 
 <script>
-window.isDev = {{{isDev}}}
-window.__appV = {{{appV}}};
+const isDev = {{{isDev}}};
+const __appV = {{{appV}}};
+
 if ( __appV == 0 || parseInt(localStorage.getItem("fileV") || "0") != __appV){
 	for(let item of Object.keys(localStorage)) {
 		if ( item.startsWith("book") || item.startsWith("eruda")  || item == "lastYtdlVideo")  continue;
 		localStorage.removeItem(item)
 	}
 };
-window.loadF = Object.create(cacheF);
-let js = ("{{{jsFiles}}}").split(",").map( j => "/js/"+j);
-let jsFiles = isDev ? js  : ["js/aio.js"];
-let cssf = ("{{{cssFiles}}}").split(",").map( c => "/css/"+c);
-let cssFiles = isDev ? cssf : ["css/styles.css"]
-loadF.files = [
-	...cssFiles,
-	...jsFiles
-];
-let pwd = "{{{pwd}}}";
-loadF.init({logging: 1, appV :  __appV, cb : () => { $("style").innerHTML += `#body, nav, #sidePanel {opacity: 1;} .spinner {opacity: 0;}` }});
 history.pushState({ view : location.href.split("/").at(-1).split("?")[0].split(".")[0] } , "", "");
 {{#if (isDev)}}
+/*
 	let worker = new Worker("js/liveReload.js");
 	worker.onmessage = function (e) {
 		location.href = location.href;
 	}
+	*/
 {{/if}}
 if ('serviceWorker' in navigator)
 	navigator.serviceWorker.register('js/sw.js');
+	
+{{{getCJ}}}
+_getCJ.init({a : "CJ", cb : () => document.body.style.opacity = '1'});
 </script>
 
 </html>

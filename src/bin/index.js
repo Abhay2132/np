@@ -36,9 +36,8 @@ module.exports = async () => {
 		engine = await require("./mods/templateEngine")(),
 		cors = require("cors"),
 		cookieParser = require("cookie-parser"),
-		{ logger, mergeFs, liveReload } = hlpr,
+		{ logger, liveReload } = hlpr,
 		router = require("./mods/routes/router"),
-		{ css, js } = require("./files2Merge"),
 		server = require("http").createServer(app)
 
 	app.use(cors());
@@ -58,7 +57,5 @@ module.exports = async () => {
 	server.listen(_port, async () => {
 		log(`Server started at localhost:${_port} in ${isPro ? "pro" : "dev"} mode \n( version : ${__appV} ) in ${require("colors").yellow(Date.now() - __sat+"ms")}`)
 		if ( ! isPro ) { liveReload(server); return; }
-		await mergeFs({dir : "src/static/public/css", files : css, out : "styles.css", compress : isPro})
-		await mergeFs({dir : "src/static/public/js", files : js, out : "aio.js", compress : isPro})
 	})
 }

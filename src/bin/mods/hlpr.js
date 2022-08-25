@@ -94,26 +94,6 @@ function readFile (file ) {
 	})
 }
 
-async function mergeFs ({ dir = "", files = [], out =false, compress = false }) {
-	//if ( ! out ) return log("mergeFs error : Output file not defined !")
-	if ( ! fs.existsSync(dir)) return log("mergeFs error :", dir, "does not exists !");
-	if (out) out = path.isAbsolute(out) ? out : path.resolve(dir, out);
-	let mergedFile = ""
-	for(let file of files ) {
-		//log(dir, file)
-		let fp = path.resolve(dir, file);
-		let fileText = await readFile(fp);
-		mergedFile += "\n" + fileText + "\n";
-	}
-	if ( compress ) { 
-		if ( ext(out) == "js" ) mergedFile = minify(mergedFile).code; 
-		if ( ext(out) == "css") mergedFile = new cc().minify(mergedFile).styles;
-	}
-	
-	if ( out ) await new Promise( res => fs.writeFile(out, mergedFile , (err) => res(!!log(err || " Merged file Saved !"))))
-	return mergedFile;
-}
-
 function ext ( a, s = "/" ) {
 	return a.split(s).at(-1).split("?")[0].split(".").at(-1)
 }
@@ -144,7 +124,6 @@ module.exports = {
 	_get,
 	getView,
 	download,
-	mergeFs,
 	ext,
 	liveReload
 };
