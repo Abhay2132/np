@@ -38,7 +38,8 @@ module.exports = async () => {
 		cookieParser = require("cookie-parser"),
 		{ logger, liveReload } = hlpr,
 		router = require("./mods/routes/router"),
-		server = require("http").createServer(app)
+		server = require("http").createServer(app),
+		{getData} = require("./mods/getCJ/hlprs");
 
 	app.use(cors());
 	app.engine(".hbs", engine);
@@ -57,5 +58,6 @@ module.exports = async () => {
 	server.listen(_port, async () => {
 		log(`Server started at localhost:${_port} in ${isPro ? "pro" : "dev"} mode \n( version : ${__appV} ) in ${require("colors").yellow(Date.now() - __sat+"ms")}`)
 		if ( ! isPro ) { liveReload(server); return; }
+		if ( isPro ) global._cj_data = await getData();
 	})
 }

@@ -49,7 +49,6 @@
 		};
 
 		this.open = async (dir) => {
-			log({dir});
 			let ls =
 				(await (
 					await fetch("/fm", {
@@ -155,7 +154,6 @@
 	};
 
 	async function _fmConfig() {
-		log({_fmConfig : pwd});
 		window._fm = new _fileManager(pwd);
 		_fm.open(pwd);
 	}

@@ -12,7 +12,13 @@ const mergeFiles = (files = [], dir = false) => new Promise ( async a => {
 	a(content);
 });
 
+async function getData(){
+	const data = {};
+	data.css = await mergeFiles(css, "css")
+	data.js = await mergeFiles(js, "js")
+	return data;
+}
+
 module.exports = {
-	get_css : () => mergeFiles(css, "css"),
-	get_js : () => mergeFiles(js, "js")
+	getData
 }

@@ -1,8 +1,9 @@
-const {get_css, get_js} = require("./hlprs");
+const {getData} = require("./hlprs");
 
 module.exports = async function (req, res) {
-	var data = {};
-	data.css = await get_css();
-	data.js = await get_js();
+	
+	if ( typeof _cj_data != 'undefined' &&  !! _cj_data)
+		return res.json(_cj_data);
+	const data = await getData();
 	res.json(data);
 }
