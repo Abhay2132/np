@@ -1,8 +1,9 @@
 (async function () {
 	const views = ["index", "fm", "ytdl", "imgD", "nb"];
 
-	async function getV(view, f = 0) {
+	async function getV(view, f = false) {
 		let vd = localStorage.getItem(view + ".hbs");
+		log(!f , vd, view);
 		if (!f && vd) return JSON.parse(vd);
 		let req = await fetch("/getView", {
 				method: "POST",

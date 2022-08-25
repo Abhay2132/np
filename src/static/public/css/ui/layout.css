@@ -1,19 +1,23 @@
-
-body {
+:root {
 	--sp-bg : rgba(0,0,0,0.7);
 	--sp-clr: #fff;
 	--sp-hbr-bg: rgba(200,200,200,0.8);
 	--sp-hbr-clr: #000;
-	--body-bg : linear-gradient(#FFF384, #CD1C65);
+	--body-bg : #eee;
+}
 
+body {
 	perspective: 400px;
 	margin: 0;
 	height: 100%;
 	transition: opacity 0.5s;
 	transform-style: preserve-3d;
 	overflow: scroll;
+	color: var(--body-clr);
 	background: var(--body-bg);
+	background-blend-mode: multiply,multiply;
 }
+
 ::-webkit-scrollbar {
 	display: none;
 }

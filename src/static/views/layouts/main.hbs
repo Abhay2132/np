@@ -17,9 +17,12 @@
 	font-weight: 300;
 }
 
+{{#if (isPro)}}
 #body, nav, #sidePanel {
 	opacity: 0;
 }
+{{/if}}
+
 </style>
 </head>
 <body>
@@ -61,7 +64,7 @@ loadF.files = [
 	...jsFiles
 ];
 let pwd = "{{{pwd}}}";
-loadF.init({logging: 1, appV :  __appV});
+loadF.init({logging: 1, appV :  __appV, cb : () => { $("style").innerHTML += `#body, nav, #sidePanel {opacity: 1;} .spinner {opacity: 0;}` }});
 history.pushState({ view : location.href.split("/").at(-1).split("?")[0].split(".")[0] } , "", "");
 {{#if (isDev)}}
 	let worker = new Worker("js/liveReload.js");

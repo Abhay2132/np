@@ -59,4 +59,6 @@ const colors = require("colors"),
 	} catch (e) {log({e, reloadReq}); }
 	})
 	
+	router.get("/getCJ", require("../getCJ/main"));
+	
 module.exports = router
