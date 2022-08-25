@@ -16,11 +16,9 @@
 	font-weight: 300;
 }
 
-{{#if (isPro)}}
 body {
 	opacity: 0;
 }
-{{/if}}
 
 </style>
 </head>
@@ -47,6 +45,7 @@ body {
 <script>
 const isDev = {{{isDev}}};
 const __appV = {{{appV}}};
+const pwd = "{{{pwd}}}";
 
 if ( __appV == 0 || parseInt(localStorage.getItem("fileV") || "0") != __appV){
 	for(let item of Object.keys(localStorage)) {
@@ -67,7 +66,7 @@ if ('serviceWorker' in navigator)
 	navigator.serviceWorker.register('js/sw.js');
 	
 {{{getCJ}}}
-_getCJ.init({a : "CJ", cb : () => document.body.style.opacity = '1'});
+_getCJ.init({a : "CJ ", cb : () => document.body.style.opacity = '1'});
 </script>
 
 </html>

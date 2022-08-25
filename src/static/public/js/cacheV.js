@@ -1,5 +1,6 @@
 (async function () {
 	const views = ["index", "fm", "ytdl", "imgD", "nb"];
+	var lastPushedState = "";
 
 	async function getV(view, f = false) {
 		let vd = localStorage.getItem(view + ".hbs");
@@ -47,7 +48,10 @@
 		//if ( isDev ) log("setting View", {view})
 		_getCJ.init()
 		//ca("setView")
-		if (ps) history.pushState({ view }, "", view);
+		if (ps && lastPushedState != view) {
+			lastPushedState = view
+			history.pushState({ view }, "", view);
+		}
 	}
 
 	function ca(db) {

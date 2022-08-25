@@ -1,5 +1,4 @@
 (async function () {
-	window.$ = (q) => document.querySelector(q);
 	window.$$ = (q) => document.querySelectorAll(q);
 	window.hide = (tag) => (tag.style.display = "none");
 	window.wait = (n = 0) => new Promise((a) => setTimeout(a, n));

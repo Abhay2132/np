@@ -49,6 +49,7 @@
 		};
 
 		this.open = async (dir) => {
+			log({dir});
 			let ls =
 				(await (
 					await fetch("/fm", {
@@ -62,7 +63,7 @@
 			} catch (e) {
 				return log(ls);
 			}
-			if (ls.error) return log(ls.error);
+			if (ls.error) return log({ls, fetch_error : ls.error});
 			me.pwd = ls.pwd;
 			if (ls) me.stopRender(() => me.render(ls));
 		};
@@ -154,6 +155,7 @@
 	};
 
 	async function _fmConfig() {
+		log({_fmConfig : pwd});
 		window._fm = new _fileManager(pwd);
 		_fm.open(pwd);
 	}

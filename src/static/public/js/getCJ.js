@@ -1,3 +1,5 @@
+const $ = (q) => document.querySelector(q);
+
 const _getCJ = {
 	av: parseInt(localStorage.getItem("fileV") || "0"),
 	getF : function () {
@@ -23,12 +25,18 @@ const _getCJ = {
 		if (a) console.time(a);
 		const { css ='', js ='' , error = false} = await this.getF();
 		if ( error) return console.log(error);
+		$("#cj_css") && $("#cj_css").remove();
+		$("#cj_js") && $("#cj_js").remove();
 		const style = document.createElement("style");
 		const script = document.createElement("script");
+		
 		style.innerHTML = css;
 		script.innerHTML = js;
+		style.setAttribute("id", "cj_css");
+		script.setAttribute("id", "cj_js");
 		document.body.appendChild(style);
 		document.body.appendChild(script);
+		
 		if (a) console.timeEnd(a);
 		cb();
 	}
