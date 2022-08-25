@@ -1,8 +1,19 @@
 const {css , js } = require("./files");
 const fs = require("fs");
 const {minify} = require("uglify-js");
+const cc = require('clean-css');
 
-const read = (file) => new Promise ( a => fs.readFile(file, (e, d) => a(e || (isPro && file.endsWith(".js") ? minify(d.toString()).code : d.toString()) )));
+const read = (file) => new Promise ( a => fs.readFile(file, (e, d) => {
+	//a(e || (isPro && file.endsWith(".js") ? minify(d.toString()).code : new cc().minify(d.toString()).styles) )
+	if ( e) return a(e.stack);
+	d = d.toString();
+	if ( isPro) {
+		if (file.endsWith(".js")) d = minify(d).code;
+		if (file.endsWith(".css")) d = new cc().minify(d).styles;
+	}
+	a(d)
+}));
+
 const mergeFiles = (files = [], dir = false) => new Promise ( async a => {
 	if ( ! dir ) return a({error : "dir is not specdied"});
 	var content = '';
