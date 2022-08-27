@@ -1,15 +1,16 @@
 #wa-app {
 	margin-top: 10px;
 	position: relative;
-}
-
-:root {
-	--nms: 22px; 
+	--nms: 22px;
+	--new-mess-bg : #4A9300;
+	--new-mess-clr: #fff;
+	
+	--chat-hbr-bg: #eee;
 }
 
 .new-mess {
-	background: var(--lid-bg);
-	color: var(--lid-clr);
+	background: var(--new-mess-bg);
+	color: var(--new-mess-clr);
 	border-radius: 50%;
 	height: var(--nms);
 	position: relative;
@@ -35,7 +36,7 @@
 }
 
 .chat:hover {
-	background: var(--hover-clr);
+	background: var(--chat-hbr-bg);
 }
 
 .chat-logo {
@@ -118,4 +119,11 @@ input#s-usr {
 	display: none;
 	transition: 0.5s;
 	transform: scale(0.5);
+}
+
+@media (prefers-color-scheme: dark) {
+	#wa-app {
+		--new-mess-bg: #263900;
+		--chat-hbr-bg: #222;
+	}
 }

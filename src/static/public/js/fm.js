@@ -14,7 +14,6 @@
 	}
 
 	_fileManager = function (pwd = "") {
-		//this.history = []
 		this.bn = location.href.split("/")[location.href.split("/").length - 1];
 		const me = this;
 		this.pwd = pwd;
@@ -78,9 +77,11 @@
 				n = bars.length;
 			while (n--) barsP.removeChild(bars[n]);
 
-			let upDir = pwd.split("/").at(-2);
+			let upDir = me.pwd.split("/").at(-2);
+			log({upDir});
 			barsP.appendChild(me.newgb(upDir));
-
+			$(".upDir").innerHTML = upDir;//me.pwd.split("/")[me.pwd.split("/").length - 2];
+			await wait(1);
 			for (let dir of ls.dirs) {
 				if (me.forceStop) break;
 				let newDir = me.newDir(dir);
@@ -99,7 +100,6 @@
 				me.slideUp(newFile);
 			}
 			//me.configLinks(me.pwd);
-			$(".upDir").innerHTML = me.pwd.split("/")[me.pwd.split("/").length - 2];
 			this.rendering = false;
 		};
 
@@ -136,8 +136,6 @@
 			//log(name)
 			let div = document.createElement("div");
 			div.className = "gb ovrflw-hdn pos-rel hbr(chd-div(right-0p))";
-			div.style.display =
-				name.length < 1 || name == "emulated" ? "none" : "flex";
 			div.innerHTML =
 				"<img data-src='/icons/back.png' /> <span class='name upDir'> " +
 				name +

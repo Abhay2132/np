@@ -1,11 +1,3 @@
-:root {
-	--sp-bg : rgba(0,0,0,0.7);
-	--sp-clr: #fff;
-	--sp-hbr-bg: rgba(200,200,200,0.8);
-	--sp-hbr-clr: #000;
-	--body-bg : #eee;
-}
-
 body {
 	perspective: 400px;
 	margin: 0;
@@ -15,7 +7,7 @@ body {
 	overflow: scroll;
 	color: var(--body-clr);
 	background: var(--body-bg);
-	background-blend-mode: multiply,multiply;
+	background-blend-mode: multiply, multiply;
 }
 
 ::-webkit-scrollbar {
@@ -51,5 +43,11 @@ a {
 
 	#mainH {
 		font-size: 24px;
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	body {
+		color: #ccc;
 	}
 }

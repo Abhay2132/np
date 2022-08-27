@@ -26,30 +26,28 @@ div[icon="user"] > svg {
 
 div[icon="user"] > svg * {
 	stroke-width: var(--stroke-size);
-	stroke: var(--svg-fill-clr);
+	stroke: #000;
 	fill: none;
 	stroke-linecap: round;
 }
 
-[icon=group] > svg > * {
+[icon="group"] > svg > * {
 	fill: none;
 	stroke-width: 3;
-	stroke : #000;
+	stroke: #000;
 }
 
 /* SEARCH */
 
-[icon=search] svg * {
+[icon="search"] svg * {
 	fill: none;
 	stroke: black;
 }
 
-[icon=search] svg circle {
+[icon="search"] svg circle {
 	stroke-width: 4;
 }
 
-[icon=search] svg path {
+[icon="search"] svg path {
 	stroke-width: 8;
 }
-
-

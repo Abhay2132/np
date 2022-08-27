@@ -14,3 +14,9 @@
 .fm-nav-bar > span {
 	padding: 1px 5px;
 }
+
+@media (prefers-color-scheme: dark) {
+	.fm-nav-bar {
+		background: #222;
+	}
+}

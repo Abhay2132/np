@@ -26,6 +26,7 @@ let files = {
 			'fm/main.css',
 			"fm/nav.css",
 			"fm/folder.css",
+			"fm/arrow.css",
 			
 			"wu/main.css",
 			"wu/search-chat.css",

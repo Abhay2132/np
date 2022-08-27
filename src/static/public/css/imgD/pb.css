@@ -1,5 +1,3 @@
-/*t-c m-s p rs-s bg-eee d-no*/
-
 .imgD-progress-bar-container {
 	text-align: center;
 	margin: 5px;
@@ -7,4 +5,8 @@
 	border-radius: 5px;
 	background: #eee;
 	display: none;
+}
+
+.imgD-progress-bar-container > * {
+	box-sizing: border-box;
 }

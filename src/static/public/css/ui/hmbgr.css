@@ -20,9 +20,9 @@
 	margin: 0;
 	transition: 0.3s;
 	transform-origin: 50% 50%;
-	background: #000;
 	position: absolute;
 	left: 10px;
+	background: #333;
 }
 
 #hmbgr > hr:nth-child(1) {
@@ -39,4 +39,10 @@
 #hmbgr > hr:nth-child(3) {
 	--pos: 25px;
 	top: calc(var(--pos) - var(--hr-H) / 2);
+}
+
+@media (prefers-color-scheme: dark) {
+	#hmbgr > hr {
+		background: #ccc;
+	}
 }
