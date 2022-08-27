@@ -5,12 +5,12 @@ const RUNTIME = "runtime";
 const PRECACHE_URLS = [
 	"https://np21.herokuapp.com/index",
 	"https://np21.herokuapp.com/wu",
-	"https://np21.herokuapp.com/nb",
 	"https://np21.herokuapp.com/imgD",
 	"https://np21.herokuapp.com/fm",
 	"https://np21.herokuapp.com/ytdl",
+
 	"https://np21.herokuapp.com/favicon.ico",
-	"https://np21.herokuapp.com/favicon.png",
+	"https://np21.herokuapp.com/favicon.png", 
 ];
 
 // The install handler takes care of precaching the resources we always need.
