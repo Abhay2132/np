@@ -47,7 +47,7 @@ const isDev = {{{isDev}}};
 const __appV = {{{appV}}};
 const pwd = "{{{pwd}}}";
 
-if ( __appV == 0 || parseInt(localStorage.getItem("fileV") || "0") != __appV){
+if ( isDev ){
 	for(let item of Object.keys(localStorage)) {
 		if ( item.startsWith("book") || item.startsWith("eruda")  || item == "lastYtdlVideo")  continue;
 		localStorage.removeItem(item)

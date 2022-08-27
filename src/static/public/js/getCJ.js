@@ -2,7 +2,7 @@ const $ = (q) => document.querySelector(q);
 const $$ = (q) => document.querySelectorAll(q);
 
 const _getCJ = {
-	av: parseInt(localStorage.getItem("fileV") || "0"),
+	av: parseInt(localStorage.getItem("appV") || "0"),
 	getF: function() {
 		return new Promise((res) => {
 			let dataHandler = (t, a, w) => { // text , resolve : a , ls.setItem : w 
@@ -14,6 +14,7 @@ const _getCJ = {
 				if (w) localStorage.setItem("CJ", t);
 			};
 			let cj = localStorage.getItem("CJ") || false;
+			console.log({ av : this.av , __appV , isDev , cj} ,this.av != __appV || isDev || !cj)
 			if (this.av != __appV || isDev || !cj)
 				fetch("/getCJ")
 				.then((d) => d.text())
@@ -43,6 +44,7 @@ const _getCJ = {
 
 		if (a) console.timeEnd(a);
 		cb();
+		localStorage.setItem("appV", __appV)
 	}
 }
 
