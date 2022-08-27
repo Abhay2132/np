@@ -78,7 +78,7 @@
 			while (n--) barsP.removeChild(bars[n]);
 
 			let upDir = me.pwd.split("/").at(-2);
-			log({upDir});
+			// log({upDir});
 			barsP.appendChild(me.newgb(upDir));
 			$(".upDir").innerHTML = upDir;//me.pwd.split("/")[me.pwd.split("/").length - 2];
 			await wait(1);
