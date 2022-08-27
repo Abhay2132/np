@@ -63,7 +63,7 @@ async function setView(view, p = false) {
 		await wait(10);
 		body.style.transform = 'rotateY(0deg)';
 	}
-	_getCJ.init({ cb: _ca });
+	_getCJ.init({ });
 	if (p) history.pushState({ view }, "", view);
 	else history.replaceState({view}, "", view);
 	// log(p ? "state pushed" : 'state replaced !', view)

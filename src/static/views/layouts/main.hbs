@@ -32,7 +32,7 @@ body {
 </nav>
 
 <div id="sidePanel" style="transform: translateX(-250px);">
-	<a href="/"  class="item" view="index" > HOME </a>
+	<a href="/"  class="item" view="index" onclick="setView('index' , location.href.split('/').at(-1) != 'index'); return false;"> HOME </a>
 	<div class="item"> Contact me </div>
 	<div class="item"> About me </div>
 </div>
@@ -75,6 +75,6 @@ if ('serviceWorker' in navigator)
 	<script src="js/getCJ.js"></script>		
 {{/if}}
 
-<script>_getCJ.init({a : "CJ ", cb : () => _ca(document.body.style.opacity = '1')});</script>
+<script>_getCJ.init({a : "CJ ", cb : () => (document.body.style.opacity = '1') });</script>
 
 </html>
