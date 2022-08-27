@@ -5,7 +5,7 @@
 <meta name="description" content="Node Express Practice Apps">
 <head>
 {{#if (isPro)}}
-	<script> if ( location.href.startsWith("http:") && ! location.href.includes("localhost") ) location.href = "https" + location.href.slice(4); </script >
+	<script> if ( location.href.startsWith("http:") && ! location.href.includes(":3000")) location.href = "https" + location.href.slice(4); </script >
 {{/if}}
 <link rel="icon" href="/favicon.png">
 <link rel="apple-touch-icon" href="/favicon.png">

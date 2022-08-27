@@ -9,8 +9,6 @@ const PRECACHE_URLS = [
 	"https://np21.herokuapp.com/imgD",
 	"https://np21.herokuapp.com/fm",
 	"https://np21.herokuapp.com/ytdl",
-	"https://np21.herokuapp.com/js/aio.js",
-	"https://np21.herokuapp.com/css/styles.css",
 	"https://np21.herokuapp.com/favicon.ico",
 	"https://np21.herokuapp.com/favicon.png",
 ];

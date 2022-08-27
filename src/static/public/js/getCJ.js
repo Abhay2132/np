@@ -47,7 +47,8 @@ const _getCJ = {
 }
 
 async function setView(view, p = false) {
-	// log({ view })
+	hmbgr.off();
+	sp.off();
 	const ls_views = JSON.parse(localStorage.getItem("CJ")).view;
 	if (ls_views.hasOwnProperty(view)) {
 		let { mainHeading, title, html } = ls_views[view];
@@ -64,6 +65,8 @@ async function setView(view, p = false) {
 	}
 	_getCJ.init({ cb: _ca });
 	if (p) history.pushState({ view }, "", view);
+	else history.replaceState({view}, "", view);
+	log(p ? "state pushed" : 'state replaced !', view)
 }
 
 function _ca() {
@@ -74,13 +77,14 @@ function _ca() {
 		v.addEventListener("click", async function(e) {
 			e.preventDefault();
 			let view = v.getAttribute("view");
-			await setView(view, view != "index");
+			await setView(view, location.href.split("/").at(-1) != view);
 		})
 	})
 }
 
 window.onpopstate = async function(e) {
 	if (!e.state) return;
+	log("popped state : ", e.state)
 	await setView(e.state.view);
 };
 
