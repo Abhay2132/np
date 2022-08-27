@@ -1,7 +1,9 @@
-.fab {
+#wa-app {
 	--fab-size: 55px;
 	--svg-size: 40%;
+}
 
+.fab {
 	height: var(--fab-size);
 	width: var(--fab-size);
 	position: fixed;
@@ -80,6 +82,22 @@
 	--svg-size: 75%;
 	height: var(--svg-size);
 	width: var(--svg-size);
+}
+
+.fab-close {
+	height: var(--fab-size);
+	width: var(--fab-size);
+	border-radius: 50%;
+	position: fixed;
+	bottom: 20px;
+	right: 10px;
+	font-size: 0;
+	transition: 0.2s transform 1s;
+	transform: scale(0);
+}
+
+.fab:hover + .fab-close {
+	transform: scale(1);
 }
 
 @media (prefers-color-scheme: dark) {

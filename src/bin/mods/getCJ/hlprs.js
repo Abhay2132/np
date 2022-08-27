@@ -2,6 +2,8 @@ const {css , js } = require("./files");
 const fs = require("fs");
 const {minify} = require("uglify-js");
 const cc = require('clean-css');
+const viewsData = require("../routes/templates");
+const hbs = require("handlebars");
 
 const read = (file) => new Promise ( a => fs.readFile(file, (e, d) => {
 	//a(e || (isPro && file.endsWith(".js") ? minify(d.toString()).code : new cc().minify(d.toString()).styles) )
@@ -27,7 +29,29 @@ async function getData(){
 	const data = {};
 	data.css = await mergeFiles(css, "css")
 	data.js = await mergeFiles(js, "js")
+	data.view = await getViews();
 	return data;
+}
+
+async function getViews() {
+	const views = ["index", "imgD", "ytdl", "wu", "fm"];
+	v = {};
+	for(let view of views){
+		let text = await read(j(sdir, "views", view+".hbs"));
+		let d = {};
+		d.html = hbs.compile(text)();
+		let {title, mainHeading } = getT(view)
+		d.mainHeading = mainHeading;
+		d.title = title;
+		v[view] = d;
+		// console.log("getT : ", getT(view))
+	}
+	return v;
+}
+
+function getT(v = "") {
+	if (viewsData.hasOwnProperty("/"+v)) return viewsData["/"+v]
+	return !!console.log(v, viewsData);
 }
 
 module.exports = {

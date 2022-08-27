@@ -1,5 +1,5 @@
 (async function () {
-	window.$$ = (q) => document.querySelectorAll(q);
+
 	window.hide = (tag) => (tag.style.display = "none");
 	window.wait = (n = 0) => new Promise((a) => setTimeout(a, n));
 	window.log = (...a) => console.log(...a);
@@ -111,12 +111,4 @@
 			await new Promise((res) => setTimeout(res, 100));
 		return typeof func === "function" ? func() : func;
 	};
-	
-	window.viewportTicker = window.requestAnimationFrame(setViewport)
-	function setViewport () {
-	$("#sidePanel").style.height = window.innerHeight -50 + "px";
-	$("body").style.height = window.innerHeight + "px";
-	window.requestAnimationFrame(setViewport)
-	}
-
 })();

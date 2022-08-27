@@ -1,4 +1,5 @@
-(async function () {
+(async function() {
+	/*
 	const views = ["index", "fm", "ytdl", "imgD", "nb"];
 	var lastPushedState = "";
 
@@ -34,13 +35,7 @@
 		tag.innerHTML = body;
 		document.title = title;
 		$("#mainH").textContent = mainHeading;
-		/*
-	tag.style.transition = "0s";
-	await wait(10);
-	tag.style.transform = "rotateY(-90deg)";
-	await wait(10);
-	tag.style.transition = (delay / 1000).toFixed(1) + "s";
-	*/ 
+		
 	await wait(10);
 	tag.style.opacity = 1;
 	tag.style.transform = "";
@@ -75,4 +70,19 @@
 	};
 
 	ca("root");
+
+	window._ca() = function() {
+		$$("[view]").forEach(v => {
+			v.addEventListener("click", async function(e) {
+				e.preventDefault();
+				const me = e.target;
+				let view = me.getAttribute("view");
+				log({ view });
+				const ls_views = JSON.parse(localStorage.getItem("getCJ")).
+
+				_getCJ.init(window._ca);
+			})
+		})
+	}
+	*/
 })();
