@@ -66,7 +66,7 @@ async function setView(view, p = false) {
 	_getCJ.init({ cb: _ca });
 	if (p) history.pushState({ view }, "", view);
 	else history.replaceState({view}, "", view);
-	log(p ? "state pushed" : 'state replaced !', view)
+	// log(p ? "state pushed" : 'state replaced !', view)
 }
 
 function _ca() {
@@ -84,7 +84,7 @@ function _ca() {
 
 window.onpopstate = async function(e) {
 	if (!e.state) return;
-	log("popped state : ", e.state)
+	// log("popped state : ", e.state)
 	await setView(e.state.view);
 };
 
