@@ -7,6 +7,6 @@ module.exports = async function (socket) {
 		log("new socket added from", socket.handshake.address);
 		global.sockets[name] = socket;
 		socket.on("disconnect", () => delete global.sockets[name]);
-		socket.broadcast.emit("reload");
+		//socket.broadcast.emit("reload");
 	}
 }
