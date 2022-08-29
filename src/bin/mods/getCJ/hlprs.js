@@ -1,4 +1,4 @@
-const {css , js } = require("./files");
+const {css , js , views } = require("./files");
 const fs = require("fs");
 const {minify} = require("uglify-js");
 const cc = require('clean-css');
@@ -29,12 +29,11 @@ async function getData(){
 	const data = {};
 	data.css = await mergeFiles(css, "css")
 	data.js = await mergeFiles(js, "js")
-	data.view = await getViews();
+	data.view = await getViews(views);
 	return data;
 }
 
-async function getViews() {
-	const views = ["index", "imgD", "ytdl", "wu", "fm"];
+async function getViews(views) {
 	v = {};
 	for(let view of views){
 		let text = await read(j(sdir, "views", view+".hbs"));

@@ -20,6 +20,7 @@ module.exports = async () => {
 	global.isPro = (process.env.NODE_ENV || "").toLowerCase() === "production";
 	global.isA = require("os").platform() == "android";
 	global.stdout = (...a) => process.stdout.write(a.join(" "));
+	if ( ! isPro ) global.sockets = {};
 	if( typeof global.__appV == "undefined" ) global.__appV = 0 
 
 	//console.clear();
@@ -39,7 +40,9 @@ module.exports = async () => {
 		{ logger, liveReload } = hlpr,
 		router = require("./mods/routes/router"),
 		server = require("http").createServer(app),
-		{getData} = require("./mods/getCJ/hlprs");
+		{getData} = require("./mods/getCJ/hlprs"),
+		{Server} = require("socket.io"),
+		io = new Server(server);
 
 	app.use(cors());
 	app.engine(".hbs", engine);
@@ -55,9 +58,11 @@ module.exports = async () => {
 	if ( typeof global.__c4u !== "undefined" ) app.use(__c4u); 
 	
 	app.use(router)
+	io.on("connection", require("./mods/socketHandler/main"));
 	server.listen(_port, async () => {
 		log(`Server started at localhost:${_port} in ${isPro ? "pro" : "dev"} mode \n( version : ${__appV} ) in ${require("colors").yellow(Date.now() - __sat+"ms")}`)
-		if ( ! isPro ) { liveReload(server); return; }
+		if ( ! isPro ) liveReload();
 		if ( isPro ) global._cj_data = await getData();
+		require("fs").existsSync(j(sdir, "files")) && require("fs").rm(j(sdir, "files"), {recursive: true}, ()=>{});
 	})
 }

@@ -57,15 +57,17 @@ async function setView(view, p = false) {
 	if (ls_views.hasOwnProperty(view)) {
 		let { mainHeading, title, html } = ls_views[view];
 		const body = $("#body");
-		const delay = 200;
-		body.style.transform = 'rotateY(90deg)';
+		const delay = 300;
 		body.style.transition = delay + "ms";
+		body.style.transform = 'translateY(100px)';
+		body.style.opacity = '0';
 		await wait(delay);
 		body.innerHTML = html;
 		$("#mainH").innerHTML = mainHeading;
 		document.title = title;
-		await wait(10);
-		body.style.transform = 'rotateY(0deg)';
+		await wait(1);
+		body.style.transform = 'translateY(0px)';
+		body.style.opacity = '1';
 	}
 	_getCJ.init({ });
 	if (p) history.pushState({ view }, "", view);

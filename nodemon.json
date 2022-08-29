@@ -1,8 +1,5 @@
 {
   "verbose": false,
   "ignore": ["*.test.js", "fixtures/*", "*.json", "src/static/*"],
-  "ext"  : "js",
-  "watch": [
-    "./src/static/public/js/getCJ.js"
-  ]
+  "ext"  : "js"
 }

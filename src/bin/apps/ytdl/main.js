@@ -48,6 +48,7 @@ async function dl(req, res) {
 	let { url = false, q = false , a = false, v = false} = req.query || {};
 	if (!(url && q)) return res.status(401).end("url / quality missing in query");
 	q = parseInt(q);
+	log({ url, q , a, v});
 	//log("dl");
 	if ( a ) return dlAudio(url, q, res);
 	let err;
@@ -58,15 +59,16 @@ async function dl(req, res) {
 	let videoF;
 	//log({name})
 	try {
+		log(q)
 		videoF = await ytdl.chooseFormat(formats, {
-			filter: (f) => f.height == q && !!f.contentLength && !!f.hasVideo,
+			filter: (f) => f.height == parseInt(q) && !!f.contentLength && !!f.hasVideo,
 		});
 	} catch (e) {
 		err = e;
-		console.log(e);
+		console.log({videoF_error : e});
 	}
 
-	if (err) return res.end(beautify({url, q, error : err.message, fs : formats.map(f => ({height : f.height}))  }));
+	if (err) return res.end(beautify({url, q : q+'', error : err.message, fs : formats.map(f => ({height : ''+f.height}))  }));
 
 	let audio = ytdl(url);
 	let video = ytdl(url, { quality: videoF.itag });

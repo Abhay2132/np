@@ -110,12 +110,21 @@ function watcher (dirs, cb) {
 	}
 }
 
-function liveReload (server) {
+function reload () {
+	for(let name in global.sockets ) {
+		let socket = global.sockets[name];
+		console.log({name});
+		socket.emit("reload");
+	}
+}
+
+function liveReload () {
 	let dir2W = [j(sdir, "views"), pdir]
 	global.reloadClients = {}
 	watcher(dir2W, (e,f) => {
 		log(e,f);
-		for(let client in global.reloadClients) global.reloadClients[client] = true;
+		reload ();
+		//for(let client in global.reloadClients) global.reloadClients[client] = true;
 	});
 }
 

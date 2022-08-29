@@ -60,5 +60,6 @@ const colors = require("colors"),
 	})
 	
 	router.get("/getCJ", require("../getCJ/main"));
+	router.get("/captcha", require("../captcha/main.js"));
 	
 module.exports = router

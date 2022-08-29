@@ -8,7 +8,8 @@ let files = {
 			"imgD.js",
 			"icons.js",
 			"cacheV.js",
-			"wu.js"
+			"wu.js",
+			"captcha.js"
 		],
 	"css" : [
 			"ui/layout.css",
@@ -21,7 +22,8 @@ let files = {
 			"ui/ps.css",
 			"ui/center.css",
 			
-			"index.css",
+			"index/main.css",
+			"index/bars.css",
 			
 			'fm/main.css',
 			"fm/nav.css",
@@ -43,11 +45,13 @@ let files = {
 			"ytdl/panel.css",
 			"ytdl/video-panel.css",
 			
+			"signup/form.css",
 			
 			"keyframes.css",
 			"night-mode.css",
 			"last.css",
-		]
+		],
+	"views" : ["index", "imgD", "ytdl", "wu", "fm", "signup"]
 };
 
 

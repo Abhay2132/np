@@ -1,3 +1,6 @@
+importScripts("/socket.io/socket.io.js")
+
+/*
 (async function () {
 	//postMessage({started : true})
 	while (true) {
@@ -13,3 +16,10 @@
 		}
 	}
 })();
+*/
+
+const socket = io();
+socket.on("reload", () => {
+	//console.log("reload event fired");
+	postMessage(true)
+});

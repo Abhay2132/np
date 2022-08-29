@@ -5,7 +5,8 @@ let routes = {
 		"/imgD": { "view": "imgD", "title": "Image Downloader", "mainHeading": "NODE EXPRESS Practice" },
 		"/fm": {"view": "fm",	"title": "File Manager",	"mainHeading": "File Manager"},
 		"/ytdl": { "view": "ytdl", "title": "YouTube Video Downloader" , "mainHeading": "NODE EXPRESS Practice"},
-		"/wu": { "view": "wu", "title": "WhatsUp" , "mainHeading": "WhatsUp"}
+		"/wu": { "view": "wu", "title": "WhatsUp" , "mainHeading": "WhatsUp"},
+		"/signup": { "view": "signup", "title": "SignUp" , "mainHeading": "SignUp"}
 	};
 
 if ( ! isPro ) {

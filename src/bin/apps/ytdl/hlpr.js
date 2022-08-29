@@ -19,14 +19,13 @@ function bs(arr) {
 }
 
 async function getInfo (url) {
-	let info = await ytdl.getBasicInfo(url);
+	let info = await ytdl.getInfo(url);
 	let data = {};
-	data = {};
-	data.title = info.player_response.videoDetails.title;
+	data.title = info.videoDetails.title;
 	data.dur = info.player_response.videoDetails.lengthSeconds;
 	data.iframeUrl = info.player_response.microformat.playerMicroformatRenderer.embed.iframeUrl;
 	data.thumbnail =  info.player_response.videoDetails.thumbnail.thumbnails.at(-1).url;
-	data.formats = info.player_response.streamingData.adaptiveFormats;
+	data.formats = info.formats;
 	//console.log(data);
 	return data;
 }
