@@ -1,10 +1,10 @@
 let routes = {
-		"/": { "view": "index", "title": "NODE EXPRESS Practice", "mainHeading": "NODE EXPRESS Practice" },
-		"/index": { "view": "index", "title": "NODE EXPRESS Practice", "mainHeading": "NODE EXPRESS Practice" },
-		"/?": { "view": "index", "title": "NODE EXPRESS Practice", "mainHeading": "NODE EXPRESS Practice" },
-		"/imgD": { "view": "imgD", "title": "Image Downloader", "mainHeading": "NODE EXPRESS Practice" },
+		"/": { "view": "index", "title": "Coding Noob", "mainHeading": "Coding Noob" },
+		"/index": { "view": "index", "title": "Coding Noob", "mainHeading": "Coding Noob" },
+		"/?": { "view": "index", "title": "Coding Noob", "mainHeading": "Coding Noob" },
+		"/imgD": { "view": "imgD", "title": "Image Downloader", "mainHeading": "Coding Noob" },
 		"/fm": {"view": "fm",	"title": "File Manager",	"mainHeading": "File Manager"},
-		"/ytdl": { "view": "ytdl", "title": "YouTube Video Downloader" , "mainHeading": "NODE EXPRESS Practice"},
+		"/ytdl": { "view": "ytdl", "title": "YouTube Video Downloader" , "mainHeading": "Coding Noob"},
 		"/wu": { "view": "wu", "title": "WhatsUp" , "mainHeading": "WhatsUp"},
 		"/signup": { "view": "signup", "title": "SignUp" , "mainHeading": "SignUp"}
 	};

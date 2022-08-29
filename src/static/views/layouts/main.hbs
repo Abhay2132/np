@@ -29,12 +29,19 @@ body {
 	<div id="mainH">
 		{{{mainHeading}}}
 	</div>
+	<div class="user-control"><div icon="user" onclick="t_uc.t()"></div>
+		<div class="uc-menu">
+			
+		</div>
+	</div>
 </nav>
 
 <div id="sidePanel" style="transform: translateX(-250px);">
 	<a href="/"  class="item" view="index" onclick="setView('index' , location.href.split('/').at(-1) != 'index'); return false;"> HOME </a>
 	<div class="item"> Contact me </div>
 	<div class="item"> About me </div>
+	<a href="/signup"  class="item" onclick="setView('signup' , location.href.split('/').at(-1) != 'index'); return false;"> LOGIN / SIGNUP </a>
+
 </div>
 
 	<div id="body" class="viewport">

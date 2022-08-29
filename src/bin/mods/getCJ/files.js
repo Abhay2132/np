@@ -1,6 +1,7 @@
 let files = {
 	"js" : [
 			"hlpr.js",
+			"main.js",
 			"imgC.js",
 			"fm.js",
 			"ytdl.js",
@@ -21,6 +22,7 @@ let files = {
 			"ui/svg.css",
 			"ui/ps.css",
 			"ui/center.css",
+			"ui/user-control.css",
 			
 			"index/main.css",
 			"index/bars.css",
