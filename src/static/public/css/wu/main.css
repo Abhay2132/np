@@ -1,5 +1,4 @@
 #wa-app {
-	margin-top: 10px;
 	position: relative;
 	--nms: 22px;
 	--new-mess-bg : #4A9300;
@@ -60,65 +59,6 @@
 
 .last-mess {
 	color: #777;
-}
-
-#new-chat {
-	position: fixed;
-	right: 10px;
-	bottom: 20px;
-	--s: 50px;
-	height: var(--s);
-	width: var(--s);
-	border-radius: 50%;
-	background: #008069;
-	font-size: 44px;
-	color: #fff;
-	text-align: center;
-	transition: transform 0.1s;
-	font-weight: 200;
-}
-
-#new-chat:active {
-	transform: scale(0.8);
-}
-
-#user-list {
-	padding-top: 10px;
-	border-top: 1px solid;
-}
-
-input#s-usr {
-	display: block;
-	padding: 10px;
-	font-size: 15px;
-	border-radius: 5px;
-	border: 1px solid #aaa;
-	margin: 10px 5%;
-	width: 90%;
-	box-sizing: border-box;
-}
-
-#nco {
-	/* New Chat Options*/
-	display: flex;
-	flex-wrap: wrap;
-	padding: 0 10px 10px 10px;
-}
-
-#nco > div {
-	text-align: center;
-	border: 1px solid #bbb;
-	box-shadow: 0px 4px 1px #555;
-	border-radius: 5px;
-	transition: 0.1s;
-	padding: 8px 10px;
-	margin: 5px 5px;
-}
-
-#new-chat-dialog {
-	display: none;
-	transition: 0.5s;
-	transform: scale(0.5);
 }
 
 @media (prefers-color-scheme: dark) {

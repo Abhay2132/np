@@ -1,57 +1,26 @@
 (async function () {
-	if (document.title != "WhatsUp") return;
-
-	let ncb = $("#new-chat");
-	function tncd() {
-		// toggle new chat dialog
-		let db = $("#new-chat-dialog");
-		let cl = $("#chat-list");
-		let isOn = db.style.display != "none" && cl.style.display == "none";
-		if (isOn) {
-			db.style.display = "none";
-			db.style.transform = "scale(0.5)";
-			cl.style.opacity = "0";
-			cl.style.display = "block";
-			ncb.style.transform = "rotate(0deg)";
-			ncb.style.background = "#008069";
-			setTimeout(() => {
-				cl.style.opacity = "1";
-				cl.style.transform = "scale(1)";
-			}, 0);
-		}
-		if (!isOn) {
-			db.style.opacity = "0";
-			db.style.display = "block";
-			cl.style.display = "none";
-			cl.style.transform = "scale(0.5)";
-			ncb.style.transform = "rotate(45deg)";
-			ncb.style.background = "#C51F00";
-			setTimeout(() => {
-				db.style.opacity = "1";
-				db.style.transform = "scale(1)";
-			}, 0);
-		}
+	if (document.title != "WhatsUp") {
+		delete window.t_fab;
+		return;
 	}
 
-	function tbtn() {
-		// toggle btn
-		let isOn = this.style.transform == "translateY(3px)";
-		let s = this.style;
-		let clr = "#008069";
-		//log(s.transform);
-		if (isOn) {
-			s.fontWeight = "300";
-			s.color = "#333";
-			s.transform = "translateY(0px)";
-			s.boxShadow = "0px 4px 1px #555";
-			this.state = "off";
-		}
-		if (!isOn) {
-			s.fontWeight = "500";
-			s.color = clr;
-			s.transform = "translateY(3px)";
-			s.boxShadow = "0px 1px 1px #555";
-			this.state = "on";
+	window.t_fab = {
+		fab_opts : $(".fab-opts"),
+		btn : $(".fab > [icon=plus]"),
+		off : function () {
+			this.btn.style.transform = 'rotate(0deg)';
+			this.fab_opts.style.height = '0';
+			this.fab_opts.style.opacity = '0';
+		},
+		on : function () {
+			this.btn.style.transform = 'rotate(225deg)';
+			this.fab_opts.style.height = 55 * 3 + 'px';
+			this.fab_opts.style.opacity = '1';
+		},
+		t : function (cb) {
+			const isOn = this.fab_opts.style.opacity == '1';
+			isOn ? this.off() : this.on();
+			if ( typeof cb == 'function') cb();
 		}
 	}
 

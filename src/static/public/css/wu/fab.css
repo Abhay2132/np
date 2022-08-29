@@ -7,7 +7,7 @@
 	height: var(--fab-size);
 	width: var(--fab-size);
 	position: fixed;
-	bottom: 20px;
+	bottom: 10px;
 	right: 10px;
 	border-radius: 50%;
 	transition: 0.5s;
@@ -38,10 +38,6 @@
 	stroke-linecap: round;
 }
 
-.fab:hover [icon="plus"] {
-	transform: rotate(225deg);
-}
-
 .fab-opts {
 	width: var(--fab-size);
 	border-radius: 40px;
@@ -49,7 +45,7 @@
 	flex-direction: column;
 
 	position: fixed;
-	bottom: 20px;
+	bottom: 15px;
 	right: 10px;
 
 	opacity: 0;
@@ -59,11 +55,6 @@
 	transition: 0.5s;
 
 	background: #91c85a;
-}
-
-.fab:hover .fab-opts {
-	height: calc(3 * var(--fab-size));
-	opacity: 1;
 }
 
 .fab-opts > div {
@@ -82,22 +73,6 @@
 	--svg-size: 75%;
 	height: var(--svg-size);
 	width: var(--svg-size);
-}
-
-.fab-close {
-	height: var(--fab-size);
-	width: var(--fab-size);
-	border-radius: 50%;
-	position: fixed;
-	bottom: 20px;
-	right: 10px;
-	font-size: 0;
-	transition: 0.2s transform 1s;
-	transform: scale(0);
-}
-
-.fab:hover + .fab-close {
-	transform: scale(1);
 }
 
 @media (prefers-color-scheme: dark) {
