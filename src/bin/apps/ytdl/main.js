@@ -1,6 +1,6 @@
 const ytdl = require("ytdl-core"),
 	{ spawn } = require("child_process"),
-	ffmpeg = ! isA ? ( isPro ? "/app/vendor/ffmpeg/ffmpeg" : "/usr/bin/ffmpeg" ) : "/data/data/com.termux/files/usr/bin/ffmpeg",
+	ffmpeg = ! isA ? ( isPro ? require('@ffmpeg-installer/ffmpeg').path /*"/app/vendor/ffmpeg/ffmpeg"*/ : "/usr/bin/ffmpeg" ) : "/data/data/com.termux/files/usr/bin/ffmpeg",
 	{ bs, getInfo } = require("./hlpr"),
 	beautify = (str) =>
 		require("prettier").format(
