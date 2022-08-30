@@ -1,6 +1,6 @@
 const ytdl = require("ytdl-core"),
 	{ spawn } = require("child_process"),
-	ffmpeg = require('@ffmpeg-installer/ffmpeg').path,// ! isA ? ( isPro ? require('@ffmpeg-installer/ffmpeg').path /*"/app/vendor/ffmpeg/ffmpeg"*/ : "/usr/bin/ffmpeg" ) : "/data/data/com.termux/files/usr/bin/ffmpeg",
+	ffmpeg = isA ? "/data/data/com.termux/files/home/ffmpeg" : "src/static/ffmpeg",//require('@ffmpeg-installer/ffmpeg').path,// ! isA ? ( isPro ? require('@ffmpeg-installer/ffmpeg').path /*"/app/vendor/ffmpeg/ffmpeg"*/ : "/usr/bin/ffmpeg" ) : "/data/data/com.termux/files/usr/bin/ffmpeg",
 	{ bs, getInfo } = require("./hlpr"),
 	beautify = (str) =>
 		require("prettier").format(
@@ -8,6 +8,7 @@ const ytdl = require("ytdl-core"),
 			{ useTabs: true, parser: "json" }
 		);
 
+log(ffmpeg);
 async function getD(req, res) {
 	let {url = false} = req.body || {};
 	if (!url) return res.json({ error: "url is missing !" });
