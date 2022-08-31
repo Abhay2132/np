@@ -50,7 +50,7 @@ async function dl(req, res) {
 	let { url = false, q = false , a = false, v = false} = req.query || {};
 	if (!(url && q)) return res.status(401).end("url / quality missing in query");
 	q = parseInt(q);
-	log({ url, q , a, v});
+	// log({ url, q , a, v});
 	//log("dl");
 	if ( a ) return dlAudio(url, q, res);
 	let err;

@@ -16,6 +16,7 @@ const fs = require("fs"),
 	em = require("events")
 	
 const logger = (req, res, next) => {
+		if ( req.url == "/reload") return //log({reload})
 		let st = Date.now();
 		let mc = {
 			GET: "green",
@@ -25,10 +26,10 @@ const logger = (req, res, next) => {
 		};
 		let clr = mc[req.method] || "grey";
 		clr = colors[clr](req.method)
+		process.stdout.write(req.url+" ");
 		res.on("finish", () => {
 		let method = res.statusCode >= 400 ? colors.bgRed(clr)  : clr
-		if ( req.url == "/reload") return //log({reload})
-		log(method, req.url, colors.yellow(Date.now() - st + "ms"))
+		log(method, colors.yellow(Date.now() - st + "ms"))
 		})
 		next();
 	}
