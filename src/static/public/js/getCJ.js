@@ -2,10 +2,10 @@ const $ = (q) => document.querySelector(q);
 const $$ = (q) => document.querySelectorAll(q);
 
 const _getCJ = {
-	av: parseInt(localStorage.getItem("appV") || "0"),
+	av: () => parseInt(localStorage.getItem("appV") || "0"),
 	getF: function() {
 		//console.log({av : this.av});
-		const av = this.av;
+		const av = this.av();
 		return new Promise((res) => {
 			let dataHandler = (t, a, w) => { // text , resolve : a , ls.setItem : w 
 				var data = false,
