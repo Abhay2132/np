@@ -33,7 +33,7 @@ a {
 	transform-origin: 50% 0%;
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 720px) {
 	#body {
 		positon: relative;
 		--w: 40%;
@@ -43,6 +43,12 @@ a {
 
 	#mainH {
 		font-size: 24px;
+	}
+}
+
+@media only screen and (max-width: 1000px){
+	#body {
+		--w : 60%;
 	}
 }
 

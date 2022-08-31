@@ -82,11 +82,21 @@
 }
 
 .captcha {
+	--catcha-w: calc(100% - 100px);
 	margin-top: 50px;
-	width: 60%;
+	width: var(--catcha-w);
+	background: none;
 	height: 50px;
+	position: relative;
+	text-align: center;
 } 
 
 .captcha img {
-	max-width: 100%;
+	max-height: 100%;
+}
+
+@media only screen and (min-width: 600px){
+	.captcha {
+	--catcha-w: calc(100% - 200px);
+	}
 }
