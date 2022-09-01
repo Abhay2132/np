@@ -24,7 +24,7 @@
 	left: 0;
 	border-radius: 50%;
 	transition: 0.5s;
-	background: #1b8800;
+	background: green;
 }
 
 .fab [icon="plus"] svg {
@@ -78,11 +78,14 @@
 @media (prefers-color-scheme: dark) {
 	
 	.fab-opts {
-		background: #49802D;
+		background: #555;
 	}
 	
 	.fab-opts > div:hover {
-		background: #30561D;
+		background: #222; 
 	}
 	
+	.fab [icon="plus"] { 
+		background: #333 ;
+	}
 }

@@ -44,7 +44,7 @@ a {
 	#mainH {
 		font-size: 24px;
 	}
-}
+} 
 
 @media only screen and (max-width: 1000px){
 	#body {
@@ -55,5 +55,6 @@ a {
 @media (prefers-color-scheme: dark) {
 	body {
 		color: #ccc;
+		background: #000;
 	}
 }

@@ -20,7 +20,7 @@
 	font-size: 12px;
 	flex-direction: column;
 	justify-content: center;
-}
+} 
 
 .chat {
 	display: grid;
@@ -65,5 +65,9 @@
 	#wa-app {
 		--new-mess-bg: #263900;
 		--chat-hbr-bg: #222;
+	}
+	
+	#wa-app svg * {
+		stroke: #ccc;
 	}
 }
