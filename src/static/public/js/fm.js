@@ -47,7 +47,10 @@
 			_pwd.scrollTo(_pwd.scrollWidth, 0);
 		};
 
-		this.open = async (dir) => {
+		this.open = async (dir = "") => {
+			dir = dir.trim();
+			if (dir == "") dir = "/"
+			// log("'%s'", dir)
 			let ls =
 				(await (
 					await fetch("/fm", {
@@ -80,7 +83,7 @@
 			let upDir = me.pwd.split("/").at(-2);
 			// log({upDir});
 			barsP.appendChild(me.newgb(upDir));
-			$(".upDir").innerHTML = upDir;//me.pwd.split("/")[me.pwd.split("/").length - 2];
+			// $(".upDir").innerHTML = upDir == '' ? "ROOT" : upDir;//me.pwd.split("/")[me.pwd.split("/").length - 2];
 			await wait(1);
 			for (let dir of ls.dirs) {
 				if (me.forceStop) break;
@@ -133,13 +136,16 @@
 		};
 
 		this.newgb = (name) => {
-			//log(name)
+			name =  name.trim();
+			if (name == "") name = '/'
+			let naam = name == '/' ? "ROOT" : name;
 			let div = document.createElement("div");
 			div.className = "gb ovrflw-hdn pos-rel hbr(chd-div(right-0p))";
 			div.innerHTML =
 				"<img data-src='/icons/back.png' /> <span class='name upDir'> " +
-				name +
+				naam +
 				" </span><div class=\"back-btn\"  onclick=\"_fm.open(_fm.pwd.split('/').slice(0, -1).join('/'))\"> Back </div> ";
+			// log("name : '%s'",name)
 			return div;
 		};
 

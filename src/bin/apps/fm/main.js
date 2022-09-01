@@ -14,7 +14,7 @@ function ls(path = j(sdir, "..")) {
 	let ls = false;
 	try {
 		ls = fs.readdirSync(path)
-	} catch (e) { return { error : e.code }}
+	} catch (e) { log(e); return { error : e.code }}
 	ls.forEach((file) => {
 		if (fs.statSync(j(path, file)).isFile()) files.push(file);
 		else dirs.push(file);
