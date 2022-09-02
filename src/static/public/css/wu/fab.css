@@ -78,11 +78,11 @@
 @media (prefers-color-scheme: dark) {
 	
 	.fab-opts {
-		background: #555;
+		background: #222;
 	}
 	
 	.fab-opts > div:hover {
-		background: #222; 
+		background: #111; 
 	}
 	
 	.fab [icon="plus"] { 
