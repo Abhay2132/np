@@ -1,12 +1,13 @@
 #index {
 	padding-top: 5px;
+	--bdr-clr: #333;
 }
 
 #index > div {
 	display: grid;
 	grid-template-columns: auto 80px;
 	margin: 10px;
-	border: 1px solid;
+	border: 1px solid var(--bdr-clr);
 	border-radius: 5px;
 	height: 45px;
 }
@@ -20,7 +21,7 @@
 }
 
 #index > div > a {
-	border-left: 1px solid;
+	border-left: 1px solid var(--bdr-clr);
 	margin: 0;
 	border-radius: 0;
 }
@@ -28,4 +29,11 @@
 #index > div > a:hover {
 	background: #333;
 	color: #eee;
+}
+
+
+@media (prefers-color-scheme: dark) {
+	#index {
+		--bdr-clr: #888;
+	}
 }

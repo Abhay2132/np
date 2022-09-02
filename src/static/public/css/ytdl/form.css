@@ -7,11 +7,11 @@
 }
 
 .ytdl-form input {
-	padding: 5px;
+	padding: 7px 5px;
 	border: 1px;
 	outline: none;
 	border-left: 1px solid red;
-	border-radius: 0 10px 10px 0;
+	border-radius: 0 15px 15px 0;
 }
 
 .ytdl-form button {
@@ -19,4 +19,11 @@
 	background: #fe0000;
 	color: #fff;
 	font-weight: 600;
+}
+
+
+@media (prefers-color-scheme: dark) {
+	.ytdl-form {
+		background: #222;
+	}
 }

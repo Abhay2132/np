@@ -6,6 +6,9 @@
 	padding: 30px 0;
 	transition: 0.4s;
 	background: 0;
+	
+	--su-if-bg: #ddd;
+	--su-if-clr: #333;
 }
 
 .su-form-box {
@@ -34,6 +37,7 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	background: none;
 }
 
 .su-form-box  .su-if { /* Sign Up input field*/
@@ -41,8 +45,9 @@
 	margin: 5px 0;
 	background: #fff;
 	overflow: hidden;
-	border-radius: 10px;
-	border: 1px solid;
+	border-radius: 5px;
+	border: 0px solid;
+	background: var(--su-if-bg);
 }
 
 .su-if > input {
@@ -51,6 +56,7 @@
 	border: 0;
 	background: none;
 	padding: 0 10px;
+	color : var(--su-if-clr);
 }
 
 .su-if > [icon] {
@@ -111,5 +117,12 @@
 @media only screen and (min-width: 600px){
 	.captcha {
 	--catcha-w: calc(100% - 200px);
+	}
+}
+
+
+@media (prefers-color-scheme: dark) {
+	.signup-box {
+		--su-if-bg: #222;
 	}
 }
