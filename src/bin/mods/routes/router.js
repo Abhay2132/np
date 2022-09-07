@@ -4,7 +4,7 @@ const colors = require("colors"),
 	img = require("image-to-base64"),
 	vm = require("../vm.js"),
 	router = require("express").Router(),
-	{download} = require("../hlpr")
+	{download, _get} = require("../hlpr")
 
 	router.get("/", (req, res) => res.redirect("/index"))
 	
@@ -62,4 +62,14 @@ const colors = require("colors"),
 	router.get("/getCJ", require("../getCJ/main"));
 	router.get("/captcha", require("../captcha/main.js"));
 	
+	router.get("/pipe",async (req, res) => {
+		let { link = false } = req.query;
+		if ( ! link ) return res.status(404).json({error : 'link missing in query'});
+		
+		//let dl_path = j(sdir, "files",basename(link));
+		let stream = await _get(link, 1, true) 
+		res.header("Content-Disposition",`attachment; filename=${basename(link)}`);
+		stream.pipe(res);
+		//res.end(`Your file started Downloading ... <br><a href="/download?file=${basename(link)}">Download Now ...</a>`);
+	});
 module.exports = router

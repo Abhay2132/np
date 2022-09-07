@@ -34,9 +34,9 @@ const logger = (req, res, next) => {
 		next();
 	}
 	
-const _get = ( url , dest , dev) => new Promise( async resolve => {
-	if(dev) console.log(dev)
+const _get = ( url , dest , ret = false) => new Promise( async resolve => {
 	let cb = ( r, res, des ) => {
+		if ( ret ) return res(r);
 		if ( des ) {
 			r.pipe(out(des))
 			r.on("end", res);
