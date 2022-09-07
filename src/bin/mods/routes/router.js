@@ -67,7 +67,11 @@ const colors = require("colors"),
 		if ( ! link ) return res.status(404).json({error : 'link missing in query'});
 		
 		//let dl_path = j(sdir, "files",basename(link));
-		let stream = await _get(link, 1, true) 
+		let stream = await _get(link, 1, true);
+		
+		if ( ! stream ) return res.end();
+		let size = stream.headers['content-length'] || false;
+		if (size) res.header("Content-Length", size);
 		res.header("Content-Disposition",`attachment; filename=${basename(link)}`);
 		stream.pipe(res);
 		//res.end(`Your file started Downloading ... <br><a href="/download?file=${basename(link)}">Download Now ...</a>`);
