@@ -1,4 +1,4 @@
-/*
+
 const idb = indexedDB.open("idb", __appV + 1);
 const store_name = "cache";
 idb.onupgradeneeded = (e) => {
@@ -27,7 +27,9 @@ idb.onsuccess = () => {
 	
 	req.onerror = () => console.log({ req_err : req.error})
 	req.onsuccess = () => {
-		console.log("Data added to object store_name : ", {data});
+		let js = store.get("js");
+		js.onsuccess = (e) => {
+			console.log(e.target.result);
+		}
 	}
 }
-*/

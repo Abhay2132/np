@@ -23,6 +23,15 @@
 	background: #19B61F;
 }
 
+.fd-form > center {
+	padding: 10px;
+}
+
+.fd-form > center > [name=ff] {
+	position: relative;
+	top: 2px;
+}
+
 @media (prefers-color-scheme: dark) {
 	.fd-form {
 		background: rgba(100,100,100,0.4);

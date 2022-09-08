@@ -62,20 +62,5 @@ const colors = require("colors"),
 	router.get("/getCJ", require("../getCJ/main"));
 	router.get("/captcha", require("../captcha/main.js"));
 	
-	router.get("/pipe",async (req, res) => {
-		let { link = false } = req.query;
-		if ( ! link ) return res.status(404).json({error : 'link missing in query'});
-		
-		let stream = await _get({url : link, ret : true});
-		
-		if ( ! stream ) return res.end();
-		let size = stream.headers['content-length'] || false;
-		if (size) res.header("Content-Length", size);
-		res.header("Content-Disposition",`attachment; filename=${basename(link)}`);
-		res.header("Content-Type", stream.headers['content-type'])
-		//stream.pipe(res);
-		stream.on("data", c => res.write(c));
-		//stream.on("end", () => res.end());
-		req.on("close", () => stream.abort());
-	});
+	router.get("/pipe", require("../pipe"));
 module.exports = router
