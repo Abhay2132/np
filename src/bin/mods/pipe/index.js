@@ -9,9 +9,9 @@ module.exports = async (req, res) => {
 	if ( ! stream ) return res.end();
 	log(stream.headers, stream.statusCode,req.query.ff);
 	res.header("Content-Disposition",`attachment; filename=${basename(link)}`);
-	let size = stream.headers['content-length'] || false;
-	if ( req.query.ff ) return ff(link, res);
+	let size = stream.headers['content-length'] || false
 	if (size) res.header("Content-Length", size);
+	if ( req.query.ff ) return ff(link, res);
 	res.header("Content-Type", stream.headers['content-type'])
 	stream.pipe(res);
 }
