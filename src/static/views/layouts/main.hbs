@@ -79,7 +79,8 @@ if ('serviceWorker' in navigator)
 </script>
 
 {{#if (isDev)}}
-	<script src="/js/getCJ.js"></script>		
+<script src="/js/getCJ.js"></script>	
+<script src="/js/idb.js"></script>
 {{/if}}
 
 <script>_getCJ.init({a : "CJ ", cb : () => (document.body.style.opacity = '1') });</script>

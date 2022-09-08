@@ -97,7 +97,7 @@ const init = (url, flag, usePupp) =>
 		upStats(url, stats);
 
 		for (let img of imgs) {
-			let d = await _get(img.url, j(ddir, dir, img.name));
+			let d = await _get({url : img.url, dest :  j(ddir, dir, img.name) });
 			d
 				? stats.failed.push(img.url)
 				: (stats.downloaded = imgs.indexOf(img) + 1);

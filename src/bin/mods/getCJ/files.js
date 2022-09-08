@@ -10,7 +10,8 @@ let files = {
 			"icons.js",
 			"cacheV.js",
 			"wu.js",
-			"captcha.js"
+			"captcha.js",
+			"fd.js"
 		],
 	"css" : [
 			"ui/layout.css",
@@ -49,11 +50,13 @@ let files = {
 			
 			"signup/form.css",
 			
+			"fd/form.css",
+			
 			"keyframes.css",
 			"night-mode.css",
 			"last.css",
 		],
-	"views" : ["index", "imgD", "ytdl", "wu", "fm", "signup"]
+	"views" : ["index", "imgD", "ytdl", "wu", "fm", "signup", "fd"]
 };
 
 

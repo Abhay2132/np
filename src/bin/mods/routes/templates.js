@@ -6,7 +6,8 @@ let routes = {
 		"/fm": {"view": "fm",	"title": "File Manager",	"mainHeading": "File Manager"},
 		"/ytdl": { "view": "ytdl", "title": "YouTube Video Downloader" , "mainHeading": "Node Pro"},
 		"/wu": { "view": "wu", "title": "WhatsUp" , "mainHeading": "WhatsUp"},
-		"/signup": { "view": "signup", "title": "SignUp" , "mainHeading": "SignUp"}
+		"/signup": { "view": "signup", "title": "SignUp" , "mainHeading": "SignUp"},
+		"/fd": { "view": "fd", "title": "File Downloader", "mainHeading": "File Downloader" },
 	};
 
 if ( ! isPro ) {

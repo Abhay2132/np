@@ -7,7 +7,7 @@ const hbs = require("handlebars");
 
 const read = (file) => new Promise ( a => fs.readFile(file, (e, d) => {
 	//a(e || (isPro && file.endsWith(".js") ? minify(d.toString()).code : new cc().minify(d.toString()).styles) )
-	if ( e) return a(e.stack);
+	if ( e) return a('');
 	d = d.toString();
 	if ( isPro) {
 		if (file.endsWith(".js")) d = minify(d).code;

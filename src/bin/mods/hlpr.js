@@ -31,11 +31,13 @@ const logger = (req, res, next) => {
 		let method = res.statusCode >= 400 ? colors.bgRed(clr)  : clr
 		log(req.url, method, colors.yellow((performance.now() - st).toFixed(2) + "ms"))
 		})
+		//console.log(req.headers, req.statusCode);
 		next();
 	}
 	
-const _get = ( url , dest , ret = false) => new Promise( async resolve => {
+const _get = ({ url , dest=false , ret = false, headers = false}) => new Promise( async resolve => {
 	let cb = ( r, res, des ) => {
+		r.abort = () => req.abort();
 		if ( ret ) return res(r);
 		if ( des ) {
 			r.pipe(out(des))
