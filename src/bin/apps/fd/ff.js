@@ -3,13 +3,14 @@ const { spawn } = require("child_process"),
 		? "/data/data/com.termux/files/usr/bin/ffmpeg"
 		: process.env.ffmpeg || require("@ffmpeg-installer/ffmpeg").path;
 
-module.exports = (i, out) => new Promise( res =>  {
+const o = p => require("fs").createWriteStream(p);
+
+module.exports = (i, out, v) => new Promise( res =>  {
 	if (!(i && out)) return res({error : "i or out is not defined properly !"});
 	const ff = spawn(
 		ffmpeg,
 		[
-			"-v",
-			"panic",
+		"-v", "0",
 			"-i",
 			i,
 			"-c:a",
@@ -18,12 +19,11 @@ module.exports = (i, out) => new Promise( res =>  {
 			"copy",
 			"-f",
 			"matroska",
-			out,
+			out
 		],
 		{
-			stdio: ["inherit", "inherit", "inherit", "pipe"],
+			stdio: ["inherit", "inherit", "inherit"],
 		}
 	);
-	
-	ff.on("close", res);
+	ff.on("close" , ()=> res())
 });

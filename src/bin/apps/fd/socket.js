@@ -1,5 +1,6 @@
 const {_get } = require("../../mods/hlpr");
 const ff = require("./ff");
+const { existsSync : es, rmSync : rm , mkdirSync : ms} = require("fs");
 
 const emitError = (s,e) => s.emit("error", {error : e});
 const pn = url => url.split("/").at(-1).split("?").at(0)
@@ -20,9 +21,13 @@ module.exports = function (socket) {
 		
 		if ( ! url ) return emitError(socket, "url is not defined");
 		const filename = pn(url);
-		const dest = j(sdir, "files", "fd", filename);
+		const dir = j(sdir, "files", "fd");
+		const dest = j(dir, filename);
+		if ( ! es(dir)) ms(dir, {recursive : true });
+		if ( es(dest)) rm(dest, { recursive: true});
 		if ( mode == 'file' ) await _get({url, dest , ondata})
 		if ( mode == 'ff' ) await ff(url, dest);
+		
 		socket.emit("fd_done", {link : filename });
 	});
 }
