@@ -1,40 +1,39 @@
 const hbs = require("express-handlebars"),
 	fs = require("fs"),
-	{minify} = require("uglify-js")
-	
-let getJS = (name) => new Promise( res => {
-	fs.readFile(j(sdir, "public", "js", name), (err, txt) => {
-		if ( err) return res(err)
-		if ( ! isPro ) return res(txt.toString());
-		res(minify(txt.toString()).code || "")
-	})
-})
+	{ minify } = require("uglify-js");
+
+let getJS = (name) =>
+	new Promise((res) => {
+		fs.readFile(j(sdir, "public", "js", name), (err, txt) => {
+			if (err) return res(err);
+			if (!isPro) return res(txt.toString());
+			res(minify(txt.toString()).code || "");
+		});
+	});
 
 module.exports = async () => {
 	let getCJ = await getJS("getCJ.js");
-	
+
 	let engine = hbs.create({
 		defaultLayout: "main",
 		helpers: {
 			isDev() {
-				return !( (process.env.NODE_ENV || "").toLowerCase() === "production");
+				return !((process.env.NODE_ENV || "").toLowerCase() === "production");
 			},
-			isPro () {
+			isPro() {
 				return isPro;
 			},
-			pwd () {
-				return __dirname.split("/").slice(0, -3).join("/")
+			pwd() {
+				return __dirname.split("/").slice(0, -3).join("/");
 			},
-			appV () {
+			appV() {
 				return __appV;
 			},
-			getCJ () {
+			getCJ() {
 				return getCJ;
-			}
+			},
 		},
 		extname: ".hbs",
 	}).engine;
 	return engine;
 };
-
-

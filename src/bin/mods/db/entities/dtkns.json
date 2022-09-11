@@ -1,21 +1,21 @@
 {
-    "name": "dtkns",
-    "columns": {
-        "id": {
-            "primary": true,
-            "type": "int",
-            "generated": true
-        },
-        "token" : {
-            "unique" : true,
-            "type" : "varchar"
-        },
-        "uri": {
-            "type": "varchar"
-        },
-        "dod" : {
-            "type" : "boolean",
-            "default" : false
-        }
-    }
+	"name": "dtkns",
+	"columns": {
+		"id": {
+			"primary": true,
+			"type": "int",
+			"generated": true
+		},
+		"token": {
+			"unique": true,
+			"type": "varchar"
+		},
+		"uri": {
+			"type": "varchar"
+		},
+		"dod": {
+			"type": "boolean",
+			"default": false
+		}
+	}
 }

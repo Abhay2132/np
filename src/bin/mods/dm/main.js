@@ -14,7 +14,15 @@ function download(req, res) {
 					return res.status(404).json({ error: "Sorry , File not Found ! " });
 				res.download(
 					uri,
-					() => !dod || rm(uri, (err) => err ? log(err) : del(token).then(r => log("Deleted %s and %s", uri, JSON.stringify(r))))
+					() =>
+						!dod ||
+						rm(uri, (err) =>
+							err
+								? log(err)
+								: del(token).then((r) =>
+										log("Deleted %s and %s", uri, JSON.stringify(r))
+								  )
+						)
 				);
 			});
 	});
