@@ -7,14 +7,14 @@ const pn = url => url.split("/").at(-1).split("?").at(0)
 module.exports = function (socket) {
 	
 	socket.on("download",async ({url, mode='file'}) => {
-	
-	!isPro && log({url, mode})
+	const logging = process.env.logging || false;
+	logging && log({url, mode})
 	var size = 0
 	const ondata = (c, l) => {
 		c = c.toString().length;
 		size += c;
 		const progress =Math.round( (size/l).toFixed(2) * 100 ) + "%";
-		!isPro && process.stdout.write("\r progress : " + progress);
+		logging && process.stdout.write("\r progress : " + progress);
 		socket.emit("fd_progress", { progress });
 		}
 		
