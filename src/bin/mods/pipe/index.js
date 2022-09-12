@@ -1,17 +1,33 @@
 const ff = require("./ff"),
 	{ _get } = require("../hlpr");
 module.exports = async (req, res) => {
+	log(req);
 	let { link = false } = req.query;
 	if (!link) return res.status(404).json({ error: "link missing in query" });
-
-	let stream = await _get({ url: link, ret: true });
-
-	if (!stream) return res.end();
-	log(stream.headers, stream.statusCode, req.query.ff);
-	res.header("Content-Disposition", `attachment; filename=${basename(link)}`);
-	let size = stream.headers["content-length"] || false;
-	if (size) res.header("Content-Length", size);
-	if (req.query.ff) return ff(link, res);
-	res.header("Content-Type", stream.headers["content-type"]);
+	const { headers } = req;
+	
+	const creq = s(link).get(link, );
+	creq.on("error", e => {
+		log({e});
+		res.end();
+	});
+	creq.on("response", r => {
+		if ( r.statusCode >= 300 ) return res.status(404).end();
+		res.setHeader("Content-Type", r.headers["content-type"]);
+		res.setHeader("Content-Length", r.headers["content-length"]);
+		res.setHeader("Content-Disposition", "attachment; filename="+ pn(link)|| Date.now());
+		r.pipe(res);
+	});
+	/*
+	res.writeHead(stream.statusCode, stream.headers);
+	log(stream.statusCode, stream.headers);
 	stream.pipe(res);
+	*/
 };
+
+const s = link => {
+	if ( link.startsWith("https")) return require("https");
+	return require("http");
+}
+
+const pn = url => url.split("/").at(-1).split("?").at(0)

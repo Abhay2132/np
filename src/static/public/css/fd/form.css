@@ -27,7 +27,7 @@
 	padding: 10px;
 }
 
-.fd-form > center > [name=ff] {
+.fd-form > center > [type=checkbox] {
 	position: relative;
 	top: 2px;
 }

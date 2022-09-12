@@ -10,10 +10,11 @@
 			"&ff=" +
 			$("#ff").checked
 */	
+		if ( $("#dd").checked ) return (location.href = "/pipe?link="+$(".fd-url").value);
 		$(".fd-dbtn").style.opacity = 0;
 		let url = $(".fd-url").value;
-		let mode = $("#ff").checked ? "ff" : "file";
-		socket.emit("download", {url, mode});
+		
+		socket.emit("download", {url});
 		socket.on("fd_done" , ({link}) => {
 			$(".fd-dbtn").style.opacity = 1;
 			$(".fd-dbtn").textContent = "Download Ready";

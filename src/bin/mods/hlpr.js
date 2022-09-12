@@ -40,7 +40,7 @@ const logger = (req, res, next) => {
 	next();
 };
 
-const _get = ({ ondata, url, dest = false, ret = false, headers = false }) =>
+const _get = ({ ondata, url, dest = false, ret = false, headers = {} }) =>
 	new Promise(async (resolve) => {
 		let cb = (r, res, des) => {
 			r.abort = () => req.abort();
@@ -62,9 +62,9 @@ const _get = ({ ondata, url, dest = false, ret = false, headers = false }) =>
 		};
 		let req = "";
 		if (url.startsWith("https"))
-			req = https.get(url, (r) => cb(r, resolve, dest));
+			req = https.get(url, {headers}, (r) => cb(r, resolve, dest));
 		else if (url.startsWith("http"))
-			req = http.get(url, (r) => cb(r, resolve, dest));
+			req = http.get(url, {headers}, (r) => cb(r, resolve, dest));
 		else return resolve(false);
 		req.on("error", (e) => resolve({ error: e }));
 	});
