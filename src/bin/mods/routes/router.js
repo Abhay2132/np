@@ -5,20 +5,11 @@ const colors = require("colors"),
 	vm = require("../vm.js"),
 	router = require("express").Router(),
 	{ download, _get } = require("../hlpr");
+let ts = require("./templates");
+for (let url in ts) 
+	router.get(url, (req, res) => res.render(ts[url].view, ts[url]));
 
 router.get("/", (req, res) => res.redirect("/index"));
-
-router.use((req, res, next) => {
-	let ts = require("./templates");
-	for (let url in ts) {
-		router.get(url, (_req, _res) => {
-			let t = ts[url];
-			_res.render(t.view, t);
-		});
-	}
-	next();
-});
-
 router.post("/imgD", require("../../apps/imgD/main"));
 
 router.post("/fm", require("../../apps/fm/main").api);
@@ -39,7 +30,7 @@ router.post("/img", async (req, res) => {
 	if (url[0] == "/") url = j(pdir, url);
 	img(url)
 		.then((data) => res.send(data))
-		.catch((err) => res.send(err));
+		.catch((err) => log(err, !res.end()));
 });
 
 router.get("/ytdl/download", require("../../apps/ytdl/main.js").dl);
@@ -70,4 +61,16 @@ router.get("/captcha", require("../captcha/main.js"));
 
 router.get("/pipe", require("../pipe"));
 router.use("/fd/download", require("../../apps/fd"));
+
+router.use((req, res ) => {
+	res.status(404)
+	const data = {
+		err_code : 404,
+		err_mess: "PAGE NOT FOUND !",
+		title : "PAGE NOT FOUND !",
+		mainHeading : 404
+	}
+	res.render("error", data);
+});
+
 module.exports = router;

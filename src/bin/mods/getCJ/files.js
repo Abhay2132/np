@@ -24,6 +24,7 @@ let files = {
 		"ui/ps.css",
 		"ui/center.css",
 		"ui/user-control.css",
+		"ui/error.css",
 
 		"index/main.css",
 		"index/bars.css",

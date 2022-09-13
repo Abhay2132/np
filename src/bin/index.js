@@ -1,6 +1,7 @@
 module.exports = async () => {
 	// const heapdump = require("heapdump");
 	// heapdump.writeSnapshot();
+	console.clear();
 	let __sat = global.__sat || Date.now();
 	if (!Array.prototype.at)
 		Array.prototype.at = function (n) {
