@@ -5,7 +5,10 @@ module.exports = async function (io) {
 	io.on("connection", (socket) => {
 		if (!isPro) {
 			log("new socket added from", socket.handshake.address);
-			//global.emitReload = ()=>io.emit("reload");
+			if (!newReloaded){
+				global.newReloaded = true;
+				emitReload();
+			}
 		}
 		require("../../apps/fd/socket")(socket);
 	});

@@ -57,7 +57,7 @@ if (!isPro)
 	});
 
 router.get("/getCJ", require("../getCJ/main"));
-router.get("/captcha", require("../captcha/main.js"));
+router.get("/captcha", require("../captcha"));
 
 router.get("/pipe", require("../pipe"));
 router.use("/fd/download", require("../../apps/fd"));

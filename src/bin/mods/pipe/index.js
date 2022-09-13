@@ -6,7 +6,7 @@ module.exports = async (req, res) => {
 	if (!link) return res.status(404).json({ error: "link missing in query" });
 	const  headers  = { "User-Agent" :  req.headers["user-agent"]};
 	if( ! link.startsWith("http"))
-		return res.json({error : `link '${link}' doesn't starts with http / https ! ` }).end();
+		return res.render("error", {err_mess : `link '${link}' doesn't starts with http / https ! `, err_code : 400, mainHeading: "ERROR" })
 	const creq = s(link).get(link, { headers });
 	creq.on("error", e => {
 		res.end();

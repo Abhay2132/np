@@ -1,4 +1,4 @@
-const { x, y, fp, text, bgp, genHash, rand } = require("./hlpr.js");
+const { x, y, fp, text, bgp, genHash, rand } = require("./hlpr");
 const jimp = require("jimp");
 
 module.exports = async function (req, res, next) {
