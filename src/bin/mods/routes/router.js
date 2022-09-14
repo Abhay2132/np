@@ -6,10 +6,11 @@ const colors = require("colors"),
 	router = require("express").Router(),
 	{ download, _get } = require("../hlpr");
 let ts = require("./templates");
+
+router.get("/", (req, res) => res.redirect("/index"));
 for (let url in ts) 
 	router.get(url, (req, res) => res.render(ts[url].view, ts[url]));
 
-router.get("/", (req, res) => res.redirect("/index"));
 router.post("/imgD", require("../../apps/imgD/main"));
 
 router.post("/fm", require("../../apps/fm/main").api);
