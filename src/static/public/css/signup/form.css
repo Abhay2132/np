@@ -6,9 +6,6 @@
 	padding: 30px 0;
 	transition: 0.4s;
 	background: 0;
-	
-	--su-if-bg: #ddd;
-	--su-if-clr: #333;
 }
 
 .su-form-box {
@@ -16,20 +13,21 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	
-	--icon-size : 35px;
-	--svg-size : 70%;
-	
-	box-shadow: 0 0 5px #aaa;
+
+	--icon-size: 35px;
+	--svg-size: 70%;
+
+	box-shadow: 0 0 5px #ccc;
 	border-radius: 5px;
 	width: 90%;
+	background: var(--dnw-2);
 }
 
-.su-form-box > h2 {
+.su-form-box>h2 {
 	font-weight: 300;
 }
 
-.su-form, 
+.su-form,
 .su-btn {
 	padding: 5px;
 	width: 90%;
@@ -40,35 +38,39 @@
 	background: none;
 }
 
-.su-form-box  .su-if { /* Sign Up input field*/
+.su-form-box .su-if {
+	/* Sign Up input field*/
 	display: flex;
 	margin: 5px 0;
 	background: #fff;
 	overflow: hidden;
 	border-radius: 5px;
 	border: 0px solid;
-	background: var(--su-if-bg);
+	background: var(--dnw-1);
+	width: 90%;
 }
 
-.su-if > input {
+.su-if>input {
 	display: block;
 	height: var(--icon-size);
 	border: 0;
 	background: none;
 	padding: 0 10px;
-	color : var(--su-if-clr);
+	color: var(--su-if-clr);
+	width: 100%;
+	font-size: 1rem;
 }
 
-.su-if > [icon] {
+.su-if>[icon] {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	height: var(--icon-size);
 	width: var(--icon-size);
 	background: none;
-} 
+}
 
-.su-if > [icon] > svg {
+.su-if>[icon]>svg {
 	height: var(--svg-size);
 	width: var(--svg-size);
 }
@@ -95,7 +97,7 @@
 	height: 50px;
 	position: relative;
 	text-align: center;
-} 
+}
 
 .captcha img {
 	max-height: 100%;
@@ -114,9 +116,14 @@
 	z-index: 2;
 }
 
-@media only screen and (min-width: 600px){
+@media only screen and (min-width: 600px) {
 	.captcha {
-	--catcha-w: calc(100% - 200px);
+		--catcha-w: calc(100% - 200px);
+	}
+
+	.su-form-box .su-if {
+		/* Sign Up input field*/
+		width: 66%;
 	}
 }
 

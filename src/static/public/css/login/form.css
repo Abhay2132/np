@@ -3,6 +3,7 @@
 	border-radius: 5px;
 	padding-bottom: 30px;
 	margin: 10px;
+	background: var(--dnw-2);
 }
 
 .login-form>h3 {
