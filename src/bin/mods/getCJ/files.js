@@ -38,6 +38,7 @@ let files = {
 		"wu/main.css",
 		"wu/search-chat.css",
 		"wu/fab.css",
+		"wu/chat.css",
 
 		"imgD/main.css",
 		"imgD/pb.css",
@@ -57,7 +58,6 @@ let files = {
 
 		"keyframes.css",
 		"night-mode.css",
-		"last.css",
 	],
 	views: ["index", "imgD", "ytdl", "wu", "fm", "signup", "fd", "login"],
 };
