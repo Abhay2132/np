@@ -4,6 +4,7 @@
 .imgD-input-container section,
 .login-form,
 .login-input-c div[icon],
+.login-form p,
 .user-control {
 	display: flex;
 	justify-content: center;

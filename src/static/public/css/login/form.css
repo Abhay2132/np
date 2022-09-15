@@ -55,6 +55,9 @@
 	background: inherit;
 }
 
+.login-form p input {
+	margin-right: 10px;
+}
 
 @media (prefers-color-scheme: dark) {
 
