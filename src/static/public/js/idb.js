@@ -23,7 +23,7 @@ idb.onsuccess = () => {
 		content : "alert('Yo Bro Abhay !')",
 		created : Date.now()
 	}
-	const req = store.put(data, 'js');
+	const req = store.put(data);
 	
 	req.onerror = () => console.log({ req_err : req.error})
 	req.onsuccess = () => {

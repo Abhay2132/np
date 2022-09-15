@@ -1,7 +1,7 @@
 .imgD-input-container {
 	--box-size: 40px;
 	--svg-size: 80%;
-	--box-bg: #eee;
+	--box-bg: var(--dnw-1);
 }
 .imgD-input-container div {
 	height: var(--box-size);

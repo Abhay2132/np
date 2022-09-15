@@ -11,6 +11,7 @@ let routes = {
 	},
 	"/wu": { view: "wu", title: "WhatsUp", mainHeading: "WhatsUp" },
 	"/signup": { view: "signup", title: "SignUp", mainHeading: "SignUp" },
+	"/login": { view: "login", title: "LOGIN", mainHeading: "Login" },
 	"/fd": {
 		view: "fd",
 		title: "File Downloader",

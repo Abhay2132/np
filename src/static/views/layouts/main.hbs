@@ -31,7 +31,10 @@ body {
 	</div>
 	<div class="user-control"><div icon="user" onclick="t_uc.t()"></div>
 		<div class="uc-menu">
-			
+			<div class="uc-ls">
+				<a href="/login" onclick="setView('login', 1); return false;">LOGIN </a> / 
+				<a href="/signup" onclick="setView('signup', 1); return false;">SIGNUP</a>
+			</div>
 		</div>
 	</div>
 </nav>
@@ -40,8 +43,6 @@ body {
 	<a href="/"  class="item" view="index" onclick="setView('index' , location.href.split('/').at(-1) != 'index'); return false;"> HOME </a>
 	<div class="item"> Contact me </div>
 	<div class="item"> About me </div>
-	<a href="/signup"  class="item" onclick="setView('signup' , location.href.split('/').at(-1) != 'index'); return false;"> LOGIN / SIGNUP </a>
-
 </div>
 
 	<div id="body" class="viewport">
@@ -84,5 +85,4 @@ if ('serviceWorker' in navigator)
 {{/if}}
 
 <script>_getCJ.init({a : "CJ ", cb : () => (document.body.style.opacity = '1') });</script>
-<script src="/socket.io/socket.io.js" ></script>
 </html>

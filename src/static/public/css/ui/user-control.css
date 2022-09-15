@@ -23,6 +23,22 @@
 	background: var(--uc-menu-bg);
 	display: none;
 }
+.uc-ls {
+	color: white;
+	padding: 5px;
+}
+.uc-ls > a {
+	display: inline-block;
+	padding: 5px 15px;
+	border-radius: 5px;
+	margin: 5px;
+	transition: 0.3s;
+}
+
+.uc-ls > a:hover {
+	background: #fff;
+	color: #333;
+}
 
 .uc-menu::before {
 	--my-size : 10px;

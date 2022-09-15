@@ -12,6 +12,7 @@ let files = {
 		"wu.js",
 		"captcha.js",
 		"fd.js",
+		"login.js"
 	],
 	css: [
 		"ui/layout.css",
@@ -50,6 +51,7 @@ let files = {
 		"ytdl/video-panel.css",
 
 		"signup/form.css",
+		"login/form.css",
 
 		"fd/form.css",
 
@@ -57,7 +59,7 @@ let files = {
 		"night-mode.css",
 		"last.css",
 	],
-	views: ["index", "imgD", "ytdl", "wu", "fm", "signup", "fd"],
+	views: ["index", "imgD", "ytdl", "wu", "fm", "signup", "fd", "login"],
 };
 
 module.exports = files;

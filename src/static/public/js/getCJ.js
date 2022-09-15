@@ -54,21 +54,20 @@ async function setView(view, p = false) {
 	hmbgr.off();
 	sp.off();
 	const ls_views = JSON.parse(localStorage.getItem("CJ")).view;
-	if (ls_views.hasOwnProperty(view)) {
-		let { mainHeading, title, html } = ls_views[view];
-		const body = $("#body");
-		const delay = 300;
-		body.style.transition = delay + "ms";
-		body.style.transform = 'translateY(100px)';
-		body.style.opacity = '0';
-		await wait(delay);
-		body.innerHTML = html;
-		$("#mainH").innerHTML = mainHeading;
-		document.title = title;
-		await wait(1);
-		body.style.transform = 'translateY(0px)';
-		body.style.opacity = '1';
-	}
+	if (!ls_views.hasOwnProperty(view)) return log({error:`view '${view}' not found in cache !`});
+	let { mainHeading, title, html } = ls_views[view];
+	const body = $("#body");
+	const delay = 300;
+	body.style.transition = delay + "ms";
+	body.style.transform = 'translateY(100px)';
+	body.style.opacity = '0';
+	await wait(delay);
+	body.innerHTML = html;
+	$("#mainH").innerHTML = mainHeading;
+	document.title = title;
+	await wait(1);
+	body.style.transform = 'translateY(0px)';
+	body.style.opacity = '1';
 	_getCJ.init({ });
 	if (p) history.pushState({ view }, "", view);
 	else history.replaceState({view}, "", view);

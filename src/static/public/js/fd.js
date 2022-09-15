@@ -1,6 +1,13 @@
-(function () {
+(async function () {
 	if ( document.title != "File Downloader" ) return;
 	
+	if (!$("#socket_script")) await new Promise(r => {
+		const script = document.createElement("script")
+		script.src = "/socket.io/socket.io.js";
+		script.id = "socket_script";
+		document.body.appendChild(script);
+		script.onload = () => r();
+	})
 	const socket = io();
 	
 	$(".fd-form").addEventListener("submit", () =>{
