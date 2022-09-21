@@ -6,7 +6,7 @@
 .fab {
 	height: var(--fab-size);
 	width: var(--fab-size);
-	position: fixed;
+	position: absolute;
 	bottom: 10px;
 	right: 10px;
 	border-radius: 50%;

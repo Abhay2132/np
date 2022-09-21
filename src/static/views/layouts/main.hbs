@@ -70,9 +70,13 @@ history.pushState({ view : location.href.split("/").at(-1).split("?")[0].split("
 	}
 	
 {{/if}}
+
+{{#if (isPro)}}
 if ('serviceWorker' in navigator)
-	navigator.serviceWorker.register('/js/sw.js');
-	
+	navigator.serviceWorker.register('/sw')
+	.then(e => console.log("SW reistered !"))
+{{/if}}
+
 {{#unless (isDev)}}
 {{{getCJ}}}
 {{/unless}}

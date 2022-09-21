@@ -3,7 +3,7 @@
 	--nms: 22px;
 	--new-mess-bg: #4A9300;
 	--new-mess-clr: #fff;
-
+	/*background: red;*/
 	--chat-hbr-bg: #eee;
 }
 
@@ -40,7 +40,6 @@
 }
 
 .chat-logo {
-	background: url("https://i.ibb.co/3ryXbF6/user.png");
 	background-size: 50px 50px;
 	border-radius: 50%;
 	font-size: 0;

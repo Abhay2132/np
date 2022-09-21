@@ -1,4 +1,4 @@
-.search-chat {
+.search-bar {
 	display: flex;
 	justify-content: center;
 	box-sizing: border-box;
@@ -6,11 +6,11 @@
 	--sf-height: 35px;
 }
 
-.search-chat * {
+.search-bar * {
 	box-sizing: border-box;
 }
 
-.search-chat > div {
+.search-bar > div {
 	display: flex;
 	justify-content: center;
 	border-radius: 20px;
@@ -18,7 +18,7 @@
 	background: #eee;
 }
 
-.search-chat [icon] {
+.search-bar [icon] {
 	height: var(--sf-height);
 	width: calc(var(--sf-height) + 10px);
 	border-radius: 20px 0 0 20px;
@@ -28,13 +28,13 @@
 	align-items: center;
 }
 
-.search-chat svg {
+.search-bar svg {
 	position: relative;
 	height: 80%;
 	width: 80%;
 }
 
-.search-chat input {
+.search-bar input {
 	width: 100%;
 	border: none;
 	border-radius: 0 20px 20px 0;
@@ -43,7 +43,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-	.search-chat > div {
+	.search-bar > div {
 		background: #222;
 	}
 }

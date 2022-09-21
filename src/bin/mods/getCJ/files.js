@@ -36,7 +36,7 @@ let files = {
 		"fm/arrow.css",
 
 		"wu/main.css",
-		"wu/search-chat.css",
+		"wu/search-bar.css",
 		"wu/fab.css",
 		"wu/chat.css",
 

@@ -2,10 +2,10 @@ const colors = require("colors"),
 	fs = require("fs"),
 	urlm = require("url"),
 	img = require("image-to-base64"),
-	vm = require("../vm.js"),
 	router = require("express").Router(),
 	{ download, _get } = require("../hlpr");
 let ts = require("./templates");
+const hbs = require("handlebars")
 
 router.get("/", (req, res) => res.redirect("/index"));
 for (let url in ts) 
@@ -14,6 +14,14 @@ for (let url in ts)
 router.post("/imgD", require("../../apps/imgD/main"));
 
 router.post("/fm", require("../../apps/fm/main").api);
+
+router.post("/img", async (req, res) => {
+	let { url } = req.body;
+	if (url[0] == "/") url = j(pdir, url);
+	img(url)
+		.then((data) => res.send(data))
+		.catch((err) => log(err, !res.end()));
+});
 
 router.get("/download", (req, res) => {
 	if (!!!req.query.file)
@@ -26,42 +34,25 @@ router.get("/download", (req, res) => {
 	return download(res, file_path);
 });
 
-router.post("/img", async (req, res) => {
-	let { url } = req.body;
-	if (url[0] == "/") url = j(pdir, url);
-	img(url)
-		.then((data) => res.send(data))
-		.catch((err) => log(err, !res.end()));
-});
-
-router.get("/ytdl/download", require("../../apps/ytdl/main.js").dl);
 router.post("/ytdl/getd", require("../../apps/ytdl/main.js").getD);
-
-router.post("/getView", require("../hlpr").getView);
-var i = 1;
-if (!isPro)
-	router.get("/reload", (req, res) => {
-		let reloadReq;
-		if (!global.reloadClients) global.reloadClients = {};
-		let clientIp =
-			req.headers["x-forwarded-for"] || req.socket.remoteAddress || null;
-		try {
-			if (!Object.keys(global.reloadClients).includes(clientIp))
-				global.reloadClients[clientIp] = true;
-			reloadReq = global.reloadClients[clientIp];
-			//process.stdout.write(" " + ++i);
-			res.end(JSON.stringify({ reloadReq }));
-			global.reloadClients[clientIp] = false;
-		} catch (e) {
-			log({ e, reloadReq });
-		}
-	});
+router.get("/ytdl/download", require("../../apps/ytdl/main.js").dl);
 
 router.get("/getCJ", require("../getCJ/main"));
 router.get("/captcha", require("../captcha"));
 
 router.get("/pipe", require("../pipe"));
 router.use("/fd/download", require("../../apps/fd"));
+
+router.get("/sw", (req, res) => {
+	fs.readFile(j(sdir, "views", "sw.hbs"),  (e,d) => {
+		if (e) return res.end();
+		res.setHeader("Content-Type", "application/javascript");
+		const sw = hbs.compile(d.toString())({appV : __appV});
+		res.setHeader("Content-Length", sw.length);
+		// log({sw})
+		res.end(sw);
+	})
+})
 
 router.use((req, res ) => {
 	res.status(404)

@@ -7,7 +7,7 @@ const _getCJ = {
 		//console.log({av : this.av});
 		const av = this.av();
 		return new Promise((res) => {
-			let dataHandler = (t, a, w) => { // text , resolve : a , ls.setItem : w 
+			let dataHandler = (t, a, w) => { // text , resolve : a , ls.setItem : w <bool>
 				var data = false,
 					error = !1;
 				try { data = JSON.parse(t); } catch (e) { error = e; }
@@ -16,7 +16,7 @@ const _getCJ = {
 				if (w) localStorage.setItem("CJ", t);
 			};
 			let cj = localStorage.getItem("CJ") || false;
-			//console.log({ av , __appV , isDev , cj} ,this.av != __appV || isDev || !cj)
+			// console.log({ av , __appV , isDev , cj} ,this.av != __appV || isDev || !cj)
 			if (av != __appV || isDev || !cj)
 				fetch("/getCJ")
 				.then((d) => d.text())
