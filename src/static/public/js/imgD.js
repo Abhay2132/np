@@ -47,8 +47,8 @@
 			? (dblk(dbtn),
 			  dbtn.addEventListener("click", () =>
 					setTimeout(() => {
-						location.href = url;
-					}, 700)
+						downloadFile(url);
+					}, 20)
 			  ))
 			: hide(dbtn);
 		//$("#dbtn").href = url;
