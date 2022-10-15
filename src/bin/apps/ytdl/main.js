@@ -38,7 +38,7 @@ async function getD(req, res) {
 		if (!!f.height && ql.at(-1) == "p" && !!f.contentLength && !!f.mimeType.startsWith("video"))
 			vqs[ql] = { size: f.contentLength, height: f.height }
 		if (!!f.mimeType.startsWith("audio") && f.contentLength)
-			aqs[f.bitrate + " kbps"] = f.contentLength
+			aqs[f.audioBitrate + " kbps"] = f.contentLength
 
 		//log(f.height, ql.at(-1),f.contentLength,f.hasVideo,f.qualityLabel,vqs, aqs);
 	});
