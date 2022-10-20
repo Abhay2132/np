@@ -131,6 +131,8 @@ async function dlAudio(url, q, res) {
 	if (err) return res.end(err.message);
 
 	let audio = ytdl(url, { quality: audioF.itag });
+	const {contentLength} = formats;
+	res.header("Content-Length", contentLength);
 	res.header("Content-Type", "audio/mp3");
 	res.header(
 		"Content-Disposition",
