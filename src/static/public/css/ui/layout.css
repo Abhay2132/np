@@ -49,6 +49,11 @@ a {
 	#mainH {
 		font-size: 24px;
 	}
+
+	.snackbar-container {
+		width: 40%;
+		left: calc(50% - 20%);
+	}
 } 
 
 @media only screen and (max-width: 1000px){

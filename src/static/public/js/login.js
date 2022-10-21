@@ -15,4 +15,4 @@
 		path.style.fill= fill;
 		// log(me.clicked, fill,window.matchMedia('(max-width: 600px)').matches)
 	}
-})()
+})();

@@ -26,7 +26,7 @@ body {
 	
 <nav id="mainNav" class="dnl-bg">
 	<div id="hmbgr" onclick="hmbgr.t(sp.t)"> <hr /><hr /><hr /> </div>
-	<div id="mainH">
+	<div id="mainH" onclick="snkbr.show('{{{mainHeading}}}')">
 		{{{mainHeading}}}
 	</div>
 	<div class="user-control"><div icon="user" onclick="t_uc.t()"></div>
@@ -47,6 +47,12 @@ body {
 
 	<div id="body" class="viewport">
 	{{{body}}}
+	</div>
+	<div class="snackbar-container">
+		<div class="snackbar">
+			<div class="sb-body">Yo , I m a snackbar !</div>
+			<button onclick="snkbr.hide()">OK</button>
+		</div>
 	</div>
 </body>
 

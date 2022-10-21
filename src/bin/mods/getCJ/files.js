@@ -12,7 +12,8 @@ let files = {
 		"wu.js",
 		"captcha.js",
 		"fd.js",
-		"login.js"
+		"login.js",
+		"snackbar.js"
 	],
 	css: [
 		"ui/layout.css",
@@ -26,6 +27,7 @@ let files = {
 		"ui/center.css",
 		"ui/user-control.css",
 		"ui/error.css",
+		"ui/snackbar.css",
 
 		"index/main.css",
 		"index/bars.css",
