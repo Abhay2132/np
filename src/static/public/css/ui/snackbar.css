@@ -37,21 +37,24 @@
 }
 
 .snackbar>svg {
-	background: #ccc;
+	background: var(--dnw-3);
 }
 
 .snackbar>svg>path {
 	fill: none;
 	position: absolute;
-	stroke: green;
+	stroke: var(--wnd);
 	stroke-width: 2;
 	left: 0;
 	bottom: 0;
 }
 
+.snackbar>svg>text {
+	fill : var(--wnd);
+}
+
 @media only screen and (min-width: 720px) {
 	.snackbar {
-		width: 40%;
 		left: calc(50% - 20%);
 	}
 
