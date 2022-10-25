@@ -1,5 +1,5 @@
 (async function() {
-	const wid = window.innerWidth * 0.4;
+	const wid = window.matchMedia("(max-width: 700px)").matches ? window.innerWidth - 5 : window.innerWidth * 0.4 ;
 	window.snkbr = {
 		cb: false,
 		hideAfter : 5000,
