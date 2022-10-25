@@ -65,6 +65,6 @@ a {
 @media (prefers-color-scheme: dark) {
 	body {
 		color: #ccc;
-		background: #001;
+		--body-bg: #001;
 	}
 }
