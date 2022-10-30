@@ -37,7 +37,7 @@
 
 	const fs = 18;
 	const svg = `
-		<svg width='' height="40" id='snackbar-svg'>
+		<svg width='${wid}' height="40" id='snackbar-svg'>
 		<path class="snackbar-border"
 			d="M 1 1 , H ${wid-1} , V 39 , H 1 , L 1 1 " 
 		/>
@@ -51,7 +51,7 @@
 	$("#snackbar-svg").setAttribute("width", wid)
 	await wait(50);
 	const length = $('.snackbar-border').getTotalLength();
-	console.table({length})
+	//console.table({length})
 	document.body.innerHTML += `
 	<style>
 		.snackbar-border {
@@ -67,17 +67,20 @@
 	</style>
 	`
 	await wait(10);
-	const serverOnline = window.sessionStorage.getItem("serverOnline");
+	// Heroku and render.com machine sleeps after 10 mins
+	// so to detect ten minutes elapsed
+	var serverOnline = ((Date.now() - parseInt(window.sessionStorage.getItem("serverOnline") || '0') )/1000) < 10*60;
+	//log({serverOnline, time : ((Date.now() - parseInt(window.sessionStorage.getItem("serverOnline") || '0') )/1000)});
 	if (!serverOnline) {
 		log("Starting SERVER !")
 		snkbr.show("Starting SERVER ...", 60000);
 		await wait(2000);
-		fetch("/")
+		fetch("/isLive")
 		.then(async a => {
 			await snkbr.hide();
 			await snkbr.hide();
 			snkbr.show("Server ONLINE ;D", 2000);
-			window.sessionStorage.setItem("serverOnline", true);
+			window.sessionStorage.setItem("serverOnline", Date.now());
 		})
 	}
 

@@ -7,6 +7,7 @@ const colors = require("colors"),
 let ts = require("./templates");
 const hbs = require("handlebars")
 
+router.get("/isLive", (req, res) => res.end("1"));
 router.get("/", (req, res) => res.redirect("/index"));
 for (let url in ts) 
 	router.get(url, (req, res) => res.render(ts[url].view, ts[url]));

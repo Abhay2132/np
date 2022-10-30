@@ -37,7 +37,7 @@
 }
 
 .snackbar>svg {
-	background: var(--dnw-3);
+	background: var(--dnw-1);
 }
 
 .snackbar>svg>path {
