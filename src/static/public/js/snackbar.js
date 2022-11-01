@@ -9,13 +9,13 @@
 		ps : [],
 		killed : false,
 		async show(text, hideAfter=this.hideAfter, cb) {
-			log({show : text});
+			//log({show : text});
 			if ($('.snackbar-container').style.display== "block"|| (text || "").trim().length < 1 ) await this.hide() ;
 			
 			snkbr.text = text;
 			const bdr = $('.snackbar-border');
 			$('.sb-body').innerHTML = text;
-			log("sb-body :", text);
+			//log("sb-body :", text);
 			$('.snackbar-container').style.display= "block";
 			bdr.style.strokeDashoffset = length;
 			bdr.style.animationName = "dash";
@@ -29,7 +29,7 @@
 			await wait(hideAfter);
 		},
 		async hide() {
-			log("Hide :", this.text);
+			//log("Hide :", this.text);
 			(!!this.timeout && clearTimeout(this.timeout));
 			this.timeout = false;
 			$('.snackbar').style.bottom = '-100px';
@@ -57,7 +57,6 @@
 	$("#snackbar-svg").setAttribute("width", wid)
 	await wait(50);
 	const length = $('.snackbar-border').getTotalLength();
-	//console.table({length})
 	document.body.innerHTML += `
 	<style>
 		.snackbar-border {
@@ -78,9 +77,9 @@
 	var serverOnline = ((Date.now() - parseInt(window.sessionStorage.getItem("serverOnline") || '0') )/1000) < 10*60;
 	//log({serverOnline, time : ((Date.now() - parseInt(window.sessionStorage.getItem("serverOnline") || '0') )/1000)});
 	if (!serverOnline) {
-		log("Starting SERVER !")
+		//log("Starting SERVER !")
 		snkbr.show("Starting SERVER ...", 60000);
-		await wait(2000);
+		//await wait(2000);
 		fetch("/isLive")
 		.then(async a => {
 			await snkbr.hide();
