@@ -51,6 +51,7 @@ const _getCJ = {
 }
 
 async function setView(view, p = false) {
+	if ( window.snkbr) snkbr.hide();
 	hmbgr.off();
 	sp.off();
 	const ls_views = JSON.parse(localStorage.getItem("CJ")).view;

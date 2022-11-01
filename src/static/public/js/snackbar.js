@@ -1,16 +1,21 @@
 (async function() {
+	if ( window.snkbr) { !!snkbr.timeout && clearTimeout(snkbr.timeout); delete window.snkbr; }
 	const wid = window.matchMedia("(max-width: 700px)").matches ? window.innerWidth - 5 : window.innerWidth * 0.4 ;
 	window.snkbr = {
 		cb: false,
 		hideAfter : 5000,
 		timeout : false,
+		text : "",
 		ps : [],
 		killed : false,
 		async show(text, hideAfter=this.hideAfter, cb) {
-			if ($('.snackbar-container').style.display== "block") return ;
+			log({show : text});
+			if ($('.snackbar-container').style.display== "block"|| (text || "").trim().length < 1 ) await this.hide() ;
+			
+			snkbr.text = text;
 			const bdr = $('.snackbar-border');
-			$('.sb-body').textContent = text;
-			this.text = text;
+			$('.sb-body').innerHTML = text;
+			log("sb-body :", text);
 			$('.snackbar-container').style.display= "block";
 			bdr.style.strokeDashoffset = length;
 			bdr.style.animationName = "dash";
@@ -20,10 +25,11 @@
 			$('.snackbar').style.bottom = '0px';
 
 			cb && (this.cb = cb);
-			this.timeout = setTimeout(this.hide, hideAfter);
+			this.timeout = setTimeout(() => this.hide(), hideAfter);
 			await wait(hideAfter);
 		},
 		async hide() {
+			log("Hide :", this.text);
 			(!!this.timeout && clearTimeout(this.timeout));
 			this.timeout = false;
 			$('.snackbar').style.bottom = '-100px';
@@ -31,7 +37,7 @@
 			await wait(300);
 			$('.snackbar-container').style.display= "none";
 			$(".snackbar-border").style.animationName = "abhay"
-
+			return 0;
 		}
 	}
 
@@ -78,7 +84,7 @@
 		fetch("/isLive")
 		.then(async a => {
 			await snkbr.hide();
-			await snkbr.hide();
+			//await snkbr.hide();
 			snkbr.show("Server ONLINE ;D", 2000);
 			window.sessionStorage.setItem("serverOnline", Date.now());
 		})

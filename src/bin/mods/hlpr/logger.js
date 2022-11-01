@@ -16,7 +16,8 @@ module.exports  = (req, res, next) => {
 		log(
 			req.url,
 			method,
-			colors.yellow((performance.now() - st).toFixed(2) + "ms")
+			colors.yellow((performance.now() - st).toFixed(2) + "ms"),
+			res.statusCode
 		);
 	});
 	//console.log(req.headers, req.statusCode);
