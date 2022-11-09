@@ -8,6 +8,10 @@ module.exports = socket => {
 		imgD.on("imgD-imgs", ({title, num}) => {
 			socket.emit("imgD-imgs", {title, num});
 		});
-		//imgD.on("kill", () => setImmediate(() => {imgD = undefined;}));
+		imgD.on("imgD-err", ({error}) => {
+			// dlog({error});
+			socket.emit("imgD-err", {error})
+		});
+		imgD.start(url);
 	});
 }

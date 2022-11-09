@@ -32,6 +32,7 @@ hr.spinner {
 .show-loader {
 	height: 35px;
 	padding: 5px 0;
+	margin: 10px;
 }
 
 .hide-loader, .collapse {

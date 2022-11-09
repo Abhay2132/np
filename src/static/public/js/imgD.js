@@ -28,13 +28,20 @@
 		const url = input.value;
 		time = Date.now()
 		socket.emit("imgD-start", {url});
-		$("#imgD-loading").classList.replace("hide-loader","show-loader");
+		$("#imgD-ps").classList.remove("collapse")
+		$("#imgD-loading").classList.replace("collapse","show-loader");
 	}
 	
 	socket.on("imgD-imgs", async ({title, num})=> {
-		//await wait(1000);
-		$("#imgD-loading").classList.replace("show-loader","hide-loader");
+		await wait(1000);
+		$("#imgD-loading").classList.replace("show-loader","collapse");
 		$("#img-title").textContent = title;
 		$("#img-num").textContent = num+ " imgs found";
+		$("#imgD-info").classList.replace("collapse","show-info");
 	});
+
+	socket.on("imgD-err", async ({error}) => {
+		$("#imgD-loading").classList.replace("show-loader","collapse");
+		snkbr.show(error, 5000);
+	})
 })();

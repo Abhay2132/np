@@ -2,11 +2,11 @@ const {exec} = require("child_process");
 const fs = require("fs");
 const { parse } = require("node-html-parser");
 const { EventEmitter } = require('node:events');
-const {imgFilter, getTE} = require("./hlpr");
+const {imgFilter, getTE, validURL} = require("./hlpr");
 
 class ImgD extends EventEmitter {
 	k = false;
-	constructor ({url, sid, start = true}) {
+	constructor ({url, sid}) {
 		super();
 		global.imgDsessions[sid] = this;
 		this.done = false;
@@ -14,12 +14,19 @@ class ImgD extends EventEmitter {
 		this.stats = {url};
 		this.uid = parseInt(Math.random()* 1000);
 		this.sid = sid;
-		if (start) this.start(this.url);
 	}
 	
-	async start (url) {
+	async start (url = "") {
 		this.done = !1;
 		dlog("start :", this.uid);
+
+		dlog(validURL(url));
+		if (!validURL(url)) {
+			// dlog("invalid url")
+			this.emit("imgD-err", {error : `url ("${url}") is invalid`})
+			return this.finsihed();
+		};
+
 		const htm = await this.fetch(url);		 			 if(this.k){dlog("killed : htm"); return (this.k = false);}
 		const dom = await parse(htm); 						if(this.k){dlog("killed : dom"); return (this.k = false);}
 		var imgs = dom.querySelectorAll("img"); 	   if(this.k){dlog("killed : imgs"); return (this.k = false);}
@@ -28,10 +35,15 @@ class ImgD extends EventEmitter {
 		this.imgs = imgs;
 		this.emit("imgD-imgs", {title, num : imgs.length} );							if(this.k){dlog("killed : emit"); return (this.k = false);}
 		
-		dlog("done :", this.uid, getTE());
-		this.done = true; this.k = false;
+		this.finsihed();
 	}
 	
+	finsihed () {
+		dlog("done :", this.uid, getTE());
+		this.done = true; 
+		this.k = false;
+	}
+
 	fetch (url) {
 		return new Promise( res => {
 			exec(`curl '${url}'`, (e, stdout, stderr) => res(stdout));

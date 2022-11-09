@@ -1,33 +1,29 @@
-
 <div class="imgD-container">
-<h2 class="imgD-heading"> Enter Website URL</h2>
-<form class="imgD-form" id="siteURL_form" onsubmit="return false;" >
-	<div class="imgD-input-container">
-	<div icon="web"></div>
-	<input
-		type="text"
-		id="website_url"
-		class="imgD-url"
-		placeholder="Website URL"
-		
-	/>
-	<input type="submit"
-		onclick="pressed(this); startImgD();"
-		class="imgD-button" value="Submit" />
-	</div>
-</form>
-
-<section id="imgD-ps"  class='collapse'>
-	<div id="imgD-loading" class="hide-loader"> <hr class="spinner"/> <span>Scraping IMGs</span> </div>
-	<div id="imgD-info" class='collapse'>
-		<div class="info-item" ><div icon="tag"></div><div class="item-text" id="img-title" > WebPage Title </div></div>
-		<div class="info-item" ><div icon="img"></div><div class="item-text" id="img-num" >20 imgs found </div></div>
-	<div id="dl-btn-container">
-		<div id="imgD-dl" class="button">
-			<div icon="dl"></div><span>Start Download</span>
+	<h2 class="imgD-heading"> Enter Website URL</h2>
+	<form class="imgD-form" id="siteURL_form" onsubmit="return false;">
+		<div class="imgD-input-container">
+			<div icon="web"></div>
+			<input type="text" id="website_url" class="imgD-url" placeholder="Website URL" />
+			<input type="submit" onclick="pressed(this); startImgD();" class="imgD-button" value="Submit" />
 		</div>
-	</div>
-	</div>
-</section>
-
+	</form>
+	<section id="imgD-ps" class='collapse'>
+		<div id="imgD-loading" class="collapse">
+			<hr class="spinner" /> <span>Scraping IMGs</span> </div>
+		<div id="imgD-info" class='collapse'>
+			<div class="info-item">
+				<div icon="tag"></div>
+				<div class="item-text" id="img-title"> WebPage Title </div>
+			</div>
+			<div class="info-item">
+				<div icon="img"></div>
+				<div class="item-text" id="img-num">20 imgs found </div>
+			</div>
+			<div id="dl-btn-container">
+				<div id="imgD-dl" class="button">
+					<div icon="dl"></div><span>Start Download</span>
+				</div>
+			</div>
+		</div>
+	</section>
 </div>

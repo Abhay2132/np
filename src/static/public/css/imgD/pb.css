@@ -3,10 +3,17 @@
 	background: var(--dnw-1);
 	border-radius: 5px;
 	overflow:hidden;
+	transition: 1s;
 }
 
 #imgD-info {
 	overflow:hidden;
+	transition: 1s;
+}
+
+.show-info {
+	margin: 10px;
+	height: 122px;
 }
 
 .info-item {

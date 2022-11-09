@@ -1,5 +1,6 @@
 const fs = require("fs");
-const srcs = fs.readdirSync(j(pdir, "gallery")).map(f => "/gallery/"+f);
+var srcs = [];
+try{srcs = fs.readdirSync(j(pdir, "gallery")).map(f => "/gallery/"+f);} catch(e){dlog({e})}
 let routes = {
 	"/": { view: "index", title: "Node Pro", mainHeading: "Node Pro" },
 	"/index": { isDev : !isPro , view: "index", title: "Node Pro", mainHeading: "Node Pro" },

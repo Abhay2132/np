@@ -15,6 +15,11 @@ function imgFilter ( img , url ) {
 	return {src, name};
 }
 
-const getTE = (n =3) => (performance.now()/1000).toFixed(3)
+const getTE = (n =3) => (performance.now()/1000).toFixed(3);
 
-module.exports = { imgFilter , getTE };
+const validURL = url => {
+	if (!url || !url.startsWith("http")) return false;
+	return true;
+}
+
+module.exports = { imgFilter , getTE , validURL };
