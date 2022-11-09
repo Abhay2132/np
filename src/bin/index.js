@@ -11,14 +11,16 @@ module.exports = async () => {
 		};
 	const fs = require("fs");
 	const path = require("path");
+	global.isPro = (process.env.NODE_ENV || "").toLowerCase() === "production";
+	global.imgDsessions = {};
 	global.log = (...args) => console.log(...args);
+	global.dlog = (...args) => !isPro && console.log(...args);
 	global.elog = (...args) => console.error(...args);
 	global.j = require("path").join;
 	global.basename = require("path").basename;
 	global.sdir = path.resolve("src", "static");
 	global.pdir = j(sdir, "public");
 	global._port = process.env.PORT || 3000;
-	global.isPro = (process.env.NODE_ENV || "").toLowerCase() === "production";
 	global.isA = require("os").platform() == "android";
 	global.stdout = (...a) => process.stdout.write(a.join(" "));
 	if (typeof global.__appV == "undefined") global.__appV = 0

@@ -46,6 +46,7 @@ let files = {
 		"imgD/pb.css",
 		"imgD/dbtn.css",
 		"imgD/input.css",
+		"imgD/loading.css",
 
 		"ytdl/error.css",
 		"ytdl/form.css",
@@ -57,6 +58,8 @@ let files = {
 		"login/form.css",
 
 		"fd/form.css",
+		
+		"gallery/img.css",
 
 		"keyframes.css",
 		"night-mode.css",
@@ -64,4 +67,5 @@ let files = {
 	views: ["index", "imgD", "ytdl", "wu", "fm", "signup", "fd", "login"],
 };
 
+if(!isPro) files.views.push("gallery");
 module.exports = files;

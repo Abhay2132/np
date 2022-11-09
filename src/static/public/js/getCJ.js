@@ -102,3 +102,5 @@ function setViewport() {
 	$("#wa-app") && ($("#wa-app").style.height = window.innerHeight - 50 + "px");
 	window.requestAnimationFrame(setViewport)
 }
+
+window.onresize = (setViewport);

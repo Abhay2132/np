@@ -1,74 +1,40 @@
 (async function () {
-	if (document.title != "Image Downloader") return;
-	const pb = new progressBar();
-	const dblk = (...tags) =>
-		tags.forEach((tag) => (tag.style.display = "block"));
-
-	const getsc = (s, dd) => {
-		let sc = {
-			// status Codes
-			1: "Job Started",
-			2: "Fetching html",
-			3: "Downloading imgs " + "(" + dd + ")",
-			4: "Zipping Files",
-		};
-		return sc[s];
-	};
-
-	const imgD = (url = false) => {
-		url = url || document.querySelector("#website_url").value;
-		if (!url) return;
-		dbtn();
-		dblk($("#pbc"), pb.glare);
-		fetch("/imgD", {
-			method: "POST",
-			headers: new Headers({ "Content-Type": "application/json" }),
-			body: JSON.stringify({ url: url }),
-		})
-			.then((res) => res.json())
-			.then((data) => logger(data, url));
-	};
-
-	function logger(data, url) {
-		let { status, done, dlnk = false, downloading: dd } = data,
-			w = done
-				? "100%"
-				: status == 3 && dd != "0/0"
-				? eval(dd) * 100 + "%"
-				: (status / 5) * 100 + "%",
-			t = done ? "Ready To Download !" : getsc(status, dd);
-		pb.update({ text: t, width: w });
-		done ? (dbtn(dlnk), hide(pb.glare)) : setTimeout(() => imgD(url), 1000);
+	if ( document.title != "Image Downloader" ) return;
+	if (!$("#socket_script")) await new Promise(r => {
+		const script = document.createElement("script")
+		script.src = "/socket.io/socket.io.js";
+		script.id = "socket_script";
+		document.body.appendChild(script);
+		script.onload = () => r();
+	});
+	if ( !window.socket) window.socket = io();
+	
+	var time = Date.now()
+	//log("Adding evnt listener !");
+	
+	async function show (tag, {d,h,p,m}, delay) {
+		if ( delay ) {
+			tag.style.transition = delay + "ms";
+			await wait(10);
+		}
+		if(d) tag.style.display = d
+		if(h) tag.style.height = h
+		if(p) tag.style.padding = p
+		if(m) tag.style.margin = m
 	}
-
-	function dbtn(url) {
-		let dbtn = $("#dbtn");
-		url
-			? (dblk(dbtn),
-			  dbtn.addEventListener("click", () =>
-					setTimeout(() => {
-						downloadFile(url);
-					}, 20)
-			  ))
-			: hide(dbtn);
-		//$("#dbtn").href = url;
+	
+	window.startImgD = async () => {
+		const input = $("#website_url");
+		const url = input.value;
+		time = Date.now()
+		socket.emit("imgD-start", {url});
+		$("#imgD-loading").classList.replace("hide-loader","show-loader");
 	}
-
-	async function onload(cb, ...args) {
-		while (document.readyState != "complete")
-			await new Promise((res) => setTimeout(res, 500));
-		if (args.length) cb(...args);
-		cb();
-	}
-
-	// log("Adding form handler !")
-	onload(() => {
-		pb.init(document.querySelector("#pbc"));
-		let form = document.querySelector("#siteURL_form");
-		// console.log("configuring the form submit event ...");
-		form.addEventListener("submit", (e) => {
-			e.preventDefault();
-			imgD();
-		});
+	
+	socket.on("imgD-imgs", async ({title, num})=> {
+		//await wait(1000);
+		$("#imgD-loading").classList.replace("show-loader","hide-loader");
+		$("#img-title").textContent = title;
+		$("#img-num").textContent = num+ " imgs found";
 	});
 })();

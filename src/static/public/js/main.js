@@ -2,7 +2,7 @@
 	delete window.t_uc;
 
 	window.t_uc = {
-		uc : $(".uc-menu"),
+		get uc () { return  $(".uc-menu")},
 		off : async function(){
 			this.uc.style.opacity = 0;
 			this.uc.style.transform = "translateY(20px)";

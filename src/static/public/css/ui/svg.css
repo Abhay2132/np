@@ -53,4 +53,5 @@ div[icon="user"]>svg * {
 
 svg>* {
 	stroke: var(--wnd);
+	stroke-width: 0.01;
 }

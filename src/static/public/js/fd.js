@@ -8,7 +8,7 @@
 		document.body.appendChild(script);
 		script.onload = () => r();
 	})
-	const socket = io();
+	if ( !window.socket) window.socket = io();
 	
 	$(".fd-form").addEventListener("submit", () =>{
 /*

@@ -1,6 +1,5 @@
 .imgD-container {
 	margin: 10px;
-	text-align: center;
 	padding: 10px;
 	background: rgba(200, 27, 10, 0.4);
 	border-radius: 5px;
@@ -16,4 +15,11 @@
 	background: #00498a;
 	color: #eee;
 	margin: 10px 0;
+	text-align: center;
+}
+
+.imgD-container > hr {
+	border: 0;
+	border-top: 1px solid;
+	margin: 20px 0;
 }

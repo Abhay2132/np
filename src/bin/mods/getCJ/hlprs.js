@@ -5,6 +5,7 @@ const cc = require("clean-css");
 const viewsData = require("../routes/templates");
 const hbs = require("handlebars");
 
+//dlog({viewsData});
 const read = (file) =>
 	new Promise((a) =>
 		fs.readFile(file, (e, d) => {
@@ -42,8 +43,9 @@ async function getViews(views) {
 	for (let view of views) {
 		let text = await read(j(sdir, "views", view + ".hbs"));
 		let d = {};
-		d.html = hbs.compile(text)();
-		let { title, mainHeading } = getT(view);
+		let temp = getT(view);
+		d.html = hbs.compile(text)(temp);
+		let { title, mainHeading } = temp 
 		d.mainHeading = mainHeading;
 		d.title = title;
 		v[view] = d;
