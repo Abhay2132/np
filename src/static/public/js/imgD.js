@@ -64,6 +64,7 @@
 		$("#imgD-ps").classList.remove("collapse")
 		$("#imgD-loading").classList.replace("collapse","show-loader");
 		$("#imgD-info").classList.replace("show-info","collapse");
+		$("#imgD-info").classList.replace("show-dl-cont","collapse");
 		$("#dl-ps").classList.replace("dl-icon", "spinner-icon");
 	}
 	

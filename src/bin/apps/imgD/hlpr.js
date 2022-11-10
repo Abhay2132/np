@@ -2,7 +2,7 @@ const fs = require("node:fs");
 const http = require("node:http");
 const https = require("node:https");
 
-function imgFilter ( img , url ) {
+function imgFilter ( img , url , n ) {
 	let src = img.getAttribute("src") || false;
 	//dlog({src, url});
 	if ( ! src ) return false;
@@ -13,11 +13,12 @@ function imgFilter ( img , url ) {
 		src = src[0] == "/" ? host+src : host+"/"+src;
 	}
 	else src = src.slice(src.indexOf("http"));
-	let name= img.getAttribute("alt") || src.split("/").at(-1).split("?")[0].slice(0, 30);
-	let ext = name.split(".").at(-1);
+	let name= `${n}. ${ img.getAttribute("alt") || src.split("/").at(-1).split("?")[0].slice(0, 30)}`;
+	let ext = ge(src);
 	let exts = ["jpg", "jpeg", "webp", "png", "gif", "ico"]
-	if (!exts.includes(ext)) name += ".jpg";
-	//dlog({src, name});
+	ext = exts.includes(ext) ? ext : "jpg";
+	if (!exts.includes(ge(name))) name += "."+ ext;
+	//dlog({src, ext, name, alt : img.getAttribute("alt")});
 	return {src, name};
 }
 
@@ -48,8 +49,9 @@ function _get (signal, url, dest = false) {
 		if(!url.startsWith("http")) return res(body);
 		if(url.startsWith("https")) cr = cb(https);
 		else cr = cb(http);
-		cr.on("error", e => dlog(e, res(body)));
+		cr.on("error", e => {dlog(e); res(); });
 	});
 }
 
+const ge = a => a.split(".").at(-1);
 module.exports = { imgFilter , getTE , validURL, _get };

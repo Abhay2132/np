@@ -29,11 +29,11 @@ class ImgD extends EventEmitter {
 
 		let ac = new AbortController();
 		this.acs.push(ac);
-		const htm = await _get(ac.signal, url, j(this.dir, "source.htm"));		 				
+		const htm = await _get(ac.signal, url, !isPro ? j(this.dir, "source.htm") : !1);		 				
 		const dom = await parse(htm); 						
 		var imgs = dom.querySelectorAll("img"); 	 
-		var title = dom.querySelector("title").innerHTML;
-		imgs = imgs.map(i => imgFilter(i, url)).filter(i => !!i);  	
+		var title = dom.querySelector("title").innerHTML; let n = 1;
+		imgs = imgs.map(i => imgFilter(i, url, n++)).filter(i => !!i);  	
 		this.imgs = imgs;
 		this.emit("imgD-imgs", {title, num : imgs.length} );						
 		await this.dl(imgs);
@@ -65,7 +65,7 @@ class ImgD extends EventEmitter {
 		let zip = new require("adm-zip-node")();
 		let files = fs
 			.readdirSync(j(this.dir))
-			.filter((file) => file !== "stats.json" || file !== "source.htm");
+			//.filter((file) => file !== "stats.json" || file !== "source.htm");
 		files.forEach((file) => zip.addLocalFile(j(this.dir, file)));
 		let zipPath = j(this.dir, this.uid+".zip")
 		zip.writeZip(zipPath);
