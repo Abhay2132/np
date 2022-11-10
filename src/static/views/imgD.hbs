@@ -2,7 +2,7 @@
 	<h2 class="imgD-heading"> Enter Website URL</h2>
 	<form class="imgD-form" id="siteURL_form" onsubmit="return false;">
 		<div class="imgD-input-container">
-			<div icon="web"></div>
+			<div icon="web" onclick="$('input').value = '';"></div>
 			<input type="text" id="website_url" class="imgD-url" placeholder="Website URL" />
 			<input type="submit" onclick="pressed(this); startImgD();" class="imgD-button" value="Submit" />
 		</div>
@@ -10,7 +10,7 @@
 	<section id="imgD-ps" class=''>
 		<div id="imgD-loading" class="collapse">
 			<hr class="spinner" /> <span>Scraping IMGs</span> </div>
-		<div id="imgD-info" class='collapse'>
+		<div id="imgD-info" class='imgD-info collapse'>
 			<div class="info-item">
 				<div icon="tag"></div>
 				<div class="item-text" id="img-title"> WebPage Title </div>
@@ -19,11 +19,12 @@
 				<div icon="img"></div>
 				<div class="item-text" id="img-num">20 imgs found </div>
 			</div>
-			<div class="info-item" class=''>
-				<div class="spinner-cont"><hr class="spinner" /></div>
-				<div class="item-text" id="img-dl"> Saving <span>5 / 20</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </div>
+			<div class="info-item spinner-icon" id='dl-ps'>
+				<div class="spinner-cont" ><hr class="spinner" /></div>
+				<div icon="dl" id="dl-icon" ></div>
+				<div class="item-text" id="img-dl">  Saving 1 / 20 </div>
 			</div>
-			<div id="dl-btn-container">
+			<div id="dl-btn-container" class="dl-btn-container collapse">
 				<div id="imgD-dl" class="button">
 					<div icon="dl"></div><span>Start Download</span>
 				</div>

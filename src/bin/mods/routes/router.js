@@ -12,7 +12,7 @@ router.get("/", (req, res) => res.redirect("/index"));
 for (let url in ts) 
 	router.get(url, (req, res) => res.render(ts[url].view, ts[url]));
 
-//router.use("/imgD*", require("../../apps/imgD"));
+router.get("/imgD/dl", require("../../apps/imgD/dl"));
 
 router.post("/fm", require("../../apps/fm/main").api);
 

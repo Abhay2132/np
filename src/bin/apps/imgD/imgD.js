@@ -2,7 +2,7 @@ const {exec} = require("child_process");
 const fs = require("fs");
 const { parse } = require("node-html-parser");
 const { EventEmitter } = require('node:events');
-const {imgFilter, getTE, validURL} = require("./hlpr");
+const {imgFilter, getTE, validURL, _get} = require("./hlpr");
 
 class ImgD extends EventEmitter {
 	k = false;
@@ -14,28 +14,61 @@ class ImgD extends EventEmitter {
 		this.stats = {url};
 		this.uid = parseInt(Math.random()* 1000);
 		this.sid = sid;
+		this.dir = j(sdir, "files", "imgD", this.uid+'');
+		this.acs = [];
 	}
 	
 	async start (url = "") {
 		this.done = !1;
 		dlog("start :", this.uid);
-
-		dlog(validURL(url));
 		if (!validURL(url)) {
 			// dlog("invalid url")
 			this.emit("imgD-err", {error : `url ("${url}") is invalid`})
 			return this.finsihed();
 		};
 
-		const htm = await this.fetch(url);		 			 if(this.k){dlog("killed : htm"); return (this.k = false);}
-		const dom = await parse(htm); 						if(this.k){dlog("killed : dom"); return (this.k = false);}
-		var imgs = dom.querySelectorAll("img"); 	   if(this.k){dlog("killed : imgs"); return (this.k = false);}
+		let ac = new AbortController();
+		this.acs.push(ac);
+		const htm = await _get(ac.signal, url, j(this.dir, "source.htm"));		 				
+		const dom = await parse(htm); 						
+		var imgs = dom.querySelectorAll("img"); 	 
 		var title = dom.querySelector("title").innerHTML;
-		imgs = imgs.map(i => imgFilter(i, url)).filter(i => !!i);  	if(this.k){dlog("killed : filter"); return (this.k = false);}
+		imgs = imgs.map(i => imgFilter(i, url)).filter(i => !!i);  	
 		this.imgs = imgs;
-		this.emit("imgD-imgs", {title, num : imgs.length} );							if(this.k){dlog("killed : emit"); return (this.k = false);}
+		this.emit("imgD-imgs", {title, num : imgs.length} );						
+		await this.dl(imgs);
 		
 		this.finsihed();
+	}
+	
+	dl (imgs) { 
+		return new Promise( async res => {
+			const len = imgs.length;
+			let i = 0;
+			for(let img of imgs) {
+				let ac = new AbortController();
+				this.acs.push(ac);
+				_get(ac.signal, img.src, j(this.dir, img.name))
+				.then( b => {
+					++i;
+					if ( i != len) return this.emit("imgD-dl", { i , len});
+					this.zip();
+					this.emit("imgD-done", { len, uid : this.uid });
+					res();
+					dlog(this.uid, ": downloaded", len, "imgs");
+				});
+			}
+		})
+	}
+	
+	zip () {
+		let zip = new require("adm-zip-node")();
+		let files = fs
+			.readdirSync(j(this.dir))
+			.filter((file) => file !== "stats.json" || file !== "source.htm");
+		files.forEach((file) => zip.addLocalFile(j(this.dir, file)));
+		let zipPath = j(this.dir, this.uid+".zip")
+		zip.writeZip(zipPath);
 	}
 	
 	finsihed () {
@@ -53,15 +86,8 @@ class ImgD extends EventEmitter {
 	stop () {
 		dlog("stopping :", this.uid);
 		this.removeAllListeners("imgD-imgs");
-		return new Promise(async res => {
-			let i = 0;
-			if ( ! this.done) {
-				this.k = true;
-				while(this.k) { i++; await new Promise(a => setImmediate(a)); }
-			}
-			res(/*this.emit("kill")*/);
-			dlog("stopped :", this.uid, getTE(), {i});
-		});
+		for(let ac of this.acs ) ac.abort();
+		dlog("stopped :", this.uid, getTE());
 	}
 }
 

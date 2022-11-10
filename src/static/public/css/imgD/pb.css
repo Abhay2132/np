@@ -6,14 +6,19 @@
 	transition: 1s;
 }
 
-#imgD-info {
+.imgD-info {
 	overflow:hidden;
+	margin: 10px;
 	transition: 1s;
 }
 
 .show-info {
-	margin: 10px;
 	height: 105px;
+	/*height: auto;*/
+}
+
+.show-dl-cont {
+	height: 167px;
 }
 
 .info-item {
@@ -58,11 +63,12 @@
 	margin-left: 10px;
 }
 
-#dl-btn-container {
-	display : none;
+.dl-btn-container {
+	display : flex;
 	justify-content: center;
 	padding: 5px;
 	overflow: hidden;
-	
-	height: 0;
+	margin: 10px;
+	height: 42px;
+	transition: 0.2s;
 }
