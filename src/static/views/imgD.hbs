@@ -7,7 +7,7 @@
 			<input type="submit" onclick="pressed(this); startImgD();" class="imgD-button" value="Submit" />
 		</div>
 	</form>
-	<section id="imgD-ps" class='collapse'>
+	<section id="imgD-ps" class=''>
 		<div id="imgD-loading" class="collapse">
 			<hr class="spinner" /> <span>Scraping IMGs</span> </div>
 		<div id="imgD-info" class='collapse'>
@@ -18,6 +18,10 @@
 			<div class="info-item">
 				<div icon="img"></div>
 				<div class="item-text" id="img-num">20 imgs found </div>
+			</div>
+			<div class="info-item" class=''>
+				<div class="spinner-cont"><hr class="spinner" /></div>
+				<div class="item-text" id="img-dl"> Saving <span>5 / 20</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </div>
 			</div>
 			<div id="dl-btn-container">
 				<div id="imgD-dl" class="button">

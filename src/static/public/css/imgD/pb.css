@@ -13,7 +13,7 @@
 
 .show-info {
 	margin: 10px;
-	height: 122px;
+	height: 105px;
 }
 
 .info-item {
@@ -52,14 +52,17 @@
 	fill: #fff;
 }
 
-#dl-btn-container   span {
+#dl-btn-container span {
 	display: flex;
 	align-items: center;
 	margin-left: 10px;
 }
 
 #dl-btn-container {
-	display: flex;
+	display : none;
 	justify-content: center;
 	padding: 5px;
+	overflow: hidden;
+	
+	height: 0;
 }

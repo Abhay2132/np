@@ -30,6 +30,7 @@
 		socket.emit("imgD-start", {url});
 		$("#imgD-ps").classList.remove("collapse")
 		$("#imgD-loading").classList.replace("collapse","show-loader");
+		$("#imgD-info").classList.replace("show-info","collapse");
 	}
 	
 	socket.on("imgD-imgs", async ({title, num})=> {

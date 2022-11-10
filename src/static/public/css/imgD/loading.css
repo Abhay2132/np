@@ -35,7 +35,7 @@ hr.spinner {
 	margin: 10px;
 }
 
-.hide-loader, .collapse {
+.collapse {
 	height: 0;
 	padding: 0; 
 	margin: 0;
@@ -45,5 +45,42 @@ hr.spinner {
 #imgD-loading:hover{
 	height: 0px;
 	padding:0;
+}
+*/
+
+#imgD-info [icon=dl] {
+	animation: rainbow 3s linear infinite alternate;
+}
+
+
+@keyframes rainbow {
+	0% {color: red; fill : red; transform: scale(1) translateY(2px);}
+	10% {color: orange; fill : orange;}
+	20% {color: yellow; fill : yellow;}
+	30% {color: voilet; fill : voilet;}
+	40% {color: blue; fill : blue;}
+	50% {color: purple; fill : purple;}
+	60% {color: green; fill : green;}
+	70% {color: cyan; fill : cyan;}
+	80% {color: lightgreen; fill : lightgreen;}
+	90% {color: olive; fill : olive;}
+	100% {color: seagreen; fill : seagreen;transform: scale(0.9) translateY(0px);}
+}
+
+#imgD-info hr.spinner {
+	--s: 20px;
+	display: block;
+	height: var(--s);
+	width: var(--s);
+	box-sizing: border-box;
+	border-width: 3px;
+	border-top-color: green;
+}
+
+
+/*
+@keyframes rainbow {
+	from { fill : #825; transform: scale(1.1) translateY(0px); }
+	to { fill: #19f; transform: scale(1) translateY(0px); }
 }
 */
