@@ -76,16 +76,10 @@ class ImgD extends EventEmitter {
 		this.done = true; 
 		this.k = false;
 	}
-
-	fetch (url) {
-		return new Promise( res => {
-			exec(`curl '${url}'`, (e, stdout, stderr) => res(stdout));
-		});
-	}
 	
 	stop () {
 		dlog("stopping :", this.uid);
-		this.removeAllListeners("imgD-imgs");
+		this.eventNames().forEach( e => this.removeAllListeners(e));
 		for(let ac of this.acs ) ac.abort();
 		dlog("stopped :", this.uid, getTE());
 	}

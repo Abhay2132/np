@@ -13,6 +13,7 @@ module.exports = async function (io) {
 		}
 		switch(route) {
 			case "fd" :
+				dlog("fd");
 				require("../../apps/fd/socket")(socket);
 				break;
 			case "imgd" :

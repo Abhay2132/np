@@ -1,6 +1,11 @@
 const fs = require("fs");
 const http = require("http")
-const https = require("https")
+const https = require("https");
+const out  = dest => {
+	let dir = dest.split("/").slice(0,-1).join("/");
+	if( ! fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true});
+	return fs.createWriteStream(dest);
+}
 
 const _get = ({ ondata, url, dest = false, ret = false, headers = {} }) =>
 	new Promise(async (resolve) => {
@@ -30,3 +35,5 @@ const _get = ({ ondata, url, dest = false, ret = false, headers = {} }) =>
 		else return resolve(false);
 		req.on("error", (e) => resolve({ error: e }));
 	});
+	
+module.exports = _get

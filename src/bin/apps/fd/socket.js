@@ -6,16 +6,16 @@ const emitError = (s,e) => s.emit("error", {error : e});
 const pn = url => url.split("/").at(-1).split("?").at(0)
 
 module.exports = function (socket) {
-	
+	dlog("haha");
 	socket.on("download",async ({url, mode='file'}) => {
 	const logging = process.env.logging || false;
-	logging && log({url, mode})
+	dlog({url, mode})
 	var size = 0
 	const ondata = (c, l) => {
 		c = c.toString().length;
 		size += c;
 		const progress =Math.round( (size/l).toFixed(2) * 100 ) + "%";
-		logging && process.stdout.write("\r progress : " + progress);
+		//process.stdout.write("\r progress : " + progress);
 		socket.emit("fd_progress", { progress });
 		}
 		
