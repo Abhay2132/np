@@ -78,6 +78,7 @@
 			}
 
 			if (cb) cb();
+			setViewport();
 			return window.hmbgr;
 		},
 	};

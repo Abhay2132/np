@@ -1,39 +1,33 @@
 const fs = require("fs");
 const http = require("http")
 const https = require("https");
-const out  = dest => {
-	let dir = dest.split("/").slice(0,-1).join("/");
-	if( ! fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true});
+const out = dest => {
+	let dir = dest.split("/").slice(0, -1).join("/");
+	if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 	return fs.createWriteStream(dest);
 }
 
-const _get = ({ ondata, url, dest = false, ret = false, headers = {} }) =>
-	new Promise(async (resolve) => {
-		let cb = (r, res, des) => {
-			r.abort = () => req.abort();
-			if (ret) return res(r);
-			if (des) {
-				typeof ondata == 'function' && r.on("data", chunk => {
-					ondata(chunk, r.headers["content-length"])
-				});
-				r.pipe(out(des));
-				r.on("end", res);
-			} else {
-				let data = "";
-				r.on("data", (chunk) => {
-					typeof ondata == 'function' && ondata(chunk, r.headers["content-length"]);
-					data += chunk
-				});
-				r.on("end", () => res(data));
-			}
-		};
+const _get = ({ ondata, url, dest = false, body = false, headers = {}, abort = false }) =>
+	new Promise(async (resolve, reject) => {
+		if (!url.startsWith("http")) return reject("Invalid URL  (must start with a http) : " + url);
+		body = !body || '';
+		let f = (h) =>
+			h.get(url, { headers, abort }, response => {
+				if (ondata) response.on("data", chunk => { ondata(chunk, response.headers["content-length"]) })
+				if (body === '') {
+					if (response.headers["content-length"] > 10240) return reject("file size is more than 10240 kB, causes the memory leaks if response body is stored, instead file it into a file...")
+					response.on("data", c => body += c.toString());
+				}
+				if (dest) response.pipe(out(dest));
+				response.on("end", () => resolve(body));
+			})
+
 		let req = "";
 		if (url.startsWith("https"))
-			req = https.get(url, { headers }, (r) => cb(r, resolve, dest));
+			req = f(https)
 		else if (url.startsWith("http"))
-			req = http.get(url, { headers }, (r) => cb(r, resolve, dest));
-		else return resolve(false);
-		req.on("error", (e) => resolve({ error: e }));
+			req = f(http)
+		req.on("error", (e) => {dlog({e}); resolve(e)});
 	});
-	
+
 module.exports = _get

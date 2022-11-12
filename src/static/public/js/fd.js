@@ -11,9 +11,9 @@
 		});
 	if (!window.socket) window.socket = io();
 	window.fd_form = () => {
-		//alert("lkl");
+		if(!$(".fd-url").value.startsWith("http")) return snkbr.show("Invalid URL !");
 		if ($("#dd").checked)
-			return (location.href = "/pipe?link=" + $(".fd-url").value);
+			return window.open("/pipe?link=" + $(".fd-url").value);
 		$(".fd-dbtn").style.opacity = 0;
 		let url = $(".fd-url").value;
 
@@ -21,13 +21,15 @@
 		socket.on("fd_done", ({ link }) => {
 			$(".fd-dbtn").style.opacity = 1;
 			$(".fd-dbtn").textContent = "Download Ready";
+			dlog(link)
 			$(".fd-dbtn").onclick = () =>
-				(location.href = `/fd/download?file=${link}`);
+				window.open(`/fd/download?file=${link}`);
 		});
 		socket.on("fd_progress", ({ progress }) => {
 			$(".fd-dbtn").style.opacity = 1;
 			$(".fd-dbtn").textContent = "Downloading : " + progress;
 		});
-		//});
+		
+		socket.on("fd-error", e => snkbr.show("Error : " + e));
 	};
 })();

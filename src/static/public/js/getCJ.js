@@ -1,9 +1,10 @@
 const $ = (q) => document.querySelector(q);
 const $$ = (q) => document.querySelectorAll(q);
+const dlog = (...a) => isDev && console.log(...a);
 
 const _getCJ = {
-	av: () => parseInt(localStorage.getItem("appV") || "0"),
-	getF: function() {
+	av() { return parseInt(localStorage.getItem("appV") || "0"); },
+	getF() {
 		//console.log({av : this.av});
 		const av = this.av();
 		return new Promise((res) => {
@@ -25,11 +26,11 @@ const _getCJ = {
 			else dataHandler(cj, res);
 		});
 	},
-	init: async function(d = {}) {
+	async init(d = {}) {
 		const { a = false, cb = () => {} } = d;
 		if (a) console.time(a);
 		const data = await this.getF();
-		// console.log(data.view);
+
 		const { css = '', js = '', error = false } = data;
 		if (error) return console.log(error);
 		$("#cj_css") && $("#cj_css").remove();
@@ -43,7 +44,7 @@ const _getCJ = {
 		script.setAttribute("id", "cj_js");
 		document.body.appendChild(style);
 		document.body.appendChild(script);
-		
+
 		localStorage.setItem("appV", __appV)
 		if (a) console.timeEnd(a);
 		cb();
@@ -51,11 +52,11 @@ const _getCJ = {
 }
 
 async function setView(view, p = false) {
-	if ( window.snkbr) snkbr.hide();
+	if (window.snkbr) snkbr.hide();
 	hmbgr.off();
 	sp.off();
 	const ls_views = JSON.parse(localStorage.getItem("CJ")).view;
-	if (!ls_views.hasOwnProperty(view)) return log({error:`view '${view}' not found in cache !`});
+	if (!ls_views.hasOwnProperty(view)) return log({ error: `view '${view}' not found in cache !` });
 	let { mainHeading, title, html } = ls_views[view];
 	const body = $("#body");
 	const delay = 300;
@@ -69,23 +70,11 @@ async function setView(view, p = false) {
 	await wait(1);
 	body.style.transform = 'translateY(0px)';
 	body.style.opacity = '1';
-	_getCJ.init({ });
+	_getCJ.init({});
 	if (p) history.pushState({ view }, "", view);
-	else history.replaceState({view}, "", view);
+	else history.replaceState({ view }, "", view);
 	// log(p ? "state pushed" : 'state replaced !', view)
-}
-
-function _ca() {
-	$$("[view]").forEach(v => {
-		if (!!v.getAttribute("listeneradded")) return;// log("listener not Added : ", v.getAttribute("view"));
-		// log("listener added : ", v.getAttribute("view"), v.getAttribute("listeneradded"));
-		v.setAttribute("listeneradded", "true");
-		v.addEventListener("click", async function(e) {
-			e.preventDefault();
-			let view = v.getAttribute("view");
-			await setView(view, location.href.split("/").at(-1) != view);
-		})
-	})
+	setViewport();
 }
 
 window.onpopstate = async function(e) {
@@ -94,13 +83,13 @@ window.onpopstate = async function(e) {
 	await setView(e.state.view);
 };
 
-window.viewportTicker = window.requestAnimationFrame(setViewport)
+// window.viewportTicker = window.requestAnimationFrame(setViewport)
 
 function setViewport() {
 	$("#sidePanel").style.height = window.innerHeight - 50 + "px";
 	$("body").style.height = window.innerHeight + "px";
 	$("#wa-app") && ($("#wa-app").style.height = window.innerHeight - 50 + "px");
-	window.requestAnimationFrame(setViewport)
+	//window.requestAnimationFrame(setViewport)
 }
 
 window.onresize = (setViewport);

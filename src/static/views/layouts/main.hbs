@@ -12,9 +12,12 @@
 <link rel="apple-touch-icon" href="/favicon.png">
 <style>
 
+:root{
+	--font-weight:350;
+}
 * {
 	font-family: Fredoka, sans-serif, cambria,calibri;
-	font-weight: 350;
+	font-weight: var(--font-weight);
 }
 
 body {
@@ -92,5 +95,7 @@ if ('serviceWorker' in navigator)
 <script src="/js/getCJ.js"></script>	
 {{/if}}
 
-<script>_getCJ.init({a : "CJ ", cb : () => (document.body.style.opacity = '1') });</script>
+<script>
+_getCJ.init({a : "CJ ", cb : () => {document.body.style.opacity = '1';setViewport()} });
+</script>
 </html>

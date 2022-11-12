@@ -46,6 +46,10 @@ a {
 		left: calc(50% - var(--w) / 2);
 	}
 
+	:root{
+		--font-weight: 400;
+	}
+
 	#mainH {
 		font-size: 24px;
 	}
