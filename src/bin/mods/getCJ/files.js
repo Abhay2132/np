@@ -28,6 +28,7 @@ let files = {
 		"ui/user-control.css",
 		"ui/error.css",
 		"ui/snackbar.css",
+		"ui/anime.css",
 
 		"index/main.css",
 		"index/bars.css",
@@ -41,6 +42,7 @@ let files = {
 		"wu/search-bar.css",
 		"wu/fab.css",
 		"wu/chat.css",
+		"wu/messenger.css",
 
 		"imgD/main.css",
 		"imgD/pb.css",

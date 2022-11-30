@@ -28,8 +28,8 @@ body {
 </head>
 <body>
 	
-<nav id="mainNav" class="dnl-bg">
-	<div id="hmbgr" onclick="hmbgr.t(sp.t)"> <hr /><hr /><hr /> </div>
+<nav id="mainNav" class="mainNav">
+	<div id="hmbgr" onclick="hmbgr.t(() => sp.t())"> <hr /><hr /><hr /> </div>
 	<div id="mainH">
 		{{{mainHeading}}}
 	</div>
@@ -43,15 +43,15 @@ body {
 	</div>
 </nav>
 
-<div id="sidePanel" style="transform: translateX(-250px);">
+<div id="sidePanel" class='sidePanel hidden-side-panel'>
 	<a href="/"  class="item" view="index" onclick="setView('index' , location.href.split('/').at(-1) != 'index'); return false;"> HOME </a>
 	<div class="item"> Contact me </div>
 	<div class="item"> About me </div>
 </div>
 
-	<div id="body" class="viewport">
+	<main id="body" class="viewport">
 	{{{body}}}
-	</div>
+	</main>
 	<div class="snackbar-container" style="display:none;">
 		<div class="snackbar" onclick="snkbr.hide()">
 		</div>

@@ -1,12 +1,11 @@
 #hmbgr {
 	--size: 35px;
-	height: var(--size);
-	width: var(--size);
+	height: var(--nav-size);
+	width: var(--nav-size);
 	background: none;
-	border-radius: 5px;
 	position: relative;
-	top: calc(50% - var(--size) / 2);
 	text-align: center;
+	box-sizing: border-box;;
 	z-index: 3;
 }
 
@@ -23,21 +22,23 @@
 	position: absolute;
 	left: 10px;
 	background: #333;
+	--top : 10px;
+	--gap : 7.5px;
 }
 
 #hmbgr > hr:nth-child(1) {
-	--pos: 10px;
+	--pos: calc(var(--top) + var(--gap));
 	top: calc(var(--pos) - var(--hr-H) / 2);
 	width: 18px;
 }
 
 #hmbgr > hr:nth-child(2) {
-	--pos: 17.5px;
+	--pos: calc(var(--top) + var(--gap) * 2);
 	top: calc(var(--pos) - var(--hr-H) / 2);
 }
 
 #hmbgr > hr:nth-child(3) {
-	--pos: 25px;
+	--pos: calc(var(--top) + var(--gap)*3);
 	top: calc(var(--pos) - var(--hr-H) / 2);
 }
 

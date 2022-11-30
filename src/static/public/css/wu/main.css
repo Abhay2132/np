@@ -3,8 +3,9 @@
 	--nms: 22px;
 	--new-mess-bg: #4A9300;
 	--new-mess-clr: #fff;
-	/*background: red;*/
+/*	background: seagreen;*/
 	--chat-hbr-bg: #eee;
+	height: 100%;
 }
 
 .new-mess {

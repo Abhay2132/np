@@ -86,10 +86,7 @@ window.onpopstate = async function(e) {
 // window.viewportTicker = window.requestAnimationFrame(setViewport)
 
 function setViewport() {
-	$("#sidePanel").style.height = window.innerHeight - 50 + "px";
-	$("body").style.height = window.innerHeight + "px";
-	$("#wa-app") && ($("#wa-app").style.height = window.innerHeight - 50 + "px");
-	//window.requestAnimationFrame(setViewport)
+	$(":root").style.setProperty("--inner-height", window.innerHeight+"px")
 }
 
 window.onresize = (setViewport);

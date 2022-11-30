@@ -1,3 +1,9 @@
+:root {
+	--w: 550px;
+	--nav-height: 50px;
+	height: var(--inner-height);
+}
+
 body {
 	perspective: 400px;
 	margin: 0;
@@ -9,9 +15,12 @@ body {
 	background: var(--body-bg);
 	background-blend-mode: multiply, multiply;
 	font-size: 1rem;
+
+	height: var(--inner-height);
 }
 
-input, button {
+input,
+button {
 	font-size: 1rem;
 }
 
@@ -36,17 +45,17 @@ a {
 	position: relative;
 	z-index: 8;
 	transform-origin: 50% 0%;
+	height: calc(var(--inner-height) - var(--nav-height));
 }
 
 @media only screen and (min-width: 720px) {
 	#body {
 		positon: relative;
-		--w: 40%;
 		width: var(--w);
 		left: calc(50% - var(--w) / 2);
 	}
 
-	:root{
+	:root {
 		--font-weight: 400;
 	}
 
@@ -58,11 +67,11 @@ a {
 		width: 40%;
 		left: calc(50% - 20%);
 	}
-} 
+}
 
-@media only screen and (max-width: 1000px){
+@media only screen and (max-width: 1000px) {
 	#body {
-		--w : 60%;
+		--w: 60%;
 	}
 }
 

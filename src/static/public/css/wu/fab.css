@@ -14,6 +14,7 @@
 }
 
 .fab [icon="plus"] {
+	--fab-icon-bg: green;
 	height: 100%;
 	width: 100%;
 	display: flex;
@@ -24,7 +25,7 @@
 	left: 0;
 	border-radius: 50%;
 	transition: 0.5s;
-	background: green;
+	background: var(--fab-icon-bg);
 }
 
 .fab [icon="plus"] svg {
@@ -44,6 +45,8 @@
 	display: flex;
 	flex-direction: column;
 
+	height: 0;
+	/*	height: 165px;*/
 	position: fixed;
 	bottom: 15px;
 	right: 10px;
@@ -51,41 +54,57 @@
 	opacity: 0;
 
 	overflow: hidden;
-	height: 0;
 	transition: 0.5s;
 
-	background: #91c85a;
+	--fab-opts-bg: #91c85a;
+	background: var(--fab-opts-bg);
 }
 
-.fab-opts > div {
+.fab-opts>div {
 	height: var(--fab-size);
 	width: var(--fab-size);
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	--fab-opts-hover-bg: #678d00;
+	transition: 0.3s;
 }
 
-.fab-opts > div:hover {
-	background: #678d00;
+.fab-opts > div:hover{
+	transform: scale(0.95);
 }
 
-.fab-opts > div > svg {
+.fab-opts-hovered {
+	background: var(--fab-opts-hover-bg);
+}
+
+.fab-opts>div>svg {
 	--svg-size: 75%;
 	height: var(--svg-size);
 	width: var(--svg-size);
 }
 
 @media (prefers-color-scheme: dark) {
-	
+
 	.fab-opts {
-		background: #222;
+		--fab-opts-bg: #222;
 	}
-	
-	.fab-opts > div:hover {
-		background: #111; 
+
+	.fab-opts>div {
+		--fab-opts-hover-bg: #111
 	}
-	
-	.fab [icon="plus"] { 
-		background: #333 ;
+
+	.fab [icon="plus"] {
+		--fab-icon-bg: #333;
 	}
+}
+
+@media only screen and (min-width: 720px) {
+	.fab-opts {
+		right: calc(50% - var(--w)/2 + 10px);
+	}
+/*
+	.fab-opts>div:hover {
+		background: var(--fab-opts-hover-bg);
+	}*/
 }

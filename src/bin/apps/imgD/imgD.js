@@ -29,7 +29,10 @@ class ImgD extends EventEmitter {
 
 		let ac = new AbortController();
 		this.acs.push(ac);
-		const htm = await _get(ac.signal, url, !isPro ? j(this.dir, "source.htm") : !1);		 				
+		const htm = await _get({signal : ac.signal, url});
+		if(htm.error) return this.error(htm.error);
+		if(!htm) return this.error({code : "MTBODY"});
+
 		const dom = await parse(htm); 						
 		var imgs = dom.querySelectorAll("img"); 	 
 		var title = dom.querySelector("title").innerHTML; let n = 1;
@@ -40,6 +43,12 @@ class ImgD extends EventEmitter {
 		
 		this.finsihed();
 	}
+
+	error(e){
+		const error = `Error code : ${e.code}`; dlog(error);
+		this.emit("imgD-err", {error})
+		this.finsihed();
+	}
 	
 	dl (imgs) { 
 		return new Promise( async res => {
@@ -48,7 +57,7 @@ class ImgD extends EventEmitter {
 			for(let img of imgs) {
 				let ac = new AbortController();
 				this.acs.push(ac);
-				_get(ac.signal, img.src, j(this.dir, img.name))
+				_get({signal : ac.signal, url: img.src, dest : j(this.dir, img.name)})
 				.then( b => {
 					++i;
 					if ( i != len) return this.emit("imgD-dl", { i , len});

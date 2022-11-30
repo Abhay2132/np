@@ -2,7 +2,6 @@
 	--uc-size : 50px;
 	height: var(--uc-size);
 	width: var(--uc-size);
-	padding:  0 10px;
 	--uc-menu-bg : #333;
 }
 

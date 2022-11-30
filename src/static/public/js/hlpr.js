@@ -23,28 +23,21 @@
 		a.click();
 		document.body.removeChild(a);
 	};
+
 	window.sp = {
-		off: function() {
+		off () {
 			const sp = $("#sidePanel");
-			sp.style.transform = "translateX(-250px)";
-			sp.style.opacity = "0";
+			sp.classList.add("hidden-side-panel");
 			return window.sp;
 		},
-		on: function() {
+		on () {
 			const sp = $("#sidePanel");
-			sp.style.transform = "translateX(0px)";
-			sp.style.opacity = "1";
+			sp.classList.remove("hidden-side-panel");
 			return window.sp;
 		},
-		t: function(cb) {
-			const sp = $("#sidePanel");
-			//this.isOn = sp.style.opacity == '1';
-			const isOn = sp.style.opacity == "1";
-			if (!isOn) {
-				window.sp.on();
-			} else {
-				window.sp.off();
-			}
+		t (cb) {
+			const isOn = ! $("#sidePanel").className.split(" ").includes("hidden-side-panel");
+			isOn ? this.off() : this.on();
 			if (typeof cb == "function") cb();
 			return window.sp;
 		},

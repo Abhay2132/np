@@ -1,6 +1,7 @@
 const fs = require("node:fs");
 const http = require("node:http");
 const https = require("node:https");
+const {exec} = require("child_process");
 
 function imgFilter ( img , url , n ) {
 	let src = img.getAttribute("src") || false;
@@ -29,29 +30,47 @@ const validURL = url => {
 	return true;
 }
 
-function _get (signal, url, dest = false) {
-	return new Promise( res => {
-		var body = "";
-		const cb = h => 
-			h.get(url, {signal}, r => {
-				if(dest) {
-					if(!fs.existsSync(dest)) {
-						let dir = dest.split("/").slice(0,-1).join("/");
-						fs.mkdirSync(dir, { recursive : true });
-					}
-					r.pipe(fs.createWriteStream(dest));
-				}
-				r.on("data", c =>{body+=c});
-				r.on('end', () => res(body));
-			});
+// function _get (signal, url, dest = false) {
+// 	return new Promise( (res, rej) => {
+// 		var body = "";
+// 		const cb = h => 
+// 			h.get(url, {signal}, r => {
+// 				if(dest) {
+// 					if(!fs.existsSync(dest)) {
+// 						let dir = dest.split("/").slice(0,-1).join("/");
+// 						fs.mkdirSync(dir, { recursive : true });
+// 					}
+// 					r.pipe(fs.createWriteStream(dest));
+// 				}
+// 				r.on("data", c =>{body+=c});
+// 				r.on('end', () => res(body));
+// 			});
 		
-		let cr;
-		if(!url.startsWith("http")) return res(body);
-		if(url.startsWith("https")) cr = cb(https);
-		else cr = cb(http);
-		cr.on("error", e => {dlog(e); res(); });
-	});
+// 		let cr;
+// 		if(!url.startsWith("http")) return res(body);
+// 		if(url.startsWith("https")) cr = cb(https);
+// 		else cr = cb(http);
+// 		cr.on("error", error =>{dlog({error, url}); res({error})});
+// 	});
+// }
+
+
+function _get ({signal, url, dest = false}){
+	return new Promise (async resolve => {
+		var cmd = `curl '${url}'`
+		if (dest) {
+			const dir = dest.split("/").slice(0,-1).join("/");
+			if(!fs.existsSync(dir)) await new Promise(a => fs.mkdir(dir, {recursive: true}, () => a() ) );
+			cmd += ` > '${dest}'`;
+		}
+		dlog({cmd})
+		exec(cmd, (error, sout, serr) => {
+			if(error) {dlog({error, cmd}); return resolve({error})};
+			resolve(sout);
+		})
+	})
 }
+
 
 const ge = a => a.split(".").at(-1);
 module.exports = { imgFilter , getTE , validURL, _get };
