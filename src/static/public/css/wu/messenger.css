@@ -16,6 +16,11 @@
 	flex-direction: column-reverse;
 	box-sizing: border-box;
 	padding: 0.5rem;
+/*	position: relative;*/
+}
+
+.chat-history-wrapper{
+/*	background: red;*/
 }
 
 .my-mess {
