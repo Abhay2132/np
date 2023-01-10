@@ -1,9 +1,9 @@
-<form onsubmit="fd_form(); return false" class="fd-form" >
+<form onsubmit="return false" class="fd-form">
 	<h2>Enter File URL </h2>
 	<div class="imgD-input-container">
 	<div icon="search"></div>
 	<input
-		type="search"
+		type="url"
 		id="website_url"
 		class="fd-url"
 		placeholder="File URL"
@@ -13,7 +13,7 @@
 		onclick="pressed(this)"
 		class="fd-button" value="Start" />
 	</div>
-	<center><input type="checkbox" name="dd" id="dd" /> <label for="dd"> Direct Download </label></center>
 	
 </form>
-<center><button class="fd-dbtn" > Downloading 100%</button></center>
+
+<script src="js/fd.js" type="module"></script>

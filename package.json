@@ -1,24 +1,24 @@
 {
-	"name": "ws",
+	"name": "np",
 	"version": "1.0.0",
 	"description": "",
 	"main": "src/app.js",
 	"scripts": {
-		"test": "clear ; echo 'Killing node ps !'; pkill -e node; nodemon --quiet test/test",
+		"test": "clear ; echo 'Killing node ps !'; pkill -e node; nodemon --quiet src/app",
 		"start": "export NODE_ENV='PRODUCTION'; node .",
 		"ps": "export NODE_ENV=PRODUCTION; node test/test;"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/Abhay2132/ws.git"
+		"url": "git+https://github.com/Abhay2132/np.git"
 	},
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
 	"bugs": {
-		"url": "https://github.com/Abhay2132/ws/issues"
+		"url": "https://github.com/Abhay2132/np/issues"
 	},
-	"homepage": "https://github.com/Abhay2132/ws#readme",
+	"homepage": "https://github.com/Abhay2132/np#readme",
 	"dependencies": {
 		"@ffmpeg-installer/ffmpeg": "^1.1.0",
 		"adm-zip-node": "^0.4.17",
@@ -31,9 +31,7 @@
 		"express": "^4.17.1",
 		"express-handlebars": "^6.0.2",
 		"ffmpeg": "^0.0.4",
-		"formidable": "^2.0.1",
-		"image-to-base64": "^2.2.0",
-		"jimp": "^0.16.1",
+		"node-fetch": "^3.3.0",
 		"node-html-parser": "^5.1.0",
 		"pg": "^8.7.3",
 		"postgres": "^1.0.2",

@@ -46,7 +46,7 @@
 .open-btn,
 .back-btn {
 	position: absolute;
-	height: 30px;
+	height: 33px;
 	display: inline-block;
 	transition: 0.3s;
 	right: -90px;

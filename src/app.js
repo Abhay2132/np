@@ -1,1 +1,1 @@
-require('./clusters.js')();
+require("./bin/index")()

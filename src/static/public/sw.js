@@ -1,90 +1,53 @@
-const PRECACHE = "precache-v1";
-const RUNTIME = "runtime";
-
-// A list of local resources we always want to be cached.
-const FILES = [
-	"/index",
-	"/wu",
-	"/imgD",
+// const c_name = "cache-v1";
+// isDev = true | false;
+const runtime = [
 	"/fm",
-	"/ytdl",
-	// "/getCJ",
-	"/favicon.ico",
-	"/favicon.png",
-	"/fd",
-	"/js/getCJ.js"
+	"/imgD",
+	"wu"
 ];
+const precache = [
+	"/index",
+	"/css",
+	"/favicon.png",
+	"/favicon.ico",
+];
+const allCaches = [...runtime, ...precache]
+self.addEventListener("install", e => {
+	e.waitUntil(
+		caches.open(c_name)
+		.then(c => c.addAll(precache))
+		.then(() => self.skipWaiting())
+	)
+})
 
-const runtime_cache = []
-
-Promise.all(
-	FILES.map((cacheToDelete) => {
-		return caches.delete(cacheToDelete);
-	})
-);
-
-// The install handler takes care of precaching the resources we always need.
-self.addEventListener("install", (event) => {
-
-	console.log("Install event : Caching files !")
-	event.waitUntil(
-		caches
-		.open(PRECACHE)
-		.then((cache) => cache.addAll(FILES))
-		.then(self.skipWaiting())
-	);
+self.addEventListener("activate", e => {
+	self.clients.claim();
 });
 
-// The activate handler takes care of cleaning up old caches.
-self.addEventListener("activate", (event) => {
-	const currentCaches = [PRECACHE, RUNTIME];
-	console.log("Activate event : Deleting older caches !")
-	event.waitUntil(
-		caches
-		.keys()
-		.then((cacheNames) => {
-			return cacheNames.filter(
-				(cacheName) => !currentCaches.includes(cacheName)
-			);
-		})
-		.then((cachesToDelete) => {
-			return Promise.all(
-				cachesToDelete.map((cacheToDelete) => {
-					return caches.delete(cacheToDelete);
-				})
-			);
-		})
-		.then(() => self.clients.claim())
-	);
-});
+self.addEventListener("fetch", e => {
+	if(isDev) return;
+	const { pathname } = new URL(e.request.url)
+	const valid = isValid(pathname);
 
-// The fetch handler serves responses for same-origin resources from a cache.
-// If no response is found, it populates the runtime cache with the response
-// from the network before returning it to the page.
-self.addEventListener("fetch", (event) => {
-	// Skip cross-origin requests, like those for Google Analytics.
-	const { method, url } = event.request;
-	const file = "/" + url.split("/").slice(3).join("/")
-	console.log(file, FILES.includes(file))
-	if (method != "GET" || !FILES.includes(file)) return;
-	if (event.request.url.startsWith(self.location.origin)) {
-		event.respondWith(
-			caches.match(event.request).then((cachedResponse) => {
-				if (cachedResponse) {
-					return cachedResponse;
-				}
+	console.log("'%s' : '%s'", valid, pathname)
+	if (!valid) return;
 
-				if (runtime_cache.includes(url))
-					return caches.open(RUNTIME).then((cache) => {
-						return fetch(event.request).then((response) => {
-							// Put a copy of the response in the runtime cache.
-							return cache.put(event.request, response.clone()).then(() => {
-								return response;
-							});
-						});
-					});
-				return //console.log(url, "NOT FOUND IN CACHE");
-			})
-		);
-	}
-});
+	return e.respondWith(getRes(e))
+})
+
+async function getRes (e){
+	const cr = await caches.match(e.request); // cached response
+	if (cr) return cr;
+
+	const res = await fetch(e.request.url);
+	const clone = await res.clone();
+	const cache = await caches.open(c_name);
+	await cache.put(e.request, clone);
+	return res;
+}
+
+function isValid(url) {
+	if (allCaches.includes(url)) return true;
+	if (url.match(/^(\/js|\/icons)/g)) return true;
+	return false;
+}

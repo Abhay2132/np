@@ -35,14 +35,14 @@ const _getCJ = {
 		if (error) return console.log(error);
 		$("#cj_css") && $("#cj_css").remove();
 		$("#cj_js") && $("#cj_js").remove();
-		const style = document.createElement("style");
+		// const style = document.createElement("style");
 		const script = document.createElement("script");
 
-		style.innerHTML = css;
+		// style.innerHTML = css;
 		script.innerHTML = js;
-		style.setAttribute("id", "cj_css");
+		// style.setAttribute("id", "cj_css");
 		script.setAttribute("id", "cj_js");
-		document.body.appendChild(style);
+		// document.body.appendChild(style);
 		document.body.appendChild(script);
 
 		localStorage.setItem("appV", __appV)

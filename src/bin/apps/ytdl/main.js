@@ -1,14 +1,13 @@
-const ytdl = require("ytdl-core"),
-	{ spawn } = require("child_process"),
-	ffmpeg = isA ? "/data/data/com.termux/files/usr/bin/ffmpeg" :
-	(process.env.ffmpeg || require('@ffmpeg-installer/ffmpeg').path), // ! isA ? ( isPro ? require('@ffmpeg-installer/ffmpeg').path /*"/app/vendor/ffmpeg/ffmpeg"*/ : "/usr/bin/ffmpeg" ) : "/data/data/com.termux/files/usr/bin/ffmpeg",
-	{ bs, getInfo } = require("./hlpr"),
-	beautify = (str) =>
+const ytdl = require("ytdl-core")
+const { spawn } = require("child_process")
+const ffmpeg = (process.env.ffmpeg || require('@ffmpeg-installer/ffmpeg').path)
+const { bs, getInfo } = require("./hlpr")
+const beautify = (str) =>
 	require("prettier").format(
 		typeof str == "object" ? JSON.stringify(str) : str, { useTabs: true, parser: "json" }
-	),
-	fs = require("fs"),
-	rm = (file) => (fs.existsSync(file) && fs.rmSync(file, { recursive: true }))
+	)
+const fs = require("fs")
+const rm = (file) => (fs.existsSync(file) && fs.rmSync(file, { recursive: true }))
 
 log(ffmpeg);
 async function getD(req, res) {

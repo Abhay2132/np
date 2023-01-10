@@ -1,5 +1,5 @@
 const { liveReload } = require("../hlpr");
-const { genHash } = require("../captcha/hlpr");
+//const { genHash } = require("../captcha/hlpr");
 
 module.exports = async function (io) {
 	io.on("connection", (socket) => {

@@ -3,7 +3,7 @@ const http = require("node:http");
 const https = require("node:https");
 const {exec} = require("child_process");
 
-function imgFilter ( img , url , n ) {
+function imgFilter ( img ,url,  n ) {
 	let src = img.getAttribute("src") || false;
 	//dlog({src, url});
 	if ( ! src ) return false;

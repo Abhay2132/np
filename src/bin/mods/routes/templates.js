@@ -1,12 +1,12 @@
 const fs = require("fs");
 var srcs = [];
 try{srcs = fs.readdirSync(j(pdir, "gallery")).map(f => "/gallery/"+f);} catch(e){dlog({e})}
-let routes = {
+
+let data = {
 	"/": { view: "index", title: "Node Pro", mainHeading: "Node Pro" },
 	"/index": { isDev : !isPro , view: "index", title: "Node Pro", mainHeading: "Node Pro" },
 	"/?": { view: "index", title: "Node Pro", mainHeading: "Node Pro" },
 	"/imgD": { view: "imgD", title: "Image Downloader", mainHeading: "Image Downloader" },
-	"/fm": { view: "fm", title: "File Manager", mainHeading: "File Manager" },
 	"/ytdl": {
 		view: "ytdl",
 		title: "YouTube Video Downloader",
@@ -26,4 +26,4 @@ let routes = {
 if (!isPro) {
 }
 
-module.exports = routes;
+module.exports = data;
