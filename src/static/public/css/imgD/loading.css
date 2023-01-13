@@ -35,12 +35,6 @@ hr.spinner {
 	margin: 10px;
 }
 
-.collapse {
-	height: 0;
-	padding: 0; 
-	margin: 0;
-}
-
 #imgD-info hr.spinner {
 	--s: 20px;
 	display: block;

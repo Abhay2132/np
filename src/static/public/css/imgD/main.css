@@ -29,3 +29,9 @@
 	border-top: 1px solid;
 	margin: 20px 0;
 }
+
+.collapse {
+	height: 0 !important;
+	padding: 0 !important; 
+	margin: 0 !important;
+}

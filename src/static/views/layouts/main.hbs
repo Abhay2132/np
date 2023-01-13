@@ -52,7 +52,7 @@ if ( location.href.startsWith("http:") && ! location.href.includes(":3000"))
 const isDev = {{{isDev}}};
 const __appV = {{{appV}}};
 
-{{#if isDev}}
+{{#if (isDev)}}
 (new Worker("/js/liveReload.js")).onmessage = function () {
 	location.href = location.href;
 }

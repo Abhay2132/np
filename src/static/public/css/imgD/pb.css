@@ -68,7 +68,7 @@
 	justify-content: center;
 	padding: 5px;
 	overflow: hidden;
-	margin: 10px;
+	margin: 0;
 	height: 42px;
 	transition: 0.2s;
 }

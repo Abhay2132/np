@@ -4,8 +4,8 @@ const urlm = require("url")
 const router = require("express").Router()
 let ts = require("./templates");
 const hbs = require("handlebars");
-const {imgD} = require("../../apps/imgD");
-
+const {imgD,dl} = require("../../apps/imgD");
+const pipe = require("../pipe");
 const { css } = require("../hlpr/index");
 
 router.get("/css", css);
@@ -16,12 +16,18 @@ for (let url in ts)
 	router.get(url, (req, res) => res.render(ts[url].view, ts[url]));
 
 router.post("/imgD", imgD)
-router.get("/imgD/dl", require("../../apps/imgD/dl"));
+router.get("/imgD/dl", dl);
+router.post("/imgD-token", (req, res) => {
+	let {token} = req.body;
+	if(imgDsessions.hasOwnProperty(token)) return res.json(imgDsessions[token]);
+	return res.json({error : "404 ! TOKEN NOT FOUND"})
+})
 
 router.post("/ytdl/getd", require("../../apps/ytdl/main.js").getD);
 router.get("/ytdl/download", require("../../apps/ytdl/main.js").dl);
 
 router.use("/fd/download", require("../../apps/fd"));
+router.get("/pipe", pipe)
 
 router.get("/sw", (req, res) => {
 	fs.readFile(j(pdir, "sw.js"), (e, d) => {
@@ -35,11 +41,6 @@ router.get("/sw", (req, res) => {
 	})
 })
 
-router.post("/imgD-token", (req, res) => {
-	let {token} = req.body;
-	if(imgDsessions.hasOwnProperty(token)) return res.json(imgDsessions[token]);
-	return res.json({error : "404 ! TOKEN NOT FOUND"})
-})
 
 router.get("/505", (req, res) => res.status(505).end());
 router.post("/kill", (req,res)=> {

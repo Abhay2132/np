@@ -29,7 +29,7 @@ self.addEventListener("fetch", e => {
 	const { pathname } = new URL(e.request.url)
 	const valid = isValid(pathname);
 
-	console.log("'%s' : '%s'", valid, pathname)
+	//console.log("'%s' : '%s'", valid, pathname)
 	if (!valid) return;
 
 	return e.respondWith(getRes(e))

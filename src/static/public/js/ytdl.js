@@ -1,9 +1,5 @@
-(async function () {
-	if (document.title != "YouTube Video Downloader") {
-		delete window.toggle_avTab;
-		delete window.getVQ;
-		return;
-	}
+import {$,dlog,log,onLoad} from "./hlpr.js"
+
 	$("input#url").value = localStorage.getItem("lastYtdlVideo") || "";
 	window.getVQ = () => {
 		ytdl_error();
@@ -94,4 +90,17 @@
 			$("#vPanel").style.display = "block";
 		}
 	};
-})();
+
+export function init (){
+	if(document.title != 'YouTube Video Downloader') return;
+	$(".ytdl-form").addEventListener("submit", e=>{
+		e.preventDefault();
+		getVQ();		
+	});
+	// $(".ytdl-btn").addEventListener("click", e => {
+	// 	dlog("btn clicked")
+	// 	getVQ();
+	// })
+}
+
+init();

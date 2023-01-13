@@ -76,6 +76,7 @@ module.exports = async function () {
           log("  %s %s : http://%s:%i",key," ".repeat(ms - key.length),item.address,_port);
       });
     log();
+    if(!isPro) liveReload();
     require("fs").existsSync(j(sdir, "files")) &&
       require("fs").rm(j(sdir, "files"), { recursive: true }, () => {});
   });

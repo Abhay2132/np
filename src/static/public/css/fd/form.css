@@ -60,3 +60,7 @@
 .fd-url {
 	color: var(--wnd);
 }
+
+#zip {
+	transform: scale(1.3);
+}
