@@ -1,16 +1,5 @@
 import { $ , dlog } from "./hlpr.js"
 
-async function show(tag, { d, h, p, m }, delay) {
-	if (delay) {
-		tag.style.transition = delay + "ms";
-		await wait(10);
-	}
-	if (d) tag.style.display = d
-	if (h) tag.style.height = h
-	if (p) tag.style.padding = p
-	if (m) tag.style.margin = m
-}
-
 const startImgD = async () => {
 	const link = $("#website_url")?.value;
 
@@ -23,7 +12,7 @@ const startImgD = async () => {
 	})
 	.then(r => r.json())
 	.then(handleData)
-	//$("#imgD-loading").classList.replace("collapse", "show-loader");
+	.catch(console.error)
 	reset_imgd_ui();
 }
 
@@ -31,8 +20,6 @@ function reset_imgd_ui() {
 	$("#imgD-ps").classList.remove("collapse")
 	$("#imgD-loading").classList.replace("collapse", "show-loader");
 	$("#imgD-info").classList.add("collapse");
-	//$("#imgD-info").classList.replace("show-dl-cont", "collapse");
-	//$("#dl-ps").classList.replace("dl-icon", "spinner-icon");
 }
 
 function handleData (data){

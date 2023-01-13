@@ -39,6 +39,7 @@ async function getRes (e){
 	const cr = await caches.match(e.request); // cached response
 	if (cr) return cr;
 
+	if(e.request.method.toLowerCase() !== "get") return false;
 	const res = await fetch(e.request.url);
 	const clone = await res.clone();
 	const cache = await caches.open(c_name);
